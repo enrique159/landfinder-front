@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 900;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Heavy"), url("@/assets/fonts/Gilroy-Heavy.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 800;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Black"), url("@/assets/fonts/Gilroy-Black.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Bold"), url("@/assets/fonts/Gilroy-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 600;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy SemiBold"), url("@/assets/fonts/Gilroy-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Medium"), url("@/assets/fonts/Gilroy-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Regular"), url("@/assets/fonts/Gilroy-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Light"), url("@/assets/fonts/Gilroy-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: 200;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gilroy Thin"), url("@/assets/fonts/Gilroy-Thin.otf") format("opentype");
+}
