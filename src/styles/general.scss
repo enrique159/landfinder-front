@@ -7,6 +7,7 @@
 
   --color-white: #FFFFFF;
   --color-white-1: #E3E3E3;
+  --color-white-2: #CECECE;
 
   --color-text: var(--color-white);
   --color-text-dark: #343434;
@@ -64,6 +65,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ul {
