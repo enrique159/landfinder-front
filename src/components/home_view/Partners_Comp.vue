@@ -81,6 +81,7 @@
 .partners-container {
   height: 400px;
   width: 100%;
+  overflow-x: hidden;
   .first-line {
     display: flex;
     column-gap: 1rem;
