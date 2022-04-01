@@ -1,13 +1,15 @@
 
 :root {
   --color-black: #000;
-  --color-black-1: #2a2a2a;
+  --color-black-1: #101010;
   --color-black-2: #393939;
+  --color-black-3: #292929;
 
   --color-white: #FFFFFF;
+  --color-white-1: #E3E3E3;
 
   --color-text: var(--color-white);
-  --color-text-dark: #646464;
+  --color-text-dark: #343434;
   --color-text-light: #9F9F9F;
 
   --color-complementary-1: #0DBA6A;
@@ -90,4 +92,10 @@ button {
 
 input {
   outline: none;
+}
+
+
+/* Helper Classes */
+.spacer {
+  height: 100px;
 }
