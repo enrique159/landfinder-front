@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <div class="search-header animate__animated animate__zoomIn">
     <h1 class="animate__animated animate__fadeInDown animate__delay">
       Land Finder México <br />
@@ -69,6 +70,7 @@
         <button class="button-search">Buscar</button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
