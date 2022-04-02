@@ -2,7 +2,7 @@
   <div class="mb-5">
     <HeaderComp/>
     <div class="spacer"></div>
-    <div class="container mb-5 animate__animated animate__zoomIn">
+    <div class="container mb-5 ">
       <div class="d-flex justify-content-center">
         <p class="normal-text">
           Los resultados de búsqueda forman parte del portafolio de Lobbi y Grupo

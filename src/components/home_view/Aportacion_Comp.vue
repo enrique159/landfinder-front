@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="d-flex flex-wrap justify-content-between align-items-center">
-      <div class="animate__animated animate__fadeInLeft">
+      <div>
         <h2 class="title">Espacios en aportación</h2>
       </div>
-      <div class="animate__animated animate__fadeInRight">
+      <div>
         <div class="metros-aportaciones">
           <span>+ 2,549,000.00 m2</span>
           <h4>Aportación</h4>
@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="row info-titles mb-5">
-      <div class="col col-3 col-sm-4 info-titles-left animate__animated animate__fadeInLeft">
+      <div class="col col-3 col-sm-4 info-titles-left">
         <h4>Espacio</h4>
         <a href="#">
           <img src="@/assets/icons/arrow-down-right.svg" alt="">
         </a>
       </div>
       <div class="col col-9 col-sm-8 info-titles-right">
-        <p class="animate__animated animate__fadeInRight">
+        <p>
           Trabajamos día a día por crear mejores
           oportunidades de negoico, viendo siempre
           por el mejor uso de la tierra.

@@ -79,7 +79,7 @@
 
 <style lang="scss" scoped>
 .partners-container {
-  height: 400px;
+  height: 260px;
   width: 100%;
   overflow-x: hidden;
   .first-line {

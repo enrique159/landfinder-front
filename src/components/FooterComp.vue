@@ -1,6 +1,6 @@
 <template>
   <div id="footer" class="container">
-    <div class="row">
+    <div class="row px-4 px-sm-0">
       <div class="col col-12 col-lg-4 mb-4 mb-lg-0">
         <img src="@/assets/logo.svg" alt="" class="mb-4">
         <p class="normal-text lh-1">
@@ -44,7 +44,7 @@
 <style lang="scss" scoped>
 #footer {
   height: fit-content;
-  padding: 40px 58px;
+  padding: 40px 0;
 
   .normal-text {
     color: var(--color-white-1);
