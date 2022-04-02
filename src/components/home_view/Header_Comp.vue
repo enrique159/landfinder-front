@@ -1,76 +1,76 @@
 <template>
   <div class="container">
-  <div class="search-header animate__animated animate__zoomIn">
-    <h1 class="animate__animated animate__fadeInDown animate__delay">
-      Land Finder México <br />
-      El inicio de grandes proyectos
-    </h1>
-    <div
-      class="select-type animate__animated animate__fadeInDown animate__delay"
-    >
+    <div class="search-header animate__animated animate__zoomIn">
+      <h1 class="animate__animated animate__fadeInDown animate__delay">
+        Land Finder México <br />
+        El inicio de grandes proyectos
+      </h1>
       <div
-        class="selected-box"
-        :class="[
-          { 'first-selected': options == 1 },
-          { 'second-selected': options == 2 },
-          { 'third-selected': options == 3 },
-        ]"
-      ></div>
-      <button @click="options = 1" :class="{ selected: options == 1 }">
-        Proyectos
-      </button>
-      <button @click="options = 2" :class="{ selected: options == 2 }">
-        Tierras
-      </button>
-      <button @click="options = 3" :class="{ selected: options == 3 }">
-        Edificios
-      </button>
+        class="select-type animate__animated animate__fadeInDown animate__delay"
+      >
+        <div
+          class="selected-box"
+          :class="[
+            { 'first-selected': options == 1 },
+            { 'second-selected': options == 2 },
+            { 'third-selected': options == 3 },
+          ]"
+        ></div>
+        <button @click="options = 1" :class="{ selected: options == 1 }">
+          Proyectos
+        </button>
+        <button @click="options = 2" :class="{ selected: options == 2 }">
+          Tierras
+        </button>
+        <button @click="options = 3" :class="{ selected: options == 3 }">
+          Edificios
+        </button>
+      </div>
+      <div class="search-bar animate__animated animate__fadeInUp animate__delay">
+        <!-- DROPDOWN LOCATION -->
+        <div class="search-input" style="width: 35%">
+          <h3>Ubicación</h3>
+          <div class="dropdown">
+            <button
+              class="button-location dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ places[selectedPlace].name }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li v-for="item in places" :key="item.id">
+                <a class="dropdown-item" @click="selectPlace(item)">{{
+                  item.name
+                }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- SUPERFICIE -->
+        <div class="search-input">
+          <h3>Superficie (min.)</h3>
+          <div class="d-flex">
+            <input type="text" placeholder="500" />
+            <span>M2</span>
+          </div>
+        </div>
+        <!-- VALOR PRICE -->
+        <div class="search-input">
+          <h3>Valor (min.)</h3>
+          <div class="d-flex">
+            <input type="text" placeholder="$3'000'000.00" />
+            <span>MXN</span>
+          </div>
+        </div>
+        <!-- BOTON SEARCH -->
+        <div class="search-input">
+          <button class="button-search">Buscar</button>
+        </div>
+      </div>
     </div>
-    <div class="search-bar animate__animated animate__fadeInUp animate__delay">
-      <!-- DROPDOWN LOCATION -->
-      <div class="search-input" style="width: 35%">
-        <h3>Ubicación</h3>
-        <div class="dropdown">
-          <button
-            class="button-location dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ places[selectedPlace].name }}
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li v-for="item in places" :key="item.id">
-              <a class="dropdown-item" @click="selectPlace(item)">{{
-                item.name
-              }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- SUPERFICIE -->
-      <div class="search-input">
-        <h3>Superficie (min.)</h3>
-        <div class="d-flex">
-          <input type="text" placeholder="500" />
-          <span>M2</span>
-        </div>
-      </div>
-      <!-- VALOR PRICE -->
-      <div class="search-input">
-        <h3>Valor (min.)</h3>
-        <div class="d-flex">
-          <input type="text" placeholder="$3'000'000.00" />
-          <span>MXN</span>
-        </div>
-      </div>
-      <!-- BOTON SEARCH -->
-      <div class="search-input">
-        <button class="button-search">Buscar</button>
-      </div>
-    </div>
-  </div>
   </div>
 </template>
 

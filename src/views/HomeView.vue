@@ -1,7 +1,7 @@
 <template>
   <div class="mb-5">
     <HeaderComp/>
-    <div class="spacer"></div>
+    <div class="spacer-100"></div>
     <div class="container mb-5 ">
       <div class="d-flex justify-content-center">
         <p class="normal-text">

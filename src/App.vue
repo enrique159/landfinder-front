@@ -1,30 +1,32 @@
 <template>
   <div id="app">
-    <nav id="navbar" class="container">
-      <router-link to="/">
-        <img class="logo" src="@/assets/logo.svg" alt="">
-      </router-link>
-      <div class="nav-options">
-        <router-link to="/"><span>Buscar</span></router-link>
-        <router-link to="/about"><span>Sobre LFM</span></router-link>
-        <router-link to="/us"><span>Nosotros</span></router-link>
-        <router-link to="/team"><span>Equipo</span></router-link>
-      </div>
-      <div class="nav-options-min" :class="{ 'active' : active }">
-        <router-link to="/"><span>Buscar</span></router-link>
-        <router-link to="/about"><span>Sobre LFM</span></router-link>
-        <router-link to="/us"><span>Nosotros</span></router-link>
-        <router-link to="/team"><span>Equipo</span></router-link>
-      </div>
-      <button class="button-nav" @click="toggleNav()">
-        <div class="button-icon">
-          <div></div>
-          <div></div>
-          <div></div>
+    <div class="position-fixed w-100 navbar-container">
+      <nav id="navbar" class="container" :class="{ onScroll: !view.topOfPage }">
+        <router-link to="/">
+          <img class="logo" src="@/assets/logo.svg" alt="">
+        </router-link>
+        <div class="nav-options">
+          <a @click="goTo('#header-search', false)"><span>Buscar</span></a>
+          <a @click="goTo('/about', true)"><span>Sobre LFM</span></a>
+          <a @click="goTo('/us', true)"><span>Nosotros</span></a>
+          <a @click="goTo('/team', true)"><span>Equipo</span></a>
         </div>
-      </button>
-    </nav>
-
+        <div class="nav-options-min" :class="{ 'active' : active }">
+          <a @click="goTo('#header-search', false)"><span>Buscar</span></a>
+          <a @click="goTo('/about', true)"><span>Sobre LFM</span></a>
+          <a @click="goTo('/us', true)"><span>Nosotros</span></a>
+          <a @click="goTo('/team', true)"><span>Equipo</span></a>
+        </div>
+        <button class="button-nav" @click="toggleNav()">
+          <div class="button-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </button>
+      </nav>
+    </div>
+    <div class="spacer-120" id="header-search"></div>
     <!-- ROUTER VIEW -->
     <router-view />
 
@@ -41,12 +43,29 @@ export default {
   },  
   data() {
     return {
-      active: false
+      active: false,
+      view: {
+        topOfPage: true,
+      },
     }
+  },
+  beforeMount() {
+    window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
     toggleNav() {
       this.active = !this.active
+    },
+    handleScroll() {
+      if (window.pageYOffset > 0) {
+        if (this.view.topOfPage) this.view.topOfPage = false;
+      } else {
+        if (!this.view.topOfPage) this.view.topOfPage = true;
+      }
+    },
+    goTo(path, router) {
+      this.active = false;
+      return router ? this.$router.push(path) : window.open(path, "_self");
     }
   }
 };
@@ -56,13 +75,26 @@ export default {
 @import "@/styles/fonts.css";
 @import "@/styles/general.scss";
 
+.navbar-container {
+  position: relative;
+  z-index: 1000;
+  background: rgba($color: #101010, $alpha: 0.7);
+  backdrop-filter: blur( 24px );
+  -webkit-backdrop-filter: blur( 24px );
+}
+
 #navbar {
   width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: var(--transition-normal);
   padding: 2.5rem 1rem;
+
+  &.onScroll {
+    padding: 1.5rem 1rem;
+  }
   .logo {
     transition: var(--transition-fast);
     position: relative;
@@ -171,7 +203,7 @@ export default {
     .nav-options-min {
       display: flex;
       position: absolute;
-      top: -30%;
+      top: -180px;
       left: 0;
       width: 100%;
       height: 0px;
