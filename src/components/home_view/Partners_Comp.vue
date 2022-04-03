@@ -1,14 +1,14 @@
 <template>
   <div class="partners-container position-relative">
     <div class="first-line animate position-absolute">
-      <div class="partner-card" v-for="(item,index) in partners" :key="index">
+      <div class="partner-card" v-for="item in partnersUp1" :key="item.id">
         <img :src="item.image" alt="">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
         </div>
       </div>
-      <div class="partner-card" v-for="(item,index) in partners" :key="index">
+      <div class="partner-card" v-for="item in partnersUp2" :key="item.id">
         <img :src="item.image" alt="">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
@@ -17,14 +17,14 @@
       </div>
     </div>
     <div class="first-line second-line animate-reverse position-absolute">
-      <div class="partner-card" v-for="(item,index) in partners" :key="index">
+      <div class="partner-card" v-for="item in partnersDown1" :key="item.id">
         <img :src="item.image" alt="">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
         </div>
       </div>
-      <div class="partner-card" v-for="(item,index) in partners" :key="index">
+      <div class="partner-card" v-for="item in partnersDown2" :key="item.id">
         <img :src="item.image" alt="">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
@@ -36,42 +36,15 @@
 </template>
 
 <script>
+import { partners_up_part1, partners_up_part2, partners_down_part1, partners_down_part2 } from "@/common/mockData.js";
   export default {
     name: 'PartnersComp',
     data() {
       return {
-        partners: [
-          {
-            id: 0,
-            name: 'Lobbi',
-            image: 'https://storageapi2.fleek.co/48a94bb3-75aa-4459-8bf6-ef55a4399a78-bucket/companies/lobbi.jpg',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit amet consectetur adipisicing elit. Distinctio',
-          },
-          {
-            id: 1,
-            name: 'Microsoft',
-            image: 'https://experenta.com/wp-content/uploads/2020/10/Microsoft-Logo-primer-player.png',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit amet consectetur adipisicing elit. Distinctio',
-          },
-          {
-            id: 2,
-            name: 'Google',
-            image: 'https://thumbs.dreamstime.com/b/logo-del-vector-de-google-el-emblema-la-buena-corporación-166985688.jpg',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit amet consectetur adipisicing elit. Distinctio',
-          },
-          {
-            id: 3,
-            name: 'Facebook',
-            image: 'https://holatelcel.com/wp-content/uploads/2019/11/logo-facebook-1.jpg',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit amet consectetur adipisicing elit. Distinctio',
-          },
-          {
-            id: 4,
-            name: 'Apple',
-            image: 'https://i.pinimg.com/originals/95/27/4c/95274c2b1a825f651c2990052a73cbda.png',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, sit amet consectetur adipisicing elit. Distinctio',
-          },
-        ]
+        partnersUp1: partners_up_part1,
+        partnersUp2: partners_up_part2,
+        partnersDown1: partners_down_part1,
+        partnersDown2: partners_down_part2, 
       }
     },
   }

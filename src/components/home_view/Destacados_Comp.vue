@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="top-projects">
-      <div class="project-card" v-for="project in projects" :key="project.id">
+      <div class="project-card" v-for="project in projects" :key="project.id" @click="openProject(project.id)">
         <img :src="project.attributes.image_review" alt="image_review" loading="lazy"/>
         <div class="bloc-shadow"></div>
         <h4 class="position-relative">{{ project.attributes.mod }}</h4>
@@ -49,6 +49,14 @@ export default {
       } else {
         console.log("Error al obtener los proyectos");
       }
+    },
+    openProject(id) {
+      this.$router.push({
+        name: "project",
+        params: {
+          id: id,
+        },
+      });
     },
   },
 };

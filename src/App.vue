@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="position-fixed w-100 navbar-container">
-      <nav id="navbar" class="container" :class="{ onScroll: !view.topOfPage }">
+      <nav id="navbar" class="container">
         <router-link to="/">
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
@@ -49,19 +49,9 @@ export default {
       },
     }
   },
-  beforeMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
   methods: {
     toggleNav() {
       this.active = !this.active
-    },
-    handleScroll() {
-      if (window.pageYOffset > 0) {
-        if (this.view.topOfPage) this.view.topOfPage = false;
-      } else {
-        if (!this.view.topOfPage) this.view.topOfPage = true;
-      }
     },
     goTo(path, router) {
       this.active = false;
@@ -92,9 +82,6 @@ export default {
   transition: var(--transition-normal);
   padding: 2.5rem 1rem;
 
-  &.onScroll {
-    padding: 1.5rem 1rem;
-  }
   .logo {
     transition: var(--transition-fast);
     position: relative;

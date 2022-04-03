@@ -12,6 +12,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/project/:id?',
+    name: 'project',
+    component: () => import('@/views/ProjectView.vue')
+  },
 ]
 
 const router = new VueRouter({

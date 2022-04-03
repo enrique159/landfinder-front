@@ -1,6 +1,6 @@
 <template>
   <div id="footer" class="container">
-    <div class="row px-4 px-sm-0">
+    <div class="row px-4 px-sm-0" style="margin: 0 !important;">
       <div class="col col-12 col-lg-4 mb-4 mb-lg-0">
         <img src="@/assets/logo.svg" alt="" class="mb-4">
         <p class="normal-text lh-1">

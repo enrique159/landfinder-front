@@ -34,13 +34,13 @@
             <button
               class="button-location dropdown-toggle"
               type="button"
-              id="dropdownMenuButton1"
+              id="dropdown_search_home"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
               {{ places[selectedPlace].name }}
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu dropdown-search-list" aria-labelledby="dropdown_search_home">
               <li v-for="item in places" :key="item.id">
                 <a class="dropdown-item" @click="selectPlace(item)">{{
                   item.name
@@ -195,6 +195,22 @@ export default {
         transition: var(--transition-fast);
         &:hover {
           background-color: var(--color-complementary-1-dark);
+        }
+        &:active {
+          outline: none;
+          transform: translateY(4px);
+        }
+      }
+      .dropdown-search-list {
+        background-color: var(--color-white);
+        border-radius: 18px;
+        li {
+          cursor: pointer;
+          a {
+            border-radius: 8px;
+            font-size: var(--small-font-size);
+            font-weight: var(--font-semi-bold);
+          }
         }
       }
       input {
