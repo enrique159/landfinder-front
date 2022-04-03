@@ -3,11 +3,11 @@
     <LightGallery
       :images="allImages"
       :index="index"
-      :disable-scroll="true"
+      :disable-scroll="false"
       @close="index = null"
     />
     <div class="row">
-      <div class="col-9 p-0">
+      <div class="col col-12 col-md-7 col-lg-8 col-xl-9 pb-2 px-0">
         <div class="image-cover">
           <img
             :src="imagenCover"
@@ -18,7 +18,7 @@
           />
         </div>
       </div>
-      <div class="col-3 px-0 ps-3">
+      <div class="col col-12 col-md-5 col-lg-4 col-xl-3 ps-md-3 px-0">
         <div class="images">
           <div
             class="image-right"
@@ -64,13 +64,13 @@ export default {
   .image-cover {
     width: 100%;
     height: 480px;
-    overflow: hidden;
     border-radius: 24px;
+    overflow: hidden;
     .imageCover {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 24px;
+      //border-radius: 24px;
       transition: 0.2s ease-in-out;
       cursor: pointer;
     }
@@ -87,7 +87,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     row-gap: 2%;
     .image-right {
       width: 48%;
@@ -126,6 +126,21 @@ export default {
           transform: scale(1.03);
           opacity: 0.8;
         }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .image-container {
+    .image-cover {
+      height: 240px;
+      border-radius: 12px;
+
+    }
+    .images {
+      height: 160px;
+      .image-right {
+        width: 49%;
       }
     }
   }

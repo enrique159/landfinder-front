@@ -6,13 +6,13 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="nav-options">
-          <a @click="goTo('#header-search', false)"><span>Buscar</span></a>
+          <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
           <a @click="goTo('/about', true)"><span>Sobre LFM</span></a>
           <a @click="goTo('/us', true)"><span>Nosotros</span></a>
           <a @click="goTo('/team', true)"><span>Equipo</span></a>
         </div>
         <div class="nav-options-min" :class="{ 'active' : active }">
-          <a @click="goTo('#header-search', false)"><span>Buscar</span></a>
+          <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
           <a @click="goTo('/about', true)"><span>Sobre LFM</span></a>
           <a @click="goTo('/us', true)"><span>Nosotros</span></a>
           <a @click="goTo('/team', true)"><span>Equipo</span></a>
