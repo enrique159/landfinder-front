@@ -3,7 +3,19 @@
     <Alerta404Comp v-if="errorStatus" :error="error"/>
     <div v-if="status200">
       <ImagenesComp :imagenCover="project.attributes.image_cover" :imagenes="project.attributes.images"/>
-      <h1>{{ project.attributes.name }}</h1>
+      <div class="row">
+        <div class="col col-9">
+          <div class="title-project d-flex justify-content-between flex-wrap">
+            <h1>{{ project.attributes.name }}</h1>
+            <a href="">Ver en el mapa</a>
+          </div>
+          <p class="address"><i class="bi bi-geo-alt-fill"></i> {{ projectAddress}}</p>
+        </div>
+        <div class="col col-3 px-0 ps-3">
+          <!-- FORMULARIO -->
+          <FormularioComp />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,12 +23,14 @@
 <script>
 import Alerta404Comp from '@/components/project_view/Alerta404_Comp.vue'
 import ImagenesComp from '@/components/project_view/Imagenes_Comp.vue'
+import FormularioComp from '@/components/project_view/Formulario_Comp.vue'
 import Project from '@/common/project_services.js';
 export default {
   name: "ProjectView",
   components: {
     Alerta404Comp,
-    ImagenesComp
+    ImagenesComp,
+    FormularioComp
   },
   data() {
     return {
@@ -31,6 +45,11 @@ export default {
   },
   mounted() {
     this.getProject();
+  },
+  computed: {
+    projectAddress() {
+      return this.project.attributes.street_num + ', ' + this.project.attributes.hood + ', ' + this.project.attributes.city + ', ' + this.project.attributes.estate + ', ' + this.project.attributes.country;
+    }
   },
   methods: {
     async getProject() {
@@ -65,5 +84,30 @@ export default {
 <style lang="scss" scoped>
 #project-details {
   min-height: 60vh;
+
+  .title-project {
+    h1 {
+      font-size: var(--h2-font-size);
+      font-weight: var(--font-semi-bold);
+      margin-bottom: 1rem;
+    }
+    a {
+      height: fit-content;
+      border: 1px solid var(--color-complementary-1);
+      font-size: var(--small-font-size);
+      font-weight: var(--font-medium);
+      color: var(--color-complementary-1);
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 12px;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        background-color: rgba($color: #0DBA6A, $alpha: 0.2);
+      }
+    }
+  }
+  .address {
+    color: var(--color-text-light);
+  }
 }
 </style>
