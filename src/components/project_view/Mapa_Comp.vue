@@ -17,7 +17,6 @@ export default {
   },
   mounted() {
     this.initMap();
-    console.log(this.locationProp);
   },
   methods: {
     initMap() {
@@ -28,8 +27,10 @@ export default {
         center: [ this.locationProp.lng, this.locationProp.lat], 
         zoom: 11, 
         geolocation: true,
+        attributionControl: false
       });
-
+      
+      map.scrollZoom.disable();
       map.addControl(new mapboxgl.NavigationControl());
 
       const marker = new mapboxgl.Marker()
@@ -40,10 +41,46 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .mapa {
   height: 380px;
   width: 100%;
   border-radius: 24px;
+  overflow: hidden;
+  clip-path: border-box;
+}
+
+.mapboxgl-ctrl-top-right {
+  .mapboxgl-ctrl-group {
+    background: none;
+    box-shadow: none;
+    padding: 12px 12px 0 0;
+    button {
+      background-color: rgb(78, 78, 78);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-top: none;
+      width: 34px;
+      height: 34px;
+      transition: var(--transition-fast);
+      &:focus {
+        border-radius: 8px;
+        background-color: rgb(123, 123, 123);
+      }
+    }
+    .mapboxgl-ctrl-zoom-in {
+      span { background-image: url(@/assets/icons/zoom-in.svg); }
+    }
+    .mapboxgl-ctrl-zoom-out {
+      span { background-image: url(@/assets/icons/zoom-out.svg); }
+    }
+    .mapboxgl-ctrl-compass {
+      span { background-image: url(@/assets/icons/compass.svg); }
+    }
+  }
+}
+
+.mapboxgl-ctrl-bottom-left{
+  padding: 0 0 12px 12px;
 }
 </style>

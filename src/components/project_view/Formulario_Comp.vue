@@ -23,7 +23,15 @@
       name="input_form_project"
       id="input_form_project"
     />
-    <button class="button-email">Solicitar documentación</button>
+    <button class="button-email mb-3">Solicitar documentación</button>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Confirmo que soy un desarrollador independiente o representante de una
+        empresa que tiene la capacidad o intención de invertir en el proyecto y que
+        he leído y acepto los términos y condiciones.
+      </label>
+    </div>
   </div>
 </template>
 
@@ -53,6 +61,7 @@ export default {
   border: 1px solid var(--color-black-3);
   border-radius: 24px;
   padding: 18px;
+  padding-bottom: 8px;
   .form-title {
     font-size: var(--normal-font-size);
     font-weight: var(--font-black);
@@ -113,6 +122,25 @@ export default {
     &:hover {
       background-color: var(--color-complementary-1-dark);
     }
+  }
+  .form-check-input {
+    background-color: var(--color-black-3);
+    &:checked {
+      border: 1px solid var(--color-complementary-1);
+    }
+    &:focus {
+      border: 1px solid var(--color-complementary-1);
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .form-check-label {
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-regular);
+    color: var(--color-text-light);
+    line-height: 0.8rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

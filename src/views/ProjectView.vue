@@ -35,8 +35,31 @@
           </p>
           <div class="divider mb-5"></div>
           <!-- MAP LOCATION -->
-          <MapaComp :locationProp="projectLocation"/>
-           <div class="divider my-5"></div>
+          <MapaComp :locationProp="projectLocation" />
+          <div class="divider my-5"></div>
+          <!-- PROYECTOS SIMILARES -->
+          <div class="d-flex similar-projects">
+            <img
+              :src="
+                this.project.attributes.id_company.data.attributes.logo_image
+              "
+              alt="logo-company"
+              class="company-logo me-3"
+            />
+            <div>
+              <h3>
+                Otros projectos de
+                {{ this.project.attributes.id_company.data.attributes.name }}
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco
+              </p>
+            </div>
+          </div>
+          <SimilaresComp :similarProjects="similarProjects" />
+          <div class="divider my-5"></div>
         </div>
         <div class="col col-12 col-md-5 col-lg-4 col-xl-3 px-4 px-md-0 ps-md-3">
           <!-- FORMULARIO -->
@@ -52,6 +75,7 @@ import Alerta404Comp from "@/components/project_view/Alerta404_Comp.vue";
 import ImagenesComp from "@/components/project_view/Imagenes_Comp.vue";
 import DetallesComp from "@/components/project_view/Detalles_Comp.vue";
 import MapaComp from "@/components/project_view/Mapa_Comp.vue";
+import SimilaresComp from "@/components/project_view/Similares_Comp.vue";
 import FormularioComp from "@/components/project_view/Formulario_Comp.vue";
 import Project from "@/common/project_services.js";
 export default {
@@ -61,11 +85,13 @@ export default {
     ImagenesComp,
     DetallesComp,
     MapaComp,
+    SimilaresComp,
     FormularioComp,
   },
   data() {
     return {
       project: {},
+      similarProjects: [],
       errorStatus: false,
       status200: false,
       lat: 0,
@@ -78,7 +104,6 @@ export default {
   },
   mounted() {
     this.getProject();
-    console.log(this.projectLocation)
   },
   computed: {
     projectAddress() {
@@ -111,6 +136,7 @@ export default {
             this.project = project.data.data;
             this.lat = this.project.attributes.latitude;
             this.lng = this.project.attributes.longitude;
+            this.getSimilarProjects();
           } else {
             console.log(project);
             this.errorStatus = true;
@@ -128,6 +154,18 @@ export default {
         this.error.message =
           "Para ver un proyecto puedes ir a la sección de Buscar.";
         console.log("No hay id");
+      }
+    },
+    async getSimilarProjects() {
+      const projects = await Project.getByCompany(1);
+      if (projects.status == 200) {
+        this.similarProjects = projects.data.data;
+        this.similarProjects.splice(
+          this.similarProjects.map((item) => item.id).indexOf(this.project.id),
+          1
+        );
+      } else {
+        console.log("Error al obtener los proyectos similares");
       }
     },
   },
@@ -176,6 +214,23 @@ export default {
     color: var(--color-text-light);
     font-size: var(--normal-font-size);
     line-height: 1.5;
+  }
+  .similar-projects {
+    .company-logo {
+      width: 76px;
+      height: 76px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    h3 {
+      font-size: var(--h3-font-size);
+      font-weight: var(--font-semi-bold);
+    }
+    p {
+      font-size: var(--small-font-size);
+      font-weight: var(--font-regular);
+      color: var(--color-text-light);
+    }
   }
 }
 </style>

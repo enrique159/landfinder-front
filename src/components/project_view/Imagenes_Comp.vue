@@ -65,6 +65,7 @@ export default {
     width: 100%;
     height: 480px;
     border-radius: 24px;
+    clip-path: border-box;
     overflow: hidden;
     .imageCover {
       width: 100%;
@@ -94,6 +95,7 @@ export default {
       height: 48%;
       border-radius: 14px;
       overflow: hidden;
+      clip-path: border-box;
       position: relative;
       cursor: pointer;
       .imageRight {
@@ -123,7 +125,7 @@ export default {
       }
       &:hover {
         .imageRight {
-          transform: scale(1.03);
+          transform: scale(1.02);
           opacity: 0.8;
         }
       }

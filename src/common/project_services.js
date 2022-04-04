@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-  pop : '?populate=id_company',
+  pop : '?populate=*',
   top_list: '&filters[top_list][$eq]=true',
 
   getAll() {
@@ -16,6 +16,11 @@ export default {
   },
   getById(id) {
     return axios.get(`/projects/${id}${this.pop}`)
+    .then(response => response)
+    .catch(error => error.response);
+  },
+  getByCompany(id_company) {
+    return axios.get(`/projects${this.pop}&filters[id_company][id][$eq]=${id_company}`)
     .then(response => response)
     .catch(error => error.response);
   }
