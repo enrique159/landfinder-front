@@ -52,9 +52,7 @@
                 {{ this.project.attributes.id_company.data.attributes.name }}
               </h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco
+                {{ this.project.attributes.id_company.data.attributes.description }}
               </p>
             </div>
           </div>
@@ -101,6 +99,10 @@ export default {
         message: "",
       },
     };
+  },
+  metaInfo: {
+    title: 'Land Finder México',
+    titleTemplate: '%s | Projecto'
   },
   mounted() {
     this.getProject();

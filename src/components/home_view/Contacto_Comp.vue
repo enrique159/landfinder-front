@@ -1,5 +1,5 @@
 <template>
-  <div class="container contacto-section py-5 px-5 px-md-0">
+  <div id="contacto" class="container contacto-section py-5 px-5 px-md-0">
     <div class="row contacto-form px-3 px-md-5 py-4 py-md-5 justify-content-between">
       <div class="col col-12 col-md-6 mb-4 mb-md-0">
         <h2>¿Listo para empezar a desarrollar En Baja California Sur?</h2>
@@ -10,17 +10,71 @@
         <a href="#">Volver al portafolio <img src="@/assets/icons/arrow-down-right.svg" alt="" /></a>
       </div>
       <div class="col col-12 col-md-4 d-flex flex-column">
-        <input type="email" name="email_contact_form" id="email_contact_form" placeholder="E-mail">
-        <textarea name="text_contact_form" id="text_contact_form" rows="3" placeholder="Mensaje"></textarea>
-        <button id="submit_contact_form" type="submit">Enviar mensaje</button>
+        <form class="contact-form" v-on:submit.prevent="sendEmail">
+          <input type="email" name="email_contact_form" id="email_contact_form" placeholder="E-mail" v-model="email">
+          <textarea name="text_contact_form" id="text_contact_form" rows="3" placeholder="Mensaje" v-model="message"></textarea>
+          <div class="d-flex">
+            <input id="submit_contact_form" type="submit" value="Enviar mensaje"/>
+            <span class="px-2 py-1">{{ error }}</span>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
 export default {
   name: "ContactoComp",
+  data() {
+    return {
+      email: '',
+      message: '',
+      error: ''
+    }
+  },
+  methods: {
+    // sendEmail() {
+    //   NodeMailer.sendEmail(this.email, this.text)
+    // }
+    validarForm() {
+      if (this.email != "") {
+        if (this.message != "") {
+          return true;
+        } else return "Escribe algun mensaje o comentario ☹️";
+      } else return "Falta escribir el Email! 🥸";
+    },
+    sendEmail(e) {
+      if (this.validarForm() == true) {
+        this.error = "Enviando...🤓";
+        emailjs
+          .send(
+            "service_gmail",
+            "lfm_contact_form",
+            {
+              email: this.email,
+              message: this.message,
+            },
+            "3LlkNIJmneIIiYzH7",
+          )
+          .then(
+            (result) => {
+              this.error = "Mensaje Enviado!! 🥳";
+              console.log("SUCCESS!", result.status, result.text);
+              this.email = "";
+              this.message = "";
+            },
+            (error) => {
+              this.error = "Algo salio mal 😫";
+              console.log("FAILED...", error);
+            }
+          );
+      } else {
+        this.error = this.validarForm();
+      }
+    },
+  }
 };
 </script>
 
@@ -48,6 +102,11 @@ export default {
         }
       }
     }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+    }
     #email_contact_form, #text_contact_form {
       background-color: transparent;
       border: none;
@@ -55,6 +114,7 @@ export default {
       color: var(--color-black-3);
       font-weight: var(--font-semi-bold);
       margin-bottom: 1rem;
+      outline: none !important;
       &::placeholder {
         color: var(--color-black-3);
         opacity: 0.8;
@@ -68,6 +128,10 @@ export default {
       font-size: var(--small-font-size);
       font-weight: var(--font-bold);
       color: var(--color-black-3);
+      transition: var(--transition-fast);
+      &:hover {
+        background: var(--color-white-1);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ProjectsView from '../views/ProjectsView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
 import VueMeta from 'vue-meta'
 
@@ -14,7 +15,12 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/project/:id?',
+    path: '/projects',
+    name: 'projects',
+    component: ProjectsView
+  },
+  {
+    path: '/project/:id?/:name?',
     name: 'project',
     component: () => import('@/views/ProjectView.vue')
   },

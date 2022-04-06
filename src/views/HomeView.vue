@@ -17,6 +17,7 @@
     </div>
     <AportacionComp/>
     <DestacadosComp/>
+    <div id="team" style="margin-top: -70px; height: 100px;"></div>
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>

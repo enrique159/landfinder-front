@@ -5,6 +5,8 @@ import store from './store'
 import 'animate.css';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import{ init } from '@emailjs/browser';
+init("3LlkNIJmneIIiYzH7");
 
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false

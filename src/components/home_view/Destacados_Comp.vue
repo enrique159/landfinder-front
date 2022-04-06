@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="top-projects">
-      <div class="project-card" v-for="project in projects" :key="project.id" @click="openProject(project.id)">
+      <div class="project-card" v-for="project in projects" :key="project.id" @click="openProject(project.id, convertToSlug(project.attributes.name))">
         <img :src="project.attributes.image_review" alt="image_review" loading="lazy"/>
         <div class="bloc-shadow"></div>
         <h4 class="position-relative">{{ project.attributes.mod }}</h4>
@@ -50,13 +50,21 @@ export default {
         console.log("Error al obtener los proyectos");
       }
     },
-    openProject(id) {
+    openProject(id, name) {
       this.$router.push({
         name: "project",
         params: {
           id: id,
+          name: name
         },
       });
+    },
+    // convert spaces into - for url
+    convertToSlug(text) {
+      return text
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
     },
   },
 };

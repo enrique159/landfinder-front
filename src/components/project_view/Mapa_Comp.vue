@@ -48,6 +48,19 @@ export default {
   border-radius: 24px;
   overflow: hidden;
   clip-path: border-box;
+
+  .mapboxgl-marker {
+    background-image: url('@/assets/icons/marker.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 98px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    svg {
+      display: none;
+    }
+  }
 }
 
 .mapboxgl-ctrl-top-right {

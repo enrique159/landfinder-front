@@ -11,18 +11,17 @@
         </div>
       </div>
     </div>
-    <div class="row info-titles mb-5">
+    <div id="methodology" class="row info-titles mb-5">
       <div class="col col-3 col-sm-4 info-titles-left">
-        <h4>Espacio</h4>
-        <a href="#">
-          <img src="@/assets/icons/arrow-down-right.svg" alt="">
+        <a href="#contacto">
+          <h4>Contacta con nosotros</h4>
+          <img src="@/assets/icons/arrow-down-right.svg" alt="" />
         </a>
       </div>
       <div class="col col-9 col-sm-8 info-titles-right">
         <p>
-          Trabajamos día a día por crear mejores
-          oportunidades de negoico, viendo siempre
-          por el mejor uso de la tierra.
+          Trabajamos día a día por crear mejores oportunidades de negoico,
+          viendo siempre por el mejor uso de la tierra.
         </p>
       </div>
     </div>
@@ -30,9 +29,9 @@
       <div class="metodologia">
         <h4>Metodología</h4>
         <div v-for="item in metodologias" :key="item.id">
-          <p class="text-id">{{item.id}}</p>
-          <h3 class="text-name">{{item.name}}</h3>
-          <p class="text-detail">{{item.detail}}</p>
+          <p class="text-id">{{ item.id }}</p>
+          <h3 class="text-name">{{ item.name }}</h3>
+          <p class="text-detail">{{ item.detail }}</p>
         </div>
       </div>
     </div>
@@ -40,15 +39,15 @@
 </template>
 
 <script>
-import { metodologiasMockData as metodologias } from '@/common/mockData.js'
+import { metodologiasMockData as metodologias } from "@/common/mockData.js";
 export default {
-  name: 'AportacionComp',
+  name: "AportacionComp",
   data() {
     return {
       metodologias: metodologias,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -90,16 +89,41 @@ export default {
     align-items: flex-end;
     border-right: 1px solid var(--color-text-dark);
     padding: 24px 24px 12px;
-    h4 {
-      font-size: var(--normal-font-size);
-      font-weight: var(--font-semi-bold);
-      color: var(--color-text);
-      margin: 0;
-    }
+
     a {
       width: fit-content;
+      text-align: right;
+      height: 100%;
+      h4 {
+        font-size: var(--normal-font-size);
+        font-weight: var(--font-semi-bold);
+        transition: var(--transition-fast);
+        color: var(--color-text);
+        margin: 0 0 58px;
+      }
       img {
         width: 12px;
+        transition: var(--transition-fast);
+      }
+      &:hover {
+        h4 {
+          padding-right: 16px;
+          opacity: 0.8;
+        }
+        img {
+          margin-right: -8px;
+          opacity: 0.8;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        &:hover {
+          h4 {
+            padding-right: 4px;
+          }
+          img {
+            margin-right: -4px;
+          }
+        }
       }
     }
   }
@@ -117,7 +141,7 @@ export default {
 .contenedor {
   width: 100%;
   height: fit-content;
-  background-image: url('@/assets/aportacion-bg.webp');
+  background-image: url("@/assets/aportacion-bg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

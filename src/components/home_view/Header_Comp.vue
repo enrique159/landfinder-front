@@ -54,7 +54,7 @@
           <h3>Superficie (min.)</h3>
           <div class="d-flex">
             <input type="text" placeholder="500" />
-            <span>M2</span>
+            <span>M²</span>
           </div>
         </div>
         <!-- VALOR PRICE -->
