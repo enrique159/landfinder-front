@@ -20,7 +20,7 @@
       </div>
       <div class="col col-9 col-sm-8 info-titles-right">
         <p>
-          Trabajamos día a día por crear mejores oportunidades de negoico,
+          Trabajamos día a día por crear mejores oportunidades de negocio,
           viendo siempre por el mejor uso de la tierra.
         </p>
       </div>

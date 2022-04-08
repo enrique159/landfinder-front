@@ -61,7 +61,15 @@
         <div class="search-input">
           <h3>Valor (min.)</h3>
           <div class="d-flex">
-            <input type="text" placeholder="$3'000'000.00" />
+            <!-- <input type="text" placeholder="$3'000'000.00" /> -->
+            <Money
+              min="0"
+              class="valor-input"
+              :class="{ 'valor-input-placeholder': value == 0 }"
+              placeholder="$3'000'000.00"
+              v-model="value"
+              v-bind="money"
+            />
             <span>MXN</span>
           </div>
         </div>
@@ -76,13 +84,25 @@
 
 <script>
 import { placesMockData as places } from "@/common/mockData.js";
+import { Money } from 'v-money'
 export default {
   name: "HeaderComp",
+  components: {
+    Money
+  },
   data() {
     return {
       options: 1,
       selectedPlace: 0,
+      value: 0,
       places: places,
+      money: {
+        decimal: ".",
+        thousands: "'",
+        prefix: "$ ",
+        precision: 2,
+        masked: false,
+      },
     };
   },
   methods: {
@@ -213,7 +233,7 @@ export default {
           }
         }
       }
-      input {
+      input, .valor-input {
         border: none;
         width: 70%;
         color: var(--color-text-dark);
@@ -224,6 +244,9 @@ export default {
         &:focus {
           outline: none;
         }
+      }
+      .valor-input-placeholder{
+        color: var(--color-text-light);
       }
       span {
         color: var(--color-text-dark);

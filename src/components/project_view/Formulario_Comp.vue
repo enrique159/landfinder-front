@@ -22,8 +22,9 @@
       type="email"
       name="input_form_project"
       id="input_form_project"
+      v-model="email"
     />
-    <button class="button-email mb-3">Solicitar documentación</button>
+    <button class="button-email mb-3" @click="validateEmail()">Solicitar documentación</button>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
@@ -36,10 +37,14 @@
 </template>
 
 <script>
+const freeEmailDomains = require('free-email-domains')
 export default {
   name: "FormularioComp",
   data() {
     return {
+      email: '',
+      emailInvalid: false,
+      // TO DO: Verificar este contenido si es estatico o si varia en cada proyecto
       listContent: [
         "Características e información detallada del inmueble.",
         "Usos de suelo y normativa vigente con interpretación.",
@@ -52,10 +57,17 @@ export default {
     };
   },
   methods: {
-    // validate the email doesnt be a personal email
-    validateEmail(email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
+    checkFreeEmailDomain(domain) {
+      return freeEmailDomains.includes(domain);
+    },
+    validateEmail() {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(re.test(String(this.email).toLowerCase())) {
+        const domain = email.split('@')[1];
+        return this.checkFreeEmailDomain(domain);
+      } else {
+        this.emailInvalid = true;
+      }
     },
   },
 };
