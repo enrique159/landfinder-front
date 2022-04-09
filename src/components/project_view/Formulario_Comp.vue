@@ -6,7 +6,7 @@
       </div>
       <div class="col col-10 px-1">
         <h4 class="form-title m-0">Pre-análisis de Inversión.PDF</h4>
-        <p class="form-file-size">Tamaño de archivo: 19mb</p>
+        <p class="form-file-size">Tamaño de archivo aprox: 20mb</p>
       </div>
     </div>
     <div class="divider mb-4"></div>
@@ -18,15 +18,23 @@
     </ul>
     <input
       class="input-email"
-      placeholder="Correo electórnico institucional"
+      placeholder="Correo electrónico institucional"
       type="email"
       name="input_form_project"
       id="input_form_project"
       v-model="email"
     />
-    <button class="button-email mb-3" @click="validateEmail()">Solicitar documentación</button>
+    <button class="button-email mb-3" @click="validateEmail()">
+      {{ solicitudText }}
+      <div class="spinner-border spinner-border-sm text-light ms-1" role="status" v-if="loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </button>
+    <p v-if="checkedForm" class="email-novalid">*Favor de aceptar los terminos del siguiente párrafo.</p>
+    <p v-if="emailInvalid" class="email-novalid">*Favor de escribir un correo válido.</p>
+    <p v-if="emailDomainInvalid" class="email-novalid">*Necesitas un correo organizacional.</p>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <input class="form-check-input" type="checkbox" v-model="checked" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
         Confirmo que soy un desarrollador independiente o representante de una
         empresa que tiene la capacidad o intención de invertir en el proyecto y que
@@ -38,12 +46,19 @@
 
 <script>
 const freeEmailDomains = require('free-email-domains')
+import emailjs from '@emailjs/browser';
 export default {
   name: "FormularioComp",
+  props: ['name_project'],
   data() {
     return {
+      checked: false,
+      checkedForm: false,
+      loading: false,
       email: '',
       emailInvalid: false,
+      emailDomainInvalid: false,
+      solicitudText: 'Solicitud de documentación',
       // TO DO: Verificar este contenido si es estatico o si varia en cada proyecto
       listContent: [
         "Características e información detallada del inmueble.",
@@ -60,14 +75,54 @@ export default {
     checkFreeEmailDomain(domain) {
       return freeEmailDomains.includes(domain);
     },
+
+    // VALIDATE EMAIL
     validateEmail() {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if(re.test(String(this.email).toLowerCase())) {
-        const domain = email.split('@')[1];
-        return this.checkFreeEmailDomain(domain);
+      this.emailInvalid = false;
+      this.emailDomainInvalid = false;
+      this.checkedForm = false;
+      if(this.checked) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(String(this.email).toLowerCase())) {
+          const domain = this.email.split('@')[1];
+          if(!this.checkFreeEmailDomain(domain)) {
+            this.sendEmail();
+          } else {
+            this.emailDomainInvalid = true;
+          }
+        } else {
+          this.emailInvalid = true;
+        }
       } else {
-        this.emailInvalid = true;
+        this.checkedForm = true;
       }
+    },
+
+    // SEND EMAIL
+    sendEmail() {
+      this.loading = true;
+      this.solicitudText = 'Enviando ';
+      emailjs.send(
+        "service_gmail",
+        "lfm_project_request",
+        {
+          name_project: this.name_project,
+          email: this.email,
+        },
+        "-DIkcxuZ3ssPqzst2",
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.status, result.text);
+          this.loading = false;
+          this.solicitudText = 'Solicitud de documento enviada.';
+        },
+        (error) => {
+          this.loading = false;
+          this.solicitudText = 'Solicitud de documento fallida.';
+          console.log("FAILED...", error);
+        }
+      );
     },
   },
 };
@@ -159,6 +214,13 @@ export default {
     font-weight: var(--font-regular);
     color: var(--color-text-light);
     line-height: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .email-novalid {
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-regular);
+    color: #e97a30;
     margin-bottom: 1rem;
   }
 }

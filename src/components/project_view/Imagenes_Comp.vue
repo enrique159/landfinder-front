@@ -92,7 +92,7 @@ export default {
     row-gap: 2%;
     .image-right {
       width: 48%;
-      height: 48%;
+      height: 49%;
       border-radius: 14px;
       overflow: hidden;
       clip-path: border-box;
@@ -143,6 +143,7 @@ export default {
       height: 160px;
       .image-right {
         width: 49%;
+        height: 48%;
       }
     }
   }

@@ -61,7 +61,7 @@
         </div>
         <div class="col col-12 col-md-5 col-lg-4 col-xl-3 px-4 px-md-0 ps-md-3">
           <!-- FORMULARIO -->
-          <FormularioComp />
+          <FormularioComp :name_project="this.project.attributes.name" />
         </div>
       </div>
     </div>

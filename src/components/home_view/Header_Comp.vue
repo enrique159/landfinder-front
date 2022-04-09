@@ -53,7 +53,7 @@
         <div class="search-input">
           <h3>Superficie (min.)</h3>
           <div class="d-flex">
-            <input type="text" placeholder="500" />
+            <input type="text" placeholder="500" v-model="minLand"/>
             <span>M²</span>
           </div>
         </div>
@@ -75,7 +75,7 @@
         </div>
         <!-- BOTON SEARCH -->
         <div class="search-input">
-          <button class="button-search">Buscar</button>
+          <button class="button-search" @click="setValues">Buscar</button>
         </div>
       </div>
     </div>
@@ -95,6 +95,7 @@ export default {
       options: 1,
       selectedPlace: 0,
       value: 0,
+      minLand: null,
       places: places,
       money: {
         decimal: ".",
@@ -105,9 +106,23 @@ export default {
       },
     };
   },
+  computed: {
+    getClassProject() {
+      return this.options == 1 ? "Proyecto" : this.options == 2 ? "Tierra" : "Edificio";
+    },
+  },
   methods: {
     selectPlace(place) {
       this.selectedPlace = place.id;
+    },
+    // method to set the values in vuex
+    setValues() {
+      this.$store.state.parameters.class = this.getClassProject;
+      this.$store.state.parameters.location = { name: this.places[this.selectedPlace].name, value: this.places[this.selectedPlace].value };
+      this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
+      this.$store.state.parameters.minLand = !this.minLand ? 0 : this.minLand;
+      this.$store.state.parameters.active = true;
+      this.$router.push('/projects')
     },
   },
 };

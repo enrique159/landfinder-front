@@ -1,19 +1,23 @@
 export const placesMockData = [
   {
     id: 0,
-    name: "Tijuana, Baja California",
+    name: "Cualquier ubicacion",
+    value: "Anywere"
   },
   {
     id: 1,
     name: "El Sargento, Baja California Sur",
+    value: "El Sargento"
   },
   {
     id: 2,
-    name: "Ecatepec, Estado de Mexico",
+    name: "La Paz, Baja California Sur",
+    value: "La Paz"
   },
   {
     id: 3,
-    name: "Guadalajara, Jalisco",
+    name: "Pescadero, Baja California Sur",
+    value: "Pescadero"
   },
 ]
 

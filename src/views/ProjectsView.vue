@@ -6,10 +6,13 @@
     <div class="parameters">
       <div class="parameters-options">
         <div class="option option-class">
-          {{ parameters.class }} 
+          <span>
+            {{ parameters.class }} 
+          </span>
         </div>
         <div class="option">
-          {{ parameters.location }}
+          <i class="bi bi-geo-alt-fill"></i>
+          {{ parameters.location.name }}
         </div>
         <div class="option">
           {{ parameters.minLand }} M²
@@ -17,19 +20,20 @@
         <div class="option">
           {{ parameters.minValue }} MXN
         </div>
-        <button class="button-delete-filters">
+        <button class="button-delete-filters" @click="resetParameters">
           <i class="bi bi-x"></i>Borrar filtros
         </button>
       </div>
-      <button class="button-search">
+      <button class="button-search" @click="goBack">
         Búsqueda <i class="bi bi-search ms-2"></i>
       </button>
     </div>
 
     <div class="projects-list mt-5">
       <div
-        class="project-card"
-        v-for="(project, index) in projects"
+        class="project-card animate__animated animate__fadeInUp"
+        :style="'animation-delay: ' + (index * 0.1) + 's'"
+        v-for="(project, index) in filteredProjects"
         :key="index"
         @click="openProject(project.id)"
       >
@@ -47,6 +51,9 @@
           </p>
         </div>
       </div>
+    </div>
+    <div v-if="isProjectsEmpty">
+      No hay proyectos con esos parámetros de búsqueda
     </div>
   </div>
 </template>
@@ -70,7 +77,32 @@ export default {
   computed: {
     ...mapGetters({
       parameters: 'getParameters'
-    })
+    }),
+    // filter by type, place and price
+    filteredProjects() {
+      return this.projects.filter(
+        (project) => {
+          if(this.parameters.active) {
+            if(this.parameters.location.value == 'Anywere') {
+              return project.attributes.project_value >= this.parameters.minValue &&
+                project.attributes.land_area >= this.parameters.minLand &&
+                project.attributes.class === this.parameters.class
+            } else {
+              return project.attributes.project_value >= this.parameters.minValue &&
+              project.attributes.land_area >= this.parameters.minLand &&
+              project.attributes.city === this.parameters.location.value &&
+              project.attributes.class === this.parameters.class
+            }
+          } else {
+            return project
+          }  
+        }
+      );
+    },
+    // check if filtered projects is empty
+    isProjectsEmpty() {
+      return this.filteredProjects.length == 0;
+    }
   },
   methods: {
     async getProjects() {
@@ -88,6 +120,17 @@ export default {
         params: {
           id: id,
         },
+      });
+    },
+    
+    // reset parameters
+    resetParameters() {
+      this.$store.commit('resetParameters');
+    },
+
+    goBack() {
+      this.$router.push({
+        name: "home",
       });
     },
   },
@@ -125,18 +168,12 @@ export default {
         border-radius: 12px;
         padding: 0.5rem 1.5rem 0.4rem;
         transition: 0.2s ease-in-out;
-        &:hover {
-          background-color: var(--color-complementary-da);
-        }
       }
       .option-class {
         border: none;
         background-color: var(--color-complementary-1);
-        padding: 0.5rem 1.5rem;
+        padding: 0.6rem 1.5rem 0.4rem;
         color: var(--color-white);
-        &:hover {
-          background-color: var(--color-complementary-1-dark);
-        }
       }
       .button-delete-filters{
         background-color: transparent;
@@ -246,6 +283,17 @@ export default {
           margin-bottom: 6px;
         }
       }
+    }
+    @media only screen and (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media only screen and (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 24px;
     }
   }
 }
