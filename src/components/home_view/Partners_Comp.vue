@@ -2,14 +2,14 @@
   <div class="partners-container position-relative">
     <div class="first-line animate position-absolute">
       <div class="partner-card" v-for="item in partnersUp1" :key="item.id">
-        <img :src="item.image" alt="">
+        <img :src="require('@/assets/partners/' + item.image)">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
         </div>
       </div>
       <div class="partner-card" v-for="item in partnersUp2" :key="item.id">
-        <img :src="item.image" alt="">
+        <img :src="require('@/assets/partners/' + item.image)">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
@@ -18,19 +18,19 @@
     </div>
     <div class="first-line second-line animate-reverse position-absolute">
       <div class="partner-card" v-for="item in partnersDown1" :key="item.id">
-        <img :src="item.image" alt="">
+        <img :src="require('@/assets/partners/' + item.image)">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
         </div>
       </div>
       <div class="partner-card" v-for="item in partnersDown2" :key="item.id">
-        <img :src="item.image" alt="">
+        <img :src="require('@/assets/partners/' + item.image)">
         <div class="info">
           <h4 class="mb-1">{{item.name}}</h4>
           <p>{{item.description}}</p>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
 </template>
