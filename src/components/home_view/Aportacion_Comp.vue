@@ -6,7 +6,7 @@
       </div>
       <div>
         <div class="metros-aportaciones">
-          <span>+ 2,549,000.00 m2</span>
+          <span>+ 1,164,006.00 m²</span>
           <h4>Aportación</h4>
         </div>
       </div>
