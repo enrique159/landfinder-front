@@ -11,7 +11,7 @@ init("3LlkNIJmneIIiYzH7");
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'https://landfinderback.herokuapp.com/api';
+axios.defaults.baseURL = 'https://landfinder-back.onrender.com/api';
 
 new Vue({
   router,
