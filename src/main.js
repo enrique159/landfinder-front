@@ -12,7 +12,7 @@ Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 // add process env variable
-axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'https://land-finder-back-tnd34.ondigitalocean.app';
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL || 'https://land-finder-back-tnd34.ondigitalocean.app/api';
 
 new Vue({
   router,
