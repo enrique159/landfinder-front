@@ -11,7 +11,8 @@ init("3LlkNIJmneIIiYzH7");
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'https://landfinder-back.onrender.com/api';
+// add process env variable
+axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'https://land-finder-back-tnd34.ondigitalocean.app';
 
 new Vue({
   router,
