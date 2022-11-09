@@ -10,7 +10,7 @@
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
       <h2 class="info-text">{{ project.class}}</h2>
-      <p class="info-name">Tipo</p>
+      <p class="info-name">Clase</p>
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
       <h2 class="info-text">{{ project.mod}}</h2>
@@ -18,7 +18,7 @@
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
       <h2 class="info-text">{{ project.project_type}}</h2>
-      <p class="info-name">Superficie</p>
+      <p class="info-name">Tipo</p>
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
       <h2 class="info-text">{{ project.domain}}</h2>
