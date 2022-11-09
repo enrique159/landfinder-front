@@ -54,9 +54,9 @@ export const metodologiasMockData = [
 export const partners_up_part1 = [
   {
     id: 0,
-    name: 'Lobbi',
-    image: 'Lobbi-IGE.png',
-    description: 'Consultoría y gestión legal especializada en inmuebles.',
+    name: 'UKI',
+    image: 'UKI.png',
+    description: 'Administradora hotelera de proyectos de nicho.',
   },
   {
     id: 1,
@@ -87,9 +87,9 @@ export const partners_up_part1 = [
 export const partners_up_part2 = [
   {
     id: 5,
-    name: 'Lobbi',
-    image: 'Lobbi-IGE.png',
-    description: 'Consultoría y gestión legal especializada en inmuebles.',
+    name: 'UKI',
+    image: 'UKI.png',
+    description: 'Administradora hotelera de proyectos de nicho.',
   },
   {
     id: 6,
@@ -150,9 +150,9 @@ export const partners_down_part1 = [
   },
   {
     id: 15,
-    name: 'Axyio Labs',
-    image: 'AxyioLabs.png',
-    description: 'Especialistas en energías alternativas e IoT.',
+    name: 'Lobbi',
+    image: 'Lobbi-IGE.png',
+    description: 'Consultoría y gestión legal especializada en inmuebles.',
   },
 ]
 
@@ -189,8 +189,8 @@ export const partners_down_part2 = [
   },
   {
     id: 21,
-    name: 'Axyio Labs',
-    image: 'AxyioLabs.png',
-    description: 'Especialistas en energías alternativas e IoT.',
+    name: 'Lobbi',
+    image: 'Lobbi-IGE.png',
+    description: 'Consultoría y gestión legal especializada en inmuebles.',
   },
 ]
