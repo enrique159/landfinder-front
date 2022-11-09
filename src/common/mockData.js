@@ -73,7 +73,7 @@ export const partners_up_part1 = [
   {
     id: 3,
     name: 'Welcome Home',
-    image: 'HenkoRE.png',
+    image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
@@ -105,8 +105,8 @@ export const partners_up_part2 = [
   },
   {
     id: 8,
-    name: 'Henko RE',
-    image: 'HenkoRE.png',
+    name: 'Welcome Home',
+    image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
@@ -120,21 +120,21 @@ export const partners_up_part2 = [
 export const partners_down_part1 = [
   {
     id: 10,
-    name: 'Dominio 11',
-    image: 'Dominio11.png',
-    description: 'Diseño de interiores comercial y residencial.',
+    name: 'HUBi',
+    image: 'HUBi.png',
+    description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
   {
     id: 11,
-    name: 'Cvbika',
-    image: 'Cvbika.png',
-    description: 'Estudio arquitectónico y edificación de alto impacto.',
+    name: 'Welcome Home',
+    image: 'Welcomehome.png',
+    description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
     id: 12,
-    name: 'Keller Williams',
-    image: 'KellerWilliams.jpeg',
-    description: 'Franquicia comercializadora de inmuebles.',
+    name: 'Bantra Tech',
+    image: 'BantraTech.png',
+    description: 'Especialistas en tecnología proptech.',
   },
   {
     id: 13,
@@ -159,21 +159,21 @@ export const partners_down_part1 = [
 export const partners_down_part2 = [
   {
     id: 16,
-    name: 'Dominio 11',
-    image: 'Dominio11.png',
-    description: 'Diseño de interiores comercial y residencial.',
+    name: 'HUBi',
+    image: 'HUBi.png',
+    description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
   {
     id: 17,
-    name: 'Cvbika',
-    image: 'Cvbika.png',
-    description: 'Estudio arquitectónico y edificación de alto impacto.',
+    name: 'Welcome Home',
+    image: 'Welcomehome.png',
+    description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
     id: 18,
-    name: 'Keller Williams',
-    image: 'KellerWilliams.jpeg',
-    description: 'Franquicia comercializadora de inmuebles.',
+    name: 'Bantra Tech',
+    image: 'BantraTech.png',
+    description: 'Especialistas en tecnología proptech.',
   },
   {
     id: 19,
