@@ -13,7 +13,6 @@
     "core-js": "^3.8.3",
     "free-email-domains": "^1.0.23",
     "nodemailer": "^6.7.3",
-    "swiper": "^8.4.4",
     "v-money": "^0.8.1",
     "vue": "^2.6.14",
     "vue-axios": "^3.4.1",
