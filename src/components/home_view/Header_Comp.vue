@@ -20,7 +20,7 @@
           Proyectos
         </button>
         <button @click="options = 2" :class="{ selected: options == 2 }">
-          Tierras
+          Tierra
         </button>
         <button @click="options = 3" :class="{ selected: options == 3 }">
           Edificios
@@ -58,10 +58,9 @@
           </div>
         </div>
         <!-- VALOR PRICE -->
-        <div class="search-input">
+       <!--  <div class="search-input">
           <h3>Valor (min.)</h3>
           <div class="d-flex">
-            <!-- <input type="text" placeholder="$3'000'000.00" /> -->
             <Money
               min="0"
               class="valor-input"
@@ -72,7 +71,7 @@
             />
             <span>MXN</span>
           </div>
-        </div>
+        </div> -->
         <!-- BOTON SEARCH -->
         <div class="search-input">
           <button class="button-search" @click="setValues">Buscar</button>
@@ -201,8 +200,8 @@ export default {
     background-color: var(--color-white);
     position: absolute;
     bottom: -62px;
-    left: calc(50% - 450px);
-    width: 900px;
+    left: calc(50% - 350px);
+    width: 700px;
     height: 86px;
     padding: 10px 28px;
     border-radius: 18px;

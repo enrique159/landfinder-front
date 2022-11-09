@@ -72,7 +72,7 @@ export const partners_up_part1 = [
   },
   {
     id: 3,
-    name: 'Henko RE',
+    name: 'Welcome Home',
     image: 'HenkoRE.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
