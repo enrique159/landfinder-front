@@ -4,10 +4,16 @@
       <div>
         <h2 class="title">Espacios en aportación</h2>
       </div>
+       <div>
+        <div class="metros-aportaciones">
+          <span>+ 2,006.00 m²</span>
+          <h4>Aportado</h4>
+        </div>
+      </div>
       <div>
         <div class="metros-aportaciones">
           <span>+ 1,164,006.00 m²</span>
-          <h4>Aportación</h4>
+          <h4>En aportación</h4>
         </div>
       </div>
     </div>
