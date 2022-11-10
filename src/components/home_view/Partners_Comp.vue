@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="first-line second-line animate-reverse position-absolute">
+    <!-- <div class="first-line second-line animate-reverse position-absolute">
       <div class="partner-card" v-for="item in partnersDown1" :key="item.id">
         <img :src="require('@/assets/partners/' + item.image)">
         <div class="info">
@@ -31,7 +31,7 @@
           <p>{{item.description}}</p>
         </div>
       </div> 
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -52,7 +52,7 @@ import { partners_up_part1, partners_up_part2, partners_down_part1, partners_dow
 
 <style lang="scss" scoped>
 .partners-container {
-  height: 260px;
+  height: 140px;
   width: 100%;
   overflow-x: hidden;
   .first-line {

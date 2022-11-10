@@ -54,27 +54,27 @@ export const metodologiasMockData = [
 export const partners_up_part1 = [
   {
     id: 0,
-    name: 'UKI',
-    image: 'UKI.png',
-    description: 'Administradora hotelera de proyectos de nicho.',
-  },
-  {
-    id: 1,
     name: 'HUBi',
     image: 'HUBi.png',
     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
   {
-    id: 2,
-    name: 'Bantra Tech',
-    image: 'BantraTech.png',
-    description: 'Especialistas en tecnología proptech.',
-  },
-  {
-    id: 3,
+    id: 1,
     name: 'Welcome Home',
     image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
+  },
+  {
+    id: 2,
+    name: 'Alkilable',
+    image: 'Alkilable.png',
+    description: 'Administración de propiedades y proyectos habitacionales.',
+  },
+  {
+    id: 3,
+    name: 'Bantra Tech',
+    image: 'BantraTech.png',
+    description: 'Especialistas en tecnología proptech.',
   },
   {
     id: 4,
@@ -99,21 +99,21 @@ export const partners_up_part2 = [
   },
   {
     id: 7,
-    name: 'Bantra Tech',
-    image: 'BantraTech.png',
-    description: 'Especialistas en tecnología proptech.',
-  },
-  {
-    id: 8,
     name: 'Welcome Home',
     image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
+    id: 8,
+    name: 'Alkilable',
+    image: 'Alkilable.png',
+    description: 'Administración de propiedades y proyectos habitacionales.',
+  },
+  {
     id: 9,
-    name: 'Async',
-    image: 'Async.png',
-    description: 'Estudio de diseño especializado en marcas.',
+    name: 'Bantra Tech',
+    image: 'BantraTech.png',
+    description: 'Especialistas en tecnología proptech.',
   },
 ]
 
