@@ -11,7 +11,7 @@
           entre las cuales se encuentran constructores, comercializadoras,
           estudios arquitectónicos, etc.
         </p>
-        <a target="_blank" href="https://www.linkedin.com/company/landfindermexico/people/"
+        <a target="_blank" href="https://www.linkedin.com/company/landfindermexico/"
           >Conocer más <img src="@/assets/icons/arrow-down-right.svg" class="ms-2"
         /></a>
       </div>
