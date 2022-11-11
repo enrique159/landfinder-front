@@ -27,9 +27,9 @@
       </div>
       <div class="col col-12 col-lg-2 nav-social mb-4 mb-lg-0">
         <h3>Síguenos</h3>
-        <a href="https://www.facebook.com/landfinderm" class="me-3"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.linkedin.com/company/landfindermexico/" class="me-3"><i class="bi bi-linkedin"></i></a>
-        <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.facebook.com/landfinderm" target="_blank" class="me-3"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.linkedin.com/company/landfindermexico/" target="_blank" class="me-3"><i class="bi bi-linkedin"></i></a>
+        <a href="#" target="_blank" class="me-3"><i class="bi bi-twitter"></i></a>
       </div>
     </div>
   </div>
