@@ -55,6 +55,7 @@ export default {
       checked: false,
       checkedForm: false,
       loading: false,
+      phone: '',
       email: '',
       emailInvalid: false,
       emailDomainInvalid: false,
