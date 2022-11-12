@@ -63,8 +63,8 @@ import { partners_up_part1, partners_up_part2, partners_down_part1, partners_dow
       min-width: 320px;
       height: 100px;
       padding: 12px;
-      background-color: var(--color-black-3);
-      border-radius: 8px;
+      background-color: var(--color-black-2);
+      border-radius: 16px;
       box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
       display: flex;
       column-gap: 1rem;
