@@ -68,6 +68,7 @@ export default {
         "Evaluación de escenario de negocio, estimaciones y proyecciones.",
         "Necesidades del proyecto.",
         "Contenido gráfico especializado.",
+        "Análisis legal."
       ],
     };
   },

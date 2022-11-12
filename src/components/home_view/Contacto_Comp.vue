@@ -16,6 +16,17 @@
       </div>
       <div class="col col-12 col-md-4 d-flex flex-column">
         <form class="contact-form" v-on:submit.prevent="sendEmail">
+          <div class="chips-selector">
+            <div
+              class="chip"
+              v-for="chip in chips"
+              :key="chip.id"
+              :class="{ active: chip.id === selectedChip }"
+              @click="selectChip(chip.id)"
+            >
+              {{ chip.name }}
+            </div>
+          </div>
           <input
             type="text"
             class="contact-form__input"
@@ -74,16 +85,24 @@ export default {
       email: "",
       message: "",
       error: "",
+      chips: [
+        { id: 1, name: "Desarrollador", },
+        { id: 2, name: "Fondo de inversión", },
+        { id: 3, name: "Inmobiliaria", },
+        { id: 4, name: "Propietario", },
+        { id: 5, name: "Otro", }
+      ],
+      selectedChip: 1,
     };
   },
   methods: {
-    // sendEmail() {
-    //   NodeMailer.sendEmail(this.email, this.text)
-    // }
+    selectChip(id) {
+      this.selectedChip = id;
+    },
     validarForm() {
-      if (!emptyString(this.email))
+      if (emptyString(this.email))
         return "El campo de correo electrónico no puede estar vacío";
-      if (!emptyString(this.message))
+      if (emptyString(this.message))
         return "El campo de mensaje no puede estar vacío";
       return true;
     },
@@ -159,6 +178,28 @@ export default {
         &::placeholder {
           color: var(--color-black-3);
           opacity: 0.8;
+        }
+      }
+
+      .chips-selector {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        gap: 0.6rem;
+        .chip {
+          background-color: transparent;
+          border: 2px solid var(--color-black-3);
+          border-radius: 24px;
+          color: var(--color-black-3);
+          cursor: pointer;
+          font-weight: var(--font-semi-bold);
+          padding: 0.5rem 1rem;
+          transition: var(--transition-fast);
+          &.active {
+            background-color: var(--color-black-3);
+            color: var(--color-white);
+          }
         }
       }
     }
