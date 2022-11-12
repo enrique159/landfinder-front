@@ -82,38 +82,50 @@ export const partners_up_part1 = [
     image: 'Async.png',
     description: 'Estudio de diseño especializado en marcas.',
   },
+  {
+    id: 5,
+    name: 'Urbana',
+    image: 'Urbana.png',
+    description: 'Desarrollador inmobiliario especializado en construcción.',
+  },
 ]
 
 export const partners_up_part2 = [
   {
-    id: 5,
+    id: 6,
     name: 'UKI',
     image: 'UKI.png',
     description: 'Administradora hotelera de proyectos de nicho.',
   },
   {
-    id: 6,
+    id: 7,
     name: 'HUBi',
     image: 'HUBi.png',
     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
   {
-    id: 7,
+    id: 8,
     name: 'Welcome Home',
     image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
   },
   {
-    id: 8,
+    id: 10,
     name: 'Alkilable',
     image: 'Alkilable.png',
     description: 'Administración de propiedades y proyectos habitacionales.',
   },
   {
-    id: 9,
+    id: 11,
     name: 'Bantra Tech',
     image: 'BantraTech.png',
     description: 'Especialistas en tecnología proptech.',
+  },
+  {
+    id: 12,
+    name: 'Urbana',
+    image: 'Urbana.png',
+    description: 'Desarrollador inmobiliario especializado en construcción.',
   },
 ]
 
