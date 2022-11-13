@@ -44,7 +44,7 @@ export default {
   },
   metaInfo: {
     title: 'Land Finder México',
-    titleTemplate: '%s | Home'
+    titleTemplate: '%s | Inicio'
   },
   data() {
     return {

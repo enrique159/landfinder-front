@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
+import TerminosView from '@/views/TerminosView.vue'
 import VueMeta from 'vue-meta'
 
 Vue.use(VueMeta)
@@ -23,6 +24,11 @@ const routes = [
     path: '/project/:id?/:name?',
     name: 'project',
     component: () => import('@/views/ProjectView.vue')
+  },
+  {
+    path: '/terminos-y-condiciones',
+    name: 'terms',
+    component: TerminosView
   },
   {
     path: "*",

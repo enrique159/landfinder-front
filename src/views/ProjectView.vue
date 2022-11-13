@@ -138,7 +138,7 @@ export default {
             this.project = project.data.data;
             this.lat = this.project.attributes.latitude;
             this.lng = this.project.attributes.longitude;
-            this.getSimilarProjects();
+            this.getSimilarProjects(this.project.attributes.id_company.data.id);
           } else {
             console.log(project);
             this.errorStatus = true;
@@ -158,8 +158,8 @@ export default {
         console.log("No hay id");
       }
     },
-    async getSimilarProjects() {
-      const projects = await Project.getByCompany(1);
+    async getSimilarProjects(idCompany) {
+      const projects = await Project.getByCompany(idCompany);
       if (projects.status == 200) {
         this.similarProjects = projects.data.data;
         this.similarProjects.splice(
