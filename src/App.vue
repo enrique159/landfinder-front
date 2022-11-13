@@ -168,7 +168,7 @@ export default {
       padding: 1rem;
       column-gap: 0.2rem;
       transition: var(--transition-normal);
-      border-radius: 1rem;
+      border-radius: 2rem;
       &:hover {
         column-gap: 0.4rem;
         background-color: #323232;

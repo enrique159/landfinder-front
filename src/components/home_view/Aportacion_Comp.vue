@@ -1,19 +1,25 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-      <div>
+    <div class="row">
+      <div class="col-12 col-md-6">
         <h2 class="title">Espacios en aportación</h2>
       </div>
-       <div>
+      <div class="col-12 col-md-6">
         <div class="metros-aportaciones">
-          <span>+ 2,006.00 m²</span>
-          <h4>Aportado</h4>
-        </div>
-      </div>
-      <div>
-        <div class="metros-aportaciones">
-          <span>+ 1,164,006.00 m²</span>
-          <h4>En aportación</h4>
+          <div class="row">
+            <div class="col-12 col-xxl-7 mb-3 mb-xxl-0">
+              <div class="d-flex justify-content-between justify-content-xxl-start align-items-center w-100">
+                <span>+ 1,164,006.00 m²</span>
+                <h4>En aportación</h4>
+              </div>
+            </div>
+            <div class="col-12 col-xxl-5">
+              <div class="d-flex justify-content-between justify-content-xxl-end align-items-center w-100">
+                <span>+ 2,006.00 m²</span>
+                <h4>Aportado</h4>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -64,12 +70,10 @@ export default {
 .metros-aportaciones {
   width: 100%;
   border: 2px solid var(--color-text-dark);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 8px;
   padding-left: 0;
   border-radius: 12px;
+  margin-bottom: 12px;
   span {
     margin: 0 21px;
   }

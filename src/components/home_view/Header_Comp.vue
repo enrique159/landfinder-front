@@ -308,7 +308,7 @@ export default {
       }
     }
     .search-bar {
-      bottom: -254px;
+      bottom: -180px;
       left: calc(50% - 150px);
       width: 300px;
       height: fit-content;

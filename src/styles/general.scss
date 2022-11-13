@@ -136,3 +136,9 @@ input {
   height: 1px;
   background-color: var(--color-black-3);
 }
+
+@media screen and (max-width: 992px) {
+  .spacer-130 {
+    height: 0px;
+  }
+}
