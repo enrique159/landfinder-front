@@ -5,7 +5,7 @@
     >
       <div class="col col-12 col-md-6 mb-4 mb-md-0">
         <h2>¿Listo para empezar a desarrollar En Baja California Sur?</h2>
-        <p class="mb-4">
+        <p class="mb-4 text-subtext">
           Déjanos un mensaje a nuestro correo electrónico y en breve uno de
           nuestros asesores se pondrá en contacto contigo.
         </p>
@@ -16,6 +16,7 @@
       </div>
       <div class="col col-12 col-md-4 d-flex flex-column">
         <form class="contact-form" v-on:submit.prevent="sendEmail">
+          <span class="text-form mb-2">¿Qué soy?</span>
           <div class="chips-selector">
             <div
               class="chip"
@@ -48,7 +49,7 @@
             class="contact-form__input"
             name="email_contact_form"
             id="email_contact_form"
-            placeholder="E-mail"
+            placeholder="Correo electrónico*"
             v-model="email"
           />
           <textarea
@@ -65,7 +66,7 @@
               type="submit"
               value="Enviar mensaje"
             />
-            <span class="px-2 py-1">{{ error }}</span>
+            <span class="px-2 py-1 text-message">{{ error }}</span>
           </div>
         </form>
       </div>
@@ -76,6 +77,7 @@
 <script>
 import emailjs from "@emailjs/browser";
 import { emptyString } from "@/utils/emptyString";
+import { emailValid } from "@/utils/emailValid";
 export default {
   name: "ContactoComp",
   data() {
@@ -101,9 +103,9 @@ export default {
     },
     validarForm() {
       if (emptyString(this.email))
-        return "El campo de correo electrónico no puede estar vacío";
-      if (emptyString(this.message))
-        return "El campo de mensaje no puede estar vacío";
+        return "El correo electrónico es requerido";
+      if (!emailValid(this.email))
+        return "El correo electrónico no es válido";
       return true;
     },
     sendEmail(e) {
@@ -164,6 +166,11 @@ export default {
       }
     }
 
+    .text-subtext {
+      font-weight: var(--font-semi-bold);
+      font-size: 1.2rem;
+    }
+
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -179,6 +186,18 @@ export default {
           color: var(--color-black-3);
           opacity: 0.8;
         }
+      }
+
+      .text-form {
+        font-weight: var(--font-semi-bold);
+        color: var(--color-black-3);
+        opacity: 0.8;
+      }
+
+      .text-message {
+        font-weight: var(--font-semi-bold);
+        color: var(--color-black);
+        font-size: var(--small-font-size);
       }
 
       .chips-selector {
@@ -197,7 +216,7 @@ export default {
           padding: 0.5rem 1rem;
           transition: var(--transition-fast);
           &.active {
-            background-color: var(--color-black-3);
+            background-color: var(--color-black);
             color: var(--color-white);
           }
         }
@@ -205,6 +224,7 @@ export default {
     }
     #submit_contact_form {
       width: fit-content;
+      height: 40px;
       background: var(--color-white);
       padding: 6px 18px;
       border-radius: 12px;

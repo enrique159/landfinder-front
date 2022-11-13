@@ -29,7 +29,7 @@
         <h3>Síguenos</h3>
         <a href="https://www.facebook.com/landfinderm" target="_blank" class="me-3"><i class="bi bi-facebook"></i></a>
         <a href="https://www.linkedin.com/company/landfindermexico/" target="_blank" class="me-3"><i class="bi bi-linkedin"></i></a>
-        <a href="#" target="_blank" class="me-3"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.twitter.com/LandFinderMx" target="_blank" class="me-3"><i class="bi bi-twitter"></i></a>
       </div>
     </div>
   </div>
