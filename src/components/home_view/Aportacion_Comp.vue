@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-12 col-xxl-7 mb-3 mb-xxl-0">
               <div class="d-flex justify-content-between justify-content-xxl-start align-items-center w-100">
-                <span>+ 1,164,006.00 m²</span>
+                <span>+ 1,322,718.32 m²</span>
                 <h4>En aportación</h4>
               </div>
             </div>
