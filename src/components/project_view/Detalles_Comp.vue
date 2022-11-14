@@ -1,11 +1,11 @@
 <template>
   <div class="row mb-2">
     <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
-      <h2 class="info-text">{{ project.land_area}}</h2>
+      <h2 class="info-text">{{ project.land_area}} m²</h2>
       <p class="info-name">Superficie</p>
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">
-      <h2 class="info-text">{{ project.build_area}}</h2>
+      <h2 class="info-text">{{ project.build_area}} m²</h2>
       <p class="info-name">Construcción</p>
     </div>
       <div class="col col-6 col-sm-4 col-md-3 col-lg-2">

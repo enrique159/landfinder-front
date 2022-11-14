@@ -7,13 +7,13 @@
         </router-link>
         <div class="nav-options">
           <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
-          <a @click="goTo('/projects', true)"><span>Proyectos</span></a>
+          <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
           <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
           <a @click="goTo('/#team', false)"><span>Partners</span></a>
         </div>
         <div class="nav-options-min" :class="{ 'active' : active }">
           <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
-          <a @click="goTo('/projects', true)"><span>Proyectos</span></a>
+          <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
           <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
           <a @click="goTo('/#team', false)"><span>Partners</span></a>
         </div>

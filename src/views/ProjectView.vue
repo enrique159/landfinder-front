@@ -22,7 +22,7 @@
           <div class="divider mb-5"></div>
           <!-- COMMENTS -->
           <div class="d-flex justify-content-between align-items-end mb-2">
-            <h5 class="m-0">Comentarios del desarrollador:</h5>
+            <h5 class="m-0">Comentarios:</h5>
             <a
               class="company-link"
               :href="project.attributes.id_company.data.attributes.contact_link"

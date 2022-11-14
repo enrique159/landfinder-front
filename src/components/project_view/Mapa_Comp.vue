@@ -25,7 +25,7 @@ export default {
         container: 'map_project', 
         style: 'mapbox://styles/lalylaz/cl1dpc4s9000e14mhv30826wo',
         center: [ this.locationProp.lng, this.locationProp.lat], 
-        zoom: 11, 
+        zoom: 10, 
         geolocation: true,
         attributionControl: false
       });
