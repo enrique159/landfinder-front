@@ -17,9 +17,9 @@
         <div class="option">
           {{ parameters.minLand }} M²
         </div>
-        <div class="option">
+       <!--  <div class="option">
           {{ parameters.minValue }} MXN
-        </div>
+        </div> -->
         <button class="button-delete-filters" @click="resetParameters">
           <i class="bi bi-x"></i>Borrar filtros
         </button>
