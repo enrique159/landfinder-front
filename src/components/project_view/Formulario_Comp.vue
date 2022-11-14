@@ -16,23 +16,39 @@
         {{ item }}
       </li>
     </ul>
+    <vue-phone-number-input 
+      v-model="phone" 
+      class="mb-2 input-phone"
+      darkColor="var(--color-background)"
+      valid-color="#0DBA6A"
+      no-example
+      default-country-code="MX"
+      :preferred-countries="['MX', 'US']"
+      :translations="{
+        countrySelectorLabel: 'Código País',
+        countrySelectorError: 'Error código',
+        phoneNumberLabel: 'Número de teléfono',
+        example: 'Ejemplo :'
+      }"
+      dark
+      @update="onUpdate"
+    />
     <input
-      class="input-email"
-      placeholder="Correo electrónico institucional"
+      class="input-form"
+      :class="{ 'valid': getEmailValid }"
+      placeholder="Correo electrónico organizacional"
       type="email"
       name="input_form_project"
       id="input_form_project"
       v-model="email"
     />
-    <button class="button-email mb-3" @click="validateEmail()">
+    <button class="button-email mb-3" @click="validateForm()">
       {{ solicitudText }}
       <div class="spinner-border spinner-border-sm text-light ms-1" role="status" v-if="loading">
         <span class="visually-hidden">Loading...</span>
       </div>
     </button>
-    <p v-if="checkedForm" class="email-novalid">*Favor de aceptar los terminos del siguiente párrafo.</p>
-    <p v-if="emailInvalid" class="email-novalid">*Favor de escribir un correo válido.</p>
-    <p v-if="emailDomainInvalid" class="email-novalid">*Necesitas un correo organizacional.</p>
+    <p v-if="error" class="email-novalid">*{{ errorMessage }}</p>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" v-model="checked" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
@@ -46,6 +62,7 @@
 
 <script>
 const freeEmailDomains = require('free-email-domains')
+import { emailValid } from '@/utils/emailValid';
 import emailjs from '@emailjs/browser';
 export default {
   name: "FormularioComp",
@@ -53,14 +70,14 @@ export default {
   data() {
     return {
       checked: false,
-      checkedForm: false,
       loading: false,
+      results: {
+        isValid: false
+      },
       phone: '',
       email: '',
-      emailInvalid: false,
-      emailDomainInvalid: false,
-      solicitudText: 'Solicitud de documentación',
-      // TO DO: Verificar este contenido si es estatico o si varia en cada proyecto
+      error: false,
+      solicitudText: 'Solicitar documentación',
       listContent: [
         "Características e información detallada del inmueble.",
         "Usos de suelo y normativa vigente con interpretación.",
@@ -73,9 +90,47 @@ export default {
       ],
     };
   },
+  computed: {
+    getEmailValid() {
+      if (emailValid(this.email)) {
+        const domain = this.email.split('@')[1];
+        if (!this.checkFreeEmailDomain(domain)) {
+          return true;
+        } else return false
+      } else return false;
+    }
+  },
   methods: {
     checkFreeEmailDomain(domain) {
       return freeEmailDomains.includes(domain);
+    },
+
+    onUpdate (payload) {
+      this.results = payload
+    },
+
+    validateForm() {
+      this.error = false;
+      // Guards
+      if (!emailValid(this.email)) {
+        this.error = true;
+        this.errorMessage = 'Favor de escribir un correo válido.';
+      }
+      if (this.checkFreeEmailDomain(this.email.split('@')[1])) {
+        this.error = true;
+        this.errorMessage = 'Necesitas un correo organizacional.';
+      }
+      if (!this.checked) {
+        this.error = true;
+        this.errorMessage = 'Favor de aceptar los terminos del siguiente párrafo.';
+      }
+      if (!this.results.isValid) {
+        this.error = true;
+        this.errorMessage = 'Favor de escribir un número de teléfono válido.';
+      }
+      if (this.error) return;
+      // this.sendEmail()
+      console.log("Okay")
     },
 
     // VALIDATE EMAIL
@@ -167,7 +222,7 @@ export default {
       margin-bottom: 1rem;
     }
   }
-  .input-email {
+  .input-form {
     width: 100%;
     height: fit-content;
     border: 1px solid var(--color-black-3);
@@ -182,6 +237,10 @@ export default {
       opacity: 1;
       color: var(--color-text-light);
     }
+  }
+
+  .valid {
+    border: 1px solid var(--color-complementary-1);
   }
   .button-email {
     width: 100%;
@@ -224,6 +283,28 @@ export default {
     font-weight: var(--font-regular);
     color: #e97a30;
     margin-bottom: 1rem;
+  }
+}
+
+::v-deep .input-phone {
+  .input-tel, .input-tel__label, .country-selector__label {
+    font-family: var(--font-primary) !important;
+  }
+
+  .input-tel__input {
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border: 1px solid var(--color-black-3);
+    font-size: var(--small-font-size) !important;
+    ::placeholder {
+      font: var(--font-primary) !important;
+    }
+  }
+
+  .country-selector__input {
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    border: 1px solid var(--color-black-3);
   }
 }
 </style>
