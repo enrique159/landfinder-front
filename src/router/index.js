@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
 import TerminosView from '@/views/TerminosView.vue'
+import PrivacyView from '@/views/PrivacyView.vue'
 import VueMeta from 'vue-meta'
 
 Vue.use(VueMeta)
@@ -29,6 +30,11 @@ const routes = [
     path: '/terminos-y-condiciones',
     name: 'terms',
     component: TerminosView
+  },
+  {
+    path: '/politicas-privacidad',
+    name: 'policy',
+    component: PrivacyView
   },
   {
     path: "*",
