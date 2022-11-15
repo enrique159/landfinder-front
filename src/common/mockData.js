@@ -19,6 +19,11 @@ export const placesMockData = [
     name: "Pescadero, Baja California Sur",
     value: "Pescadero"
   },
+  {
+    id: 4,
+    name: "Cabo San Lucas, Baja California Sur",
+    value: "Los Cabos"
+  },
 ]
 
 export const metodologiasMockData = [

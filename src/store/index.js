@@ -8,7 +8,7 @@ export default new Vuex.Store({
     parameters: {
       class: 'Todos',
       minLand: 0,
-      minValue: 0,
+      //minValue: 0,
       location: {
         name: 'Cualquier ubicación',
         value: 'Anywere'
@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.parameters = {
         class: 'Todos',
         minLand: 0,
-        minValue: 0,
+        //minValue: 0,
         location: {
           name: 'Cualquier ubicación',
           value: 'Anywere'

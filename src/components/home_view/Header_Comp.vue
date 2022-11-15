@@ -28,7 +28,7 @@
       </div>
       <div class="search-bar animate__animated animate__fadeInUp animate__delay">
         <!-- DROPDOWN LOCATION -->
-        <div class="search-input" style="width: 35%">
+        <div class="search-input" style="width: 47%">
           <h3>Ubicación</h3>
           <div class="dropdown">
             <button
@@ -93,7 +93,7 @@ export default {
     return {
       options: 1,
       selectedPlace: 0,
-      value: 0,
+      //value: 0,
       minLand: null,
       places: places,
       money: {
@@ -107,7 +107,7 @@ export default {
   },
   computed: {
     getClassProject() {
-      return this.options == 1 ? "Proyecto" : this.options == 2 ? "Tierra" : "Edificio";
+      return this.options == 1 ? "Proyecto" : this.options == 2 ? "Terreno" : "Edificio";
     },
   },
   methods: {
@@ -118,7 +118,7 @@ export default {
     setValues() {
       this.$store.state.parameters.class = this.getClassProject;
       this.$store.state.parameters.location = { name: this.places[this.selectedPlace].name, value: this.places[this.selectedPlace].value };
-      this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
+      //this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
       this.$store.state.parameters.minLand = !this.minLand ? 0 : this.minLand;
       this.$store.state.parameters.active = true;
       this.$router.push('/portfolio')
