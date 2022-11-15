@@ -54,7 +54,7 @@
       <label class="form-check-label" for="flexCheckDefault">
         Confirmo que soy un desarrollador independiente o representante de una
         empresa que tiene la capacidad o intención de invertir en el proyecto y que
-        he leído y acepto los <span><a href="#">términos y condiciones</a></span>.
+        he leído y acepto los <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>.
       </label>
     </div>
   </div>
