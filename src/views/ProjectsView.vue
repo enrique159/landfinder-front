@@ -1,7 +1,7 @@
 <template>
   <div class="projects-view container">
     <h2 class="main-title">
-      <img src="@/assets/icons/back.svg" alt="" />Resultados de búsqueda:
+      <img @click="goBack()" src="@/assets/icons/back.svg" alt="" />Resultados de búsqueda:
     </h2>
     <div class="parameters">
       <div class="parameters-options">
@@ -11,7 +11,7 @@
           </span>
         </div>
         <div class="option">
-          <i class="bi bi-geo-alt-fill"></i>
+          <i class="bi bi-geo-alt-fill me-1"></i>
           {{ parameters.location.name }}
         </div>
         <div class="option">
@@ -21,11 +21,13 @@
           {{ parameters.minValue }} MXN
         </div> -->
         <button class="button-delete-filters" @click="resetParameters">
-          <i class="bi bi-x"></i>Borrar filtros
+          <i class="bi bi-x"></i>
+          <span>Borrar filtros</span> 
         </button>
       </div>
       <button class="button-search" @click="goBack">
-        Búsqueda <i class="bi bi-search ms-2"></i>
+        <span class="d-none d-lg-flex me-2">Búsqueda</span> 
+        <i class="bi bi-search"></i>
       </button>
     </div>
 
@@ -173,7 +175,8 @@ export default {
     justify-content: space-between;
     .parameters-options {
       display: flex;
-      column-gap: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
       .option {
         border: 1px solid var(--color-black-3);
         font-size: var(--small-font-size);
@@ -182,6 +185,9 @@ export default {
         border-radius: 12px;
         padding: 0.5rem 1.5rem 0.4rem;
         transition: 0.2s ease-in-out;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
       }
       .option-class {
         border: none;
@@ -198,6 +204,7 @@ export default {
         padding: 0.5rem 1.5rem 0.4rem;
         transition: 0.2s ease-in-out;
         border: none;
+        display: flex;
         &:hover {
           background-color: var(--color-black-3);
           color: var(--color-white);
@@ -205,14 +212,16 @@ export default {
       }
     }
     .button-search {
+      display: flex;
       background-color: transparent;
       font-size: var(--normal-font-size);
       font-weight: var(--font-medium);
       color: var(--color-white-2);
       border-radius: 12px;
-      padding: 0.5rem 2rem 0.4rem;
+      padding: 0.5rem 1rem 0.4rem;
       transition: 0.2s ease-in-out;
       border: 1px solid var(--color-black-3);
+      max-height: 40px;
       &:hover {
         background-color: var(--color-black-3);
         color: var(--color-white);
