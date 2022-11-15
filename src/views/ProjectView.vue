@@ -1,5 +1,10 @@
 <template>
   <div id="project-details" class="container px-4 px-md-0">
+    <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+      <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <Alerta404Comp v-if="errorStatus" :error="error" />
     <div v-if="status200">
       <ImagenesComp
@@ -98,6 +103,7 @@ export default {
         status: "",
         message: "",
       },
+      isLoading: false,
     };
   },
   metaInfo: {
@@ -135,6 +141,7 @@ export default {
   methods: {
     async getProject() {
       if (this.$route.params.id) {
+        this.isLoading = true;
         const project = await Project.getById(this.$route.params.id);
         if (project) {
           if (project.status == 200) {
@@ -154,6 +161,7 @@ export default {
           this.error.status = "500";
           this.error.message = "Internal Server Error";
         }
+        this.isLoading = false;
       } else {
         this.errorStatus = true;
         this.error.status = "No hay proyecto";
