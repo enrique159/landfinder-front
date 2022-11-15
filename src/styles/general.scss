@@ -138,6 +138,10 @@ input {
   background-color: var(--color-black-3);
 }
 
+.Vue-Toastification__toast--success {
+  background-color: var(--color-complementary-1) !important;
+}
+
 @media screen and (max-width: 992px) {
   .spacer-130 {
     height: 0px;

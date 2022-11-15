@@ -130,7 +130,7 @@ export default {
       }
       if (this.error) return;
       // this.sendEmail()
-      console.log("Okay")
+      this.showToast('success', 'Correo enviado correctamente')
     },
 
     // VALIDATE EMAIL
@@ -181,6 +181,25 @@ export default {
         }
       );
     },
+
+    // SHOW TOAST
+    showToast(type, message) {
+      this.$toast(message, {
+        type: type,
+        position: 'top-right',
+        duration: 3000,
+        dismissible: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: false,
+        closeButton: 'button',
+        icon: true,
+        rtl: false,
+      });
+    }
   },
 };
 </script>
