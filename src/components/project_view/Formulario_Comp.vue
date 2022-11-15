@@ -54,7 +54,7 @@
       <label class="form-check-label" for="flexCheckDefault">
         Confirmo que soy un desarrollador independiente o representante de una
         empresa que tiene la capacidad o intención de invertir en el proyecto y que
-        he leído y acepto los <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>.
+        he leído y acepto los <router-link target="_blank" class="form-check-terms-link" to="/terminos-y-condiciones">Términos y condiciones</router-link>.
       </label>
     </div>
   </div>
@@ -277,7 +277,12 @@ export default {
     line-height: 0.8rem;
     margin-bottom: 1rem;
   }
-
+  .form-check-terms-link{
+    color: var(--color-complementary-1);
+    &:hover{
+      text-decoration: underline;
+    }
+  }
   .email-novalid {
     font-size: var(--smaller-font-size);
     font-weight: var(--font-regular);

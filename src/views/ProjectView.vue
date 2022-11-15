@@ -11,7 +11,7 @@
           <!-- NAME & ADDRESS PROJECT -->
           <div class="title-project d-flex justify-content-between flex-wrap">
             <h1>{{ project.attributes.name }}</h1>
-            <a class="d-none d-lg-block" href="#map_project">Ver en el mapa</a>
+            <a class="d-none d-lg-block" target="_blank" :href="mapUrl">Ver en el mapa</a>
           </div>
           <p class="address mb-5">
             <i class="bi bi-geo-alt-fill"></i> {{ projectAddress }}
@@ -127,6 +127,10 @@ export default {
         lng: this.lng,
       };
     },
+    mapUrl(){
+      return `https://www.google.com/maps/?q=${this.lat},${this.lng}`
+      //return `https://www.google.com.mx/maps/place/24%C2%B008'24.8%22N+110%C2%B018'49.6%22W/@${this.lat},${this.lng},17z/`
+    }
   },
   methods: {
     async getProject() {
