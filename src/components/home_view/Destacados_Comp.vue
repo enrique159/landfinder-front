@@ -239,6 +239,7 @@ export default {
 @media screen and (max-width: 768px) {
   .top-projects {
     grid-template-columns: 1fr;
+    padding: 0 48px;
     .project-card {
       height: 580px;
     }

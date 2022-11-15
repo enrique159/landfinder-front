@@ -22,6 +22,7 @@
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>
+    <BannerCtaComp/>
   </div>
 </template>
 
@@ -34,6 +35,7 @@ import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
 import PartnersComp from '@/components/home_view/Partners_Comp.vue'
 import ContactoComp from '@/components/home_view/Contacto_Comp.vue'
 import FaqComp from '@/components/home_view/Faq_Comp.vue'
+import BannerCtaComp from '@/components/BannerCtaComp.vue'
 export default {
   name: "HomeView",
   components: {
@@ -43,7 +45,8 @@ export default {
     ConoceComp,
     PartnersComp,
     ContactoComp,
-    FaqComp
+    FaqComp,
+    BannerCtaComp
   },
   metaInfo: {
     title: 'Land Finder México',
