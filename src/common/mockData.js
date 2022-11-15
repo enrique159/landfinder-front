@@ -88,23 +88,29 @@ export const partners_up_part1 = [
     image: 'Urbana.png',
     description: 'Desarrollador inmobiliario especializado en construcción.',
   },
+  {
+    id: 6,
+    name: 'Hirales & Asociados',
+    image: 'H&A.png',
+    description: 'Firma legal especializada en temas inmobiliarios.',
+  },
 ]
 
 export const partners_up_part2 = [
   {
-    id: 6,
+    id: 7,
     name: 'UKI',
     image: 'UKI.png',
     description: 'Administradora hotelera de proyectos de nicho.',
   },
   {
-    id: 7,
+    id: 8,
     name: 'HUBi',
     image: 'HUBi.png',
     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
   {
-    id: 8,
+    id: 9,
     name: 'Welcome Home',
     image: 'Welcomehome.png',
     description: 'Comercializadora inmobiliaria especializada en proyectos.',
@@ -126,6 +132,12 @@ export const partners_up_part2 = [
     name: 'Urbana',
     image: 'Urbana.png',
     description: 'Desarrollador inmobiliario especializado en construcción.',
+  },
+  {
+    id: 13,
+    name: 'Hirales & Asociados',
+    image: 'H&A.png',
+    description: 'Firma legal especializada en temas inmobiliarios.',
   },
 ]
 
