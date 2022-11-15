@@ -13,11 +13,13 @@
     "core-js": "^3.8.3",
     "free-email-domains": "^1.0.23",
     "nodemailer": "^6.7.3",
+    "v-mask": "^2.3.0",
     "v-money": "^0.8.1",
     "vue": "^2.6.14",
     "vue-axios": "^3.4.1",
     "vue-light-gallery": "^1.0.1",
     "vue-meta": "^2.4.0",
+    "vue-phone-number-input": "^1.12.13",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },

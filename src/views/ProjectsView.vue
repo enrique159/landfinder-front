@@ -29,7 +29,13 @@
       </button>
     </div>
 
-    <div class="projects-list mt-5">
+    <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+      <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="projects-list mt-5" v-else>
       <div
         class="project-card animate__animated animate__fadeInUp"
         :style="'animation-delay: ' + (index * 0.1) + 's'"
@@ -52,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div v-if="isProjectsEmpty">
+    <div v-if="errorEmpty">
       No hay proyectos con esos parámetros de búsqueda
     </div>
   </div>
@@ -65,6 +71,8 @@ export default {
   data() {
     return {
       projects: [],
+      isLoading: false,
+      errorEmpty: false,
     }
   },
   metaInfo: {
@@ -106,14 +114,20 @@ export default {
   },
   methods: {
     async getProjects() {
-      const projects = await Projects.getAll();
-      console.log(projects);
-      if (projects.status == 200) {
-        this.projects = projects.data.data;
-      } else {
-        console.log("Error al obtener los proyectos");
-      }
+      this.isLoading = true;
+      this.errorEmpty = false;
+      await Projects.getAll().then((response) => {
+        this.projects = response.data.data;
+        if (this.projects.length == 0) {
+          this.errorEmpty = true;
+        }
+        this.isLoading = false;
+      }).catch((error) => {
+        console.log(error);
+        this.isLoading = false;
+      });
     },
+
     openProject(id) {
       this.$router.push({
         name: "project",

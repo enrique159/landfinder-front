@@ -22,8 +22,8 @@
       </div>
       <div class="col col-12 col-lg-3 nav-options mb-4 mb-lg-0">
         <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>
-        <a href="#"><span>Políticas de privacidad</span></a>
-        <a href="#"><span>Uso de datos</span></a>
+        <router-link to="/politicas-privacidad"><span>Políticas de privacidad</span></router-link>
+        <a href="/terminos-y-condiciones/#datos-personales-cookies"><span>Uso de datos</span></a>
       </div>
       <div class="col col-12 col-lg-2 nav-social mb-4 mb-lg-0">
         <h3>Síguenos</h3>
