@@ -16,6 +16,7 @@
       </div>
     </div>
     <AportacionComp/>
+    <FaqComp />
     <DestacadosComp/>
     <div id="team" style="margin-top: -70px; height: 100px;"></div>
     <ConoceComp/>
@@ -32,6 +33,7 @@ import DestacadosComp from '@/components/home_view/Destacados_Comp.vue'
 import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
 import PartnersComp from '@/components/home_view/Partners_Comp.vue'
 import ContactoComp from '@/components/home_view/Contacto_Comp.vue'
+import FaqComp from '@/components/home_view/Faq_Comp.vue'
 export default {
   name: "HomeView",
   components: {
@@ -40,7 +42,8 @@ export default {
     DestacadosComp,
     ConoceComp,
     PartnersComp,
-    ContactoComp
+    ContactoComp,
+    FaqComp
   },
   metaInfo: {
     title: 'Land Finder México',
