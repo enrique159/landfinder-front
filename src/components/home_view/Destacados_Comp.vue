@@ -3,8 +3,7 @@
     <div class="row info-titles mb-5">
       <div class="col col-9 col-sm-8 info-titles-left">
         <p class="animate__animated">
-          La mejor muestra de la calidad de nuestro trabajo es nuestro
-          portafolio.
+          Encontramos el mayor y mejor uso para tu inmueble ¡Visita nuestro portafolio!
         </p>
       </div>
       <div @click="toPortfolio" class="col col-3 col-sm-4 info-titles-right">

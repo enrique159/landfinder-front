@@ -2,7 +2,7 @@
   <!-- :class="{ 'show': showBanner }" -->
   <div class="banner-cta-comp animate__animated animate__zoomInDown" :class="{ 'show': showBanner }">
     <p class="main-text">
-      ¿Quieres saber más sobre los proyectos que tenemos para ti? 🥳
+      ¿Quieres saber más sobre los proyectos que tenemos para ti?
     </p>
     <button class="button-show-register">¡Regístrate ahora!</button>
     <div class="button-close">

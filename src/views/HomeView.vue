@@ -3,12 +3,6 @@
     <HeaderComp/>
     <div class="spacer-130"></div>
     <div class="container mb-5">
-      <!-- <div class="d-flex justify-content-center">
-        <p class="normal-text">
-          Los resultados de búsqueda forman parte del portafolio de Lobbi y Grupo
-          HUBi en Baja California Sur
-        </p>
-      </div> -->
       <div class="d-flex justify-content-center" style="column-gap: 3rem">
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
         <img src="@/assets/icons/mouse.svg" alt="" />
@@ -16,9 +10,8 @@
       </div>
     </div>
     <AportacionComp/>
-    <FaqComp />
     <DestacadosComp/>
-    <div id="team" style="margin-top: -70px; height: 100px;"></div>
+    <FaqComp />
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>

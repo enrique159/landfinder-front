@@ -1,18 +1,20 @@
 <template>
-  <div class="container my-5">
+  <div class="container my-5" id="team">
     <div class="row py-5 border-line">
       <div class="col col-12 col-sm-6">
-        <h2>Expertos en materia inmobiliaria.</h2>
+        <h2>Nuestros colaboradores</h2>
       </div>
       <div class="col col-12 col-sm-6">
         <p>
-          LFM es una iniciativa de HUB inmobiliario BCS donde han logrado
-          colaborar más de 9 empresas especializadas en el sector inmobiliario
-          entre las cuales se encuentran constructores, comercializadoras,
-          estudios arquitectónicos, etc.
+          Gracias a las más de 8 marcas que colaboran con Land Finder México
+          podemos seguir ofreciendo certeza y agilidad en la consolidación de
+          nuevos proyectos inmobiliarios.
         </p>
-        <a target="_blank" href="https://www.linkedin.com/company/landfindermexico/"
-          >Conocer más <img src="@/assets/icons/arrow-down-right.svg" class="ms-2"
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/company/landfindermexico/"
+          >Conocer más
+          <img src="@/assets/icons/arrow-down-right.svg" class="ms-2"
         /></a>
       </div>
     </div>
@@ -26,6 +28,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#team {
+  scroll-margin-top: 160px;
+}
 .border-line {
   border-top: 1px solid var(--color-text-dark);
   border-bottom: 1px solid var(--color-text-dark);
@@ -41,7 +46,7 @@ p {
   margin: 0 0 24px;
 }
 
-a{
+a {
   color: var(--color-white);
   text-decoration: none;
   img {

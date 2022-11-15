@@ -25,27 +25,27 @@ export const metodologiasMockData = [
   {
     id: '01',
     name: 'Due dilligence',
-    detail: 'Investigación legal del inmueble y su historial para determinar la factibilidad de desarrollo.',
+    detail: 'Integramos un expediente legal del inmueble y revisamos sus antecedentes.',
   },
   {
     id: '02',
-    name: 'Regulación',
-    detail: 'Ayudamos con el proceso de regularización de la tierra otorgando un “seguro legal” por el trabajo hecho.',
+    name: 'Regulación*',
+    detail: 'Nuestros especialistas ayudan a solucionar detalles legales o administrativos que pueda tener el inmueble. ',
   },
   {
     id: '03',
     name: 'Consultoría',
-    detail: 'Investigamos el mercado y ofrecemos soluciones para la toma de desiciones en nuevos desarrollos.',
+    detail: 'Investigamos el mercado para acortar la toma de decisiones para nuevos desarrollos.',
   },
   {
     id: '04',
     name: 'Estructuración',
-    detail: 'Estructuramos un negocio para los espacios con gran potencial, desde el concepto hasta lo financiero.',
+    detail: 'Facilitamos la creación de negocios inmobiliarios a través de estudios técnicos y financieros.',
   },
   {
     id: '05',
-    name: 'Land Finder',
-    detail: 'Conectamos un espacio con profesionales inmobiliarios e inversionistas con visión de crecimiento.',
+    name: 'Publicación',
+    detail: 'A través de nuestra plataforma Land Finder México promovemos la inversión en el inmueble. ',
   },
 ]
 

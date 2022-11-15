@@ -4,7 +4,7 @@
       class="row contacto-form px-3 px-md-5 py-4 py-md-5 justify-content-between"
     >
       <div class="col col-12 col-md-6 mb-4 mb-md-0">
-        <h2>¿Listo para empezar a desarrollar En Baja California Sur?</h2>
+        <h2>¿Listo para empezar a crear grandes proyectos juntos?</h2>
         <p class="mb-4 text-subtext">
           Déjanos un mensaje a nuestro correo electrónico y en breve uno de
           nuestros asesores se pondrá en contacto contigo.
