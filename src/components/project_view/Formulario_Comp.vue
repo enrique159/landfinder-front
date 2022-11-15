@@ -52,9 +52,7 @@
     <div class="form-check">
       <input class="form-check-input" type="checkbox" v-model="checked" id="flexCheckDefault">
       <label class="form-check-label" for="flexCheckDefault">
-        Confirmo que soy un desarrollador independiente o representante de una
-        empresa que tiene la capacidad o intención de invertir en el proyecto y que
-        he leído y acepto los <router-link target="_blank" class="form-check-terms-link" to="/terminos-y-condiciones">Términos y condiciones</router-link>.
+        Confirmo que he leído y acepto los <router-link target="_blank" class="form-check-terms-link" to="/terminos-y-condiciones">Términos y condiciones</router-link>.
       </label>
     </div>
   </div>
