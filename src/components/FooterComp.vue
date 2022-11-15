@@ -4,11 +4,11 @@
       <div class="col col-12 col-lg-4 mb-4 mb-lg-0">
         <img src="@/assets/logo.svg" alt="" class="mb-4">
         <p class="normal-text lh-1">
-          Isabel La Católica #350, La Paz, <br>
-          Baja California Sur, México.
+          Manuel Encinas #1714, Col. Los Olivos, 23040 <br>
+          La Paz, Baja California Sur, México.
         </p>
-        <a href="tel:+526121694149">
-          <i class="bi bi-telephone-fill mx-1"></i> +52 (612) 169 4149
+        <a href="tel:+526121251580">
+          <i class="bi bi-telephone-fill mx-1"></i> +52 (612) 125 1580
         </a> <br>
         <a href="mailto:hola@landfindermexico.com">
           <img src="@/assets/icons/mail.svg" alt="" class="me-1"> hola@landfindermexico.com
