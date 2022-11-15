@@ -7,7 +7,7 @@
           portafolio.
         </p>
       </div>
-      <div class="col col-3 col-sm-4 info-titles-right">
+      <div @click="toPortfolio" class="col col-3 col-sm-4 info-titles-right">
         <img src="@/assets/icons/arrow-down-right.svg" alt="" />
         <h4>Ver portafolio completo</h4>
       </div>
@@ -66,6 +66,9 @@ export default {
         .replace(/ /g, "-")
         .replace(/[^\w-]+/g, "");
     },
+    toPortfolio(){
+      this.$router.push("/portfolio");
+    }
   },
 };
 </script>
