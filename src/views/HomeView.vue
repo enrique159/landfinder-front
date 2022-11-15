@@ -3,12 +3,6 @@
     <HeaderComp/>
     <div class="spacer-130"></div>
     <div class="container mb-5">
-      <!-- <div class="d-flex justify-content-center">
-        <p class="normal-text">
-          Los resultados de búsqueda forman parte del portafolio de Lobbi y Grupo
-          HUBi en Baja California Sur
-        </p>
-      </div> -->
       <div class="d-flex justify-content-center" style="column-gap: 3rem">
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
         <img src="@/assets/icons/mouse.svg" alt="" />
@@ -16,12 +10,12 @@
       </div>
     </div>
     <AportacionComp/>
-    <FaqComp />
     <DestacadosComp/>
-    <div id="team" style="margin-top: -70px; height: 100px;"></div>
+    <FaqComp />
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>
+    <BannerCtaComp/>
   </div>
 </template>
 
@@ -34,6 +28,7 @@ import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
 import PartnersComp from '@/components/home_view/Partners_Comp.vue'
 import ContactoComp from '@/components/home_view/Contacto_Comp.vue'
 import FaqComp from '@/components/home_view/Faq_Comp.vue'
+import BannerCtaComp from '@/components/BannerCtaComp.vue'
 export default {
   name: "HomeView",
   components: {
@@ -43,7 +38,8 @@ export default {
     ConoceComp,
     PartnersComp,
     ContactoComp,
-    FaqComp
+    FaqComp,
+    BannerCtaComp
   },
   metaInfo: {
     title: 'Land Finder México',

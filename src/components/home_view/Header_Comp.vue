@@ -2,8 +2,8 @@
   <div class="container">
     <div class="search-header animate__animated animate__zoomIn">
       <h1 class="animate__animated animate__fadeInDown animate__delay">
-        Land Finder México <br />
-        El inicio de grandes proyectos
+        ¡El primer marketplace <br />
+        de tierra en aportación!
       </h1>
       <div
         class="select-type animate__animated animate__fadeInDown animate__delay"
@@ -51,10 +51,10 @@
         </div>
         <!-- SUPERFICIE -->
         <div class="search-input">
-          <h3>Superficie (min.)</h3>
+          <h3>Superficie mínima</h3>
           <div class="d-flex">
             <input type="text" placeholder="500" v-model="minLand"/>
-            <span>M²</span>
+            <span>m²</span>
           </div>
         </div>
         <!-- VALOR PRICE -->

@@ -119,4 +119,18 @@ import { partners_up_part1, partners_up_part2, partners_down_part1, partners_dow
 .animate:hover, .animate-reverse:hover {
 	animation-play-state: paused;
 }
+
+@media only screen and (max-width: 992px) {
+  .animate {
+    animation: goleft 30s linear infinite;
+  }
+  @keyframes goleft {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -500%;
+    }
+  }
+}
 </style>
