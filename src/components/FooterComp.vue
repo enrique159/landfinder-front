@@ -16,9 +16,9 @@
       </div>
       <div class="col col-12 col-lg-3 nav-options mb-4 mb-lg-0">
         <h3>Otras Páginas</h3>
-        <a href="#"><span>Lobbi - IGE</span></a>
-        <a href="#"><span>HUB inmobiliario BCS</span></a>
-        <a href="#"><span>Bantra Technologies</span></a>
+        <!-- <a href="#"><span>Lobbi - IGE</span></a>
+        <a href="#"><span>HUB inmobiliario BCS</span></a> -->
+        <a href="https://bantra.tech/" target="_blank"><span>Bantra Technologies</span></a>
       </div>
       <div class="col col-12 col-lg-3 nav-options mb-4 mb-lg-0">
         <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>

@@ -4,26 +4,27 @@ export const placesMockData = [
     name: "Cualquier ubicacion",
     value: "Anywere"
   },
+
   {
     id: 1,
-    name: "El Sargento, Baja California Sur",
-    value: "El Sargento"
-  },
-  {
-    id: 2,
     name: "La Paz, Baja California Sur",
     value: "La Paz"
   },
   {
-    id: 3,
-    name: "Pescadero, Baja California Sur",
-    value: "Pescadero"
-  },
-  {
-    id: 4,
+    id: 2,
     name: "Cabo San Lucas, Baja California Sur",
     value: "Los Cabos"
   },
+  // {
+  //   id: 3,
+  //   name: "El Sargento, Baja California Sur",
+  //   value: "El Sargento"
+  // },
+  // {
+  //   id: 4,
+  //   name: "Pescadero, Baja California Sur",
+  //   value: "Pescadero"
+  // },
 ]
 
 export const metodologiasMockData = [
