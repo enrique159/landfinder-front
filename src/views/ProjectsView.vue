@@ -94,17 +94,21 @@ export default {
         (project) => {
           if(this.parameters.active) {
             if(this.parameters.location.value == 'Anywere') {
-              console.log("Clase de proyecto:" ,project.attributes.class + "  Clase parametro de busqueda:", this.parameters.class);
-              return project.attributes.land_area >= this.parameters.minLand &&
-                project.attributes.class === this.parameters.class
-                /* project.attributes.project_value >= this.parameters.minValue && */
-                
-                
+              if (this.parameters.class == 'Todos') {
+                return project.attributes.land_area >= this.parameters.minLand
+              } else {
+                return project.attributes.land_area >= this.parameters.minLand &&
+                  project.attributes.class === this.parameters.class
+              }
             } else {
-              return project.attributes.land_area >= this.parameters.minLand &&
-              project.attributes.city === this.parameters.location.value &&
-              project.attributes.class === this.parameters.class
-              /* project.attributes.project_value >= this.parameters.minValue && */
+              if (this.parameters.class == 'Todos') {
+                return project.attributes.land_area >= this.parameters.minLand &&
+                project.attributes.city === this.parameters.location.value
+              } else {
+                return project.attributes.land_area >= this.parameters.minLand &&
+                project.attributes.city === this.parameters.location.value &&
+                project.attributes.class === this.parameters.class
+              }
             }
           } else {
             return project
