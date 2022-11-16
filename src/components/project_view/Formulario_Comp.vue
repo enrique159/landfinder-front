@@ -127,8 +127,8 @@ export default {
         this.errorMessage = 'Favor de escribir un número de teléfono válido.';
       }
       if (this.error) return;
-      // this.sendEmail()
-      this.showToast('success', 'Correo enviado correctamente')
+      
+      this.sendEmail();
     },
 
     // VALIDATE EMAIL
@@ -158,11 +158,12 @@ export default {
       this.loading = true;
       this.solicitudText = 'Enviando ';
       emailjs.send(
-        "service_gmail",
-        "lfm_project_request",
+        "service_dx3z2na",
+        "template_632g2le",
         {
-          name_project: this.name_project,
+          project_name: this.name_project,
           email: this.email,
+          phone: this.results.formattedNumber,
         },
         "-DIkcxuZ3ssPqzst2",
       )
@@ -171,10 +172,12 @@ export default {
           console.log("SUCCESS!", result.status, result.text);
           this.loading = false;
           this.solicitudText = 'Solicitud de documento enviada.';
+          this.showToast('success', 'Correo enviado correctamente')
         },
         (error) => {
           this.loading = false;
           this.solicitudText = 'Solicitud de documento fallida.';
+          this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
           console.log("FAILED...", error);
         }
       );
@@ -308,6 +311,10 @@ export default {
   }
 }
 
+::v-deep .input-tel__input {
+  font: var(--font-primary) !important;
+}
+
 ::v-deep .input-phone {
   .input-tel, .input-tel__label, .country-selector__label {
     font-family: var(--font-primary) !important;
@@ -318,7 +325,7 @@ export default {
     border-bottom-right-radius: 12px !important;
     border: 1px solid var(--color-black-3);
     font-size: var(--small-font-size) !important;
-    ::placeholder {
+    &::placeholder {
       font: var(--font-primary) !important;
     }
   }

@@ -11,7 +11,7 @@ import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import { init } from '@emailjs/browser';
-init("3LlkNIJmneIIiYzH7");
+init("JxIrk4_V8WSebe34h4G_2");
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.use(Toast);
