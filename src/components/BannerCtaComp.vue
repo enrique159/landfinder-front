@@ -76,7 +76,8 @@ export default {
   display: grid;
   place-items: center;
   border-radius: 8px;
-  height: 30px;
+  height: fit-content;
+  min-height: 30px;
   min-width: 136px;
   margin: 0;
   transition: 0.2s ease-in-out;
