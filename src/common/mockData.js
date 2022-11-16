@@ -35,8 +35,8 @@ export const metodologiasMockData = [
   },
   {
     id: '02',
-    name: 'Regulación*',
-    detail: 'Nuestros especialistas ayudan a solucionar detalles legales o administrativos que pueda tener el inmueble. ',
+    name: 'Regularización',
+    detail: 'Nuestros especialistas ayudan a solucionar detalles legales o administrativos que pueda tener el inmueble. (opcional)',
   },
   {
     id: '03',

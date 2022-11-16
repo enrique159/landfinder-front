@@ -2,7 +2,7 @@
   <!-- :class="{ 'show': showBanner }" -->
   <div class="banner-cta-comp animate__animated animate__zoomInDown" :class="{ 'show': showBanner }">
     <p class="main-text">
-      ¿Quieres saber más sobre los proyectos que tenemos para ti?
+      ¿Quieres saber más sobre lo que tenemos para ti? Suscríbete a nuestro Newsletter.
     </p>
     <button class="button-show-register">¡Regístrate ahora!</button>
     <div class="button-close">
@@ -76,7 +76,8 @@ export default {
   display: grid;
   place-items: center;
   border-radius: 8px;
-  height: 30px;
+  height: fit-content;
+  min-height: 30px;
   min-width: 136px;
   margin: 0;
   transition: 0.2s ease-in-out;

@@ -17,7 +17,7 @@
           ]"
         ></div>
         <button @click="options = 1" :class="{ selected: options == 1 }">
-          Proyectos
+          Todos
         </button>
         <button @click="options = 2" :class="{ selected: options == 2 }">
           Tierra
@@ -107,7 +107,7 @@ export default {
   },
   computed: {
     getClassProject() {
-      return this.options == 1 ? "Proyecto" : this.options == 2 ? "Terreno" : "Edificio";
+      return this.options == 1 ? "Todos" : this.options == 2 ? "Terreno" : "Edificio";
     },
   },
   methods: {
