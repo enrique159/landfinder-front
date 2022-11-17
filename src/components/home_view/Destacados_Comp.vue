@@ -90,7 +90,7 @@ export default {
   .info-titles-right {
     height: 100%;
     min-height: 124px;
-    padding: 24px 0 24px 24px;
+    padding: 24px 8px 24px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -128,6 +128,7 @@ export default {
     }
     @media screen and (max-width: 768px) {
       min-height: 172px;
+      padding: 12px;
       &:hover {
         opacity: 0.8;
         h4,
@@ -237,7 +238,7 @@ export default {
 @media screen and (max-width: 768px) {
   .top-projects {
     grid-template-columns: 1fr;
-    padding: 0 48px;
+    padding: 0 18px;
     .project-card {
       height: 580px;
     }
