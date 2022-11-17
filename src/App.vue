@@ -10,12 +10,14 @@
           <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
           <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
           <a @click="goTo('/#team', false)"><span>Partners</span></a>
+          <a @click="goTo('/#contacto', false)"><span>Contacto</span></a>
         </div>
         <div class="nav-options-min" :class="{ 'active' : active }">
           <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
           <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
           <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
           <a @click="goTo('/#team', false)"><span>Partners</span></a>
+          <a @click="goTo('/#contacto', false)"><span>Contacto</span></a>
         </div>
         <button class="button-nav" @click="toggleNav()">
           <div class="button-icon">
@@ -117,6 +119,9 @@ export default {
     a:nth-child(3) {
       border-right: 1px solid var(--color-white);
     }
+    a:nth-child(4) {
+      border-right: 1px solid var(--color-white);
+    }
   }
   .nav-options-min {
     display: none;
@@ -150,6 +155,9 @@ export default {
       border-bottom: 1px solid var(--color-white);
     }
     a:nth-child(3) {
+      border-bottom: 1px solid var(--color-white);
+    }
+    a:nth-child(4) {
       border-bottom: 1px solid var(--color-white);
     }
   }
