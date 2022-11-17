@@ -104,7 +104,7 @@ export default {
 @media only screen and (max-width: 768px) {
   .banner-cta-comp {
     padding: 4px 50px 4px 20px;
-    top: 118px;
+    top: 116px;
     .main-text {
       font-size: var(--small-font-size);
       text-align: left;
