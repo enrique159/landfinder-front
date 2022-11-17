@@ -42,7 +42,6 @@ export default {
   methods: {
     async getTopProjects() {
       const projects = await Projects.getTopList();
-      console.log(projects);
       if (projects.status == 200) {
         this.projects = projects.data.data;
       } else {
