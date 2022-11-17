@@ -2,9 +2,9 @@
   <!-- :class="{ 'show': showBanner }" -->
   <div class="banner-cta-comp animate__animated animate__zoomInDown" :class="{ 'show': showBanner }">
     <p class="main-text">
-      ¿Quieres saber más sobre lo que tenemos para ti? Suscríbete a nuestro Newsletter.
+      ¿Quieres saber más sobre lo que tenemos para ti?
     </p>
-    <button class="button-show-register">¡Regístrate ahora!</button>
+    <button class="button-show-register" data-bs-toggle="modal" data-bs-target="#formNewsletter">¡Regístrate ahora!</button>
     <div class="button-close">
       <button class="btn btn-transparency btn-sm" @click="closeBanner">
         <i class="bi bi-x"></i>
