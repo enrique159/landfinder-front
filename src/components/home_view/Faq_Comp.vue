@@ -151,6 +151,10 @@ export default {
     border-left: 1px solid var(--color-text-dark);
     padding: 24px 24px 12px;
 
+    @media only screen and (max-width: 768px) {
+      padding: 12px 12px 12px;
+    }
+
     a {
       width: fit-content;
       text-align: left;
