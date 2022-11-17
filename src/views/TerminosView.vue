@@ -798,7 +798,7 @@
         </div>
 
         <!-- --------- CONTACTO ------------ -->
-        <div class="row scroll-margin mb-5" id="contacto">
+        <div class="row scroll-margin mb-5" id="contacto-term">
           <div class="col">
             <h3>11. Contacto</h3>
             <p>
@@ -875,7 +875,7 @@ export default {
         { title: "Responsabilidad", goto: "responsabilidad" },
         { title: "Jurisdicción", goto: "jurisdiccion" },
         { title: "Ley Antilavado", goto: "ley-antilavado" },
-        { title: "Contacto", goto: "contacto" },
+        { title: "Contacto", goto: "contacto-term" },
         { title: "Vigencia", goto: "vigencia" },
       ],
     };
