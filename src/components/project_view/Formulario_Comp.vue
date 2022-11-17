@@ -171,6 +171,8 @@ export default {
         (result) => {
           console.log("SUCCESS!", result.status, result.text);
           this.loading = false;
+          this.email = '';
+          this.phone = '';
           this.solicitudText = 'Solicitud de documento enviada.';
           this.showToast('success', 'Correo enviado correctamente')
         },

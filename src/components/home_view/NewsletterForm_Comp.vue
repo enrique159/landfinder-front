@@ -42,7 +42,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-md-6">
                 <label for="bussinesNameInput" class="ms-2">Nombre de tu empresa</label>
                 <input
                   type="text"
@@ -52,7 +52,7 @@
                   v-model="businessName"
                 />
               </div>
-              <div class="col-6">
+              <div class="col-12 col-md-6">
                 <label for="emailInput" class="ms-2">Correo electrónico*</label>
                 <input
                   type="email"
