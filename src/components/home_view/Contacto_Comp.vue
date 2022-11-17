@@ -113,9 +113,12 @@ export default {
         this.error = "Enviando...🤓";
         emailjs
           .send(
-            "service_gmail",
-            "lfm_contact_form",
+            "service_dx3z2na",
+            "template_4sgd35g",
             {
+              type: this.chips[this.selectedChip - 1].name,
+              name: this.name,
+              business_name: this.nameCompany,
               email: this.email,
               message: this.message,
             },
@@ -123,13 +126,13 @@ export default {
           )
           .then(
             (result) => {
-              this.error = "Mensaje Enviado!! 🥳";
+              this.error = "Mensaje enviado correctamente";
               console.log("SUCCESS!", result.status, result.text);
               this.email = "";
               this.message = "";
             },
             (error) => {
-              this.error = "Algo salio mal 😫";
+              this.error = "Algo salio mal, intenta de nuevo";
               console.log("FAILED...", error);
             }
           );
