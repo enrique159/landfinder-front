@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     openProject(id) {
-      console.log('Si se presiona')
       window.open('/project/'+id, "_self")
       // this.$router.push({
       //   name: "project",

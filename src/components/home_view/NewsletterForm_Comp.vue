@@ -11,13 +11,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <div>
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Obten información sobre LFM</h1>
             <p class="subtitle">
               Llena los siguientes datos para poder registrarte y así poder
               mantenerte informado de las novedades de Land Finder México.
             </p>
           </div>
           <button
+            id="closeModalNewsletter"
             type="button"
             class="btn-close btn-close-white"
             data-bs-dismiss="modal"
@@ -48,6 +49,7 @@
                   class="form-input"
                   placeholder="Ej. Inmobiliaria XYZ"
                   id="bussinesNameInput"
+                  v-model="businessName"
                 />
               </div>
               <div class="col-6">
@@ -57,13 +59,24 @@
                   class="form-input"
                   placeholder="Ej. nombre@dominio.com"
                   id="emailInput"
+                  v-model="email"
                 />
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn button-register">Registrarme</button>
+          <button type="button" class="btn button-register" @click="validForm()">
+            <div class="spinner-border spinner-border-sm text-light ms-1" role="status" v-if="loading">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <span v-else>
+              Registrarme
+            </span> 
+          </button>
+        </div>
+        <div class="d-flex justify-content-end px-3 pb-2" v-if="error !== ''">
+          <p class="error-text mb-0">{{error}}</p>
         </div>
       </div>
     </div>
@@ -71,6 +84,8 @@
 </template>
 
 <script>
+import { emailValid } from '@/utils/emailValid';
+import emailjs from '@emailjs/browser';
 export default {
   data() {
     return {
@@ -82,12 +97,85 @@ export default {
         { id: 5, name: "Otro" },
       ],
       selectedChip: 1,
+      loading: false,
+      businessName: '',
+      email: '',
+      error: '',
     };
   },
   methods: {
     selectChip(id) {
       this.selectedChip = id;
     },
+
+    validForm() {
+      this.error = '';
+      if (this.email === '') {
+        this.error = 'Por favor, ingresa tu correo electrónico';
+        return;
+      }
+      if (!emailValid(this.email)) {
+        this.error = 'Por favor, ingresa un correo electrónico válido';
+        return false;
+      }
+      this.sendEmail()
+    },
+
+    // SEND EMAIL
+    sendEmail() {
+      this.loading = true;
+      emailjs.send(
+        "service_dx3z2na",
+        "template_owe413r",
+        {
+          type: this.chips[this.selectedChip - 1].name,
+          email: this.email,
+          business_name: this.businessName,
+        },
+        "-DIkcxuZ3ssPqzst2",
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.status, result.text);
+          this.loading = false;
+          this.businessName = '';
+          this.email = '';
+          this.error = '';
+          this.selectedChip = 1;
+          this.closeModal();
+          this.showToast('success', 'Registro exitoso', 'Te hemos enviado un correo de confirmación');
+        },
+        (error) => {
+          this.loading = false;
+          this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+          console.log("FAILED...", error);
+        }
+      );
+    },
+
+    // CLOSE MODAL
+    closeModal() {
+      document.getElementById('closeModalNewsletter').click();
+    },
+
+    // SHOW TOAST
+    showToast(type, message) {
+      this.$toast(message, {
+        type: type,
+        position: 'top-right',
+        duration: 3000,
+        dismissible: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: false,
+        closeButton: 'button',
+        icon: true,
+        rtl: false,
+      });
+    }
   },
 };
 </script>
@@ -113,6 +201,12 @@ export default {
   }
 }
 
+.error-text {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  font-weight: var(--font-semi-bold);
+}
+
 .button-cancel {
   width: fit-content;
   height: fit-content;
@@ -132,6 +226,7 @@ export default {
 
 .button-register {
   width: fit-content;
+  min-width: 30px;
   height: fit-content;
   border: 2px solid var(--color-complementary-1);
   border-radius: 12px;

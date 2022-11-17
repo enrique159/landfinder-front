@@ -151,7 +151,6 @@ export default {
             this.lng = this.project.attributes.longitude;
             this.getSimilarProjects(this.project.attributes.id_company.data.id);
           } else {
-            console.log(project);
             this.errorStatus = true;
             this.error.status = project.status;
             this.error.message = project.statusText;
