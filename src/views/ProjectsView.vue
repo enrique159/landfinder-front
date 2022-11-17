@@ -15,7 +15,7 @@
           {{ parameters.location.name }}
         </div>
         <div class="option">
-          {{ parameters.minLand }} M²
+          {{ parameters.minLand }} m²
         </div>
        <!--  <div class="option">
           {{ parameters.minValue }} MXN
