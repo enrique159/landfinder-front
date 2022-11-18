@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 col-xxl-5">
               <div class="d-flex justify-content-between justify-content-xxl-end align-items-center w-100">
-                <span>+ 2,006.00 m²</span>
+                <span>+ 22,250.00 m²</span>
                 <h4>Aportado</h4>
               </div>
             </div>

@@ -83,6 +83,8 @@ export default {
   },
   mounted() {
     this.getProjects();
+    // scroll to top page
+    window.scrollTo(0, 0);
   },
   computed: {
     ...mapGetters({

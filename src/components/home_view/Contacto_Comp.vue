@@ -6,8 +6,7 @@
       <div class="col col-12 col-md-6 mb-4 mb-md-0">
         <h2>¿Listo para empezar a crear grandes proyectos juntos?</h2>
         <p class="mb-4 text-subtext">
-          Déjanos un mensaje a nuestro correo electrónico y en breve uno de
-          nuestros asesores se pondrá en contacto contigo.
+          Déjanos un mensaje a nuestro correo electrónico y en breve nos pondremos en contacto contigo.
         </p>
         <a href="#"
           >Volver al portafolio
