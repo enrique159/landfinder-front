@@ -6,18 +6,18 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="nav-options">
-          <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
-          <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
-          <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
-          <a @click="goTo('/#team', false)"><span>Partners</span></a>
-          <a @click="goTo('/#contacto', false)"><span>Contacto</span></a>
+          <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
+          <router-link to="/portfolio"><span>Portafolio</span></router-link>
+          <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
+          <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
+          <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
         </div>
         <div class="nav-options-min" :class="{ 'active' : active }">
-          <a @click="goTo('/#header-search', false)"><span>Buscar</span></a>
-          <a @click="goTo('/portfolio', true)"><span>Portafolio</span></a>
-          <a @click="goTo('/#methodology', false)"><span>Metodología</span></a>
-          <a @click="goTo('/#team', false)"><span>Partners</span></a>
-          <a @click="goTo('/#contacto', false)"><span>Contacto</span></a>
+          <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
+          <router-link to="/portfolio" @click.native="active = false"><span>Portafolio</span></router-link>
+          <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
+          <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
+          <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
         </div>
         <button class="button-nav" @click="toggleNav()">
           <div class="button-icon">
@@ -58,6 +58,10 @@ export default {
     goTo(path, router) {
       this.active = false;
       return router ? this.$router.push(path) : window.open(path, "_self");
+    },
+    scrollFix: function(hashbang) {
+      if (this.active) this.active = false;
+      location.href = hashbang;
     }
   }
 };

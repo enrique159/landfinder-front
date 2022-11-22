@@ -11,7 +11,7 @@
         <div class="col">
           <h5>Tabla de contenido</h5>
           <ul class="content-list">
-            <li v-for="(item, index) in content" ::key="title">
+            <li v-for="(item, index) in content" :key="title">
               <span>{{ `${index + 1}. ` }}</span>
               <a :href="`#${item.goto}`">{{ item.title }}</a>
             </li>

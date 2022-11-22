@@ -26,7 +26,9 @@
           Edificios
         </button>
       </div>
-      <div class="search-bar animate__animated animate__fadeInUp animate__delay">
+      <div
+        class="search-bar animate__animated animate__fadeInUp animate__delay"
+      >
         <!-- DROPDOWN LOCATION -->
         <div class="search-input" style="width: 47%">
           <h3>Ubicación</h3>
@@ -40,7 +42,10 @@
             >
               {{ places[selectedPlace].name }}
             </button>
-            <ul class="dropdown-menu dropdown-search-list" aria-labelledby="dropdown_search_home">
+            <ul
+              class="dropdown-menu dropdown-search-list"
+              aria-labelledby="dropdown_search_home"
+            >
               <li v-for="item in places" :key="item.id">
                 <a class="dropdown-item" @click="selectPlace(item)">{{
                   item.name
@@ -53,12 +58,12 @@
         <div class="search-input">
           <h3>Superficie mínima</h3>
           <div class="d-flex">
-            <input type="text" placeholder="500" v-model="minLand"/>
+            <input type="text" placeholder="500" v-model="minLand" />
             <span>m²</span>
           </div>
         </div>
         <!-- VALOR PRICE -->
-       <!--  <div class="search-input">
+        <!--  <div class="search-input">
           <h3>Valor (min.)</h3>
           <div class="d-flex">
             <Money
@@ -83,11 +88,12 @@
 
 <script>
 import { placesMockData as places } from "@/common/mockData.js";
-import { Money } from 'v-money'
+import { Money } from "v-money";
+import { mapGetters } from "vuex";
 export default {
   name: "HeaderComp",
   components: {
-    Money
+    Money,
   },
   data() {
     return {
@@ -105,9 +111,18 @@ export default {
       },
     };
   },
+  created() {
+    this.selectedPlace = this.places.findIndex(
+      (item) => item.value == this.$store.state.parameters.location.value
+    );
+  },
   computed: {
     getClassProject() {
-      return this.options == 1 ? "Todos" : this.options == 2 ? "Terreno" : "Edificio";
+      return this.options == 1
+        ? "Todos"
+        : this.options == 2
+        ? "Terreno"
+        : "Edificio";
     },
   },
   methods: {
@@ -117,11 +132,14 @@ export default {
     // method to set the values in vuex
     setValues() {
       this.$store.state.parameters.class = this.getClassProject;
-      this.$store.state.parameters.location = { name: this.places[this.selectedPlace].name, value: this.places[this.selectedPlace].value };
+      this.$store.state.parameters.location = {
+        name: this.places[this.selectedPlace].name,
+        value: this.places[this.selectedPlace].value,
+      };
       //this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
       this.$store.state.parameters.minLand = !this.minLand ? 0 : this.minLand;
       this.$store.state.parameters.active = true;
-      this.$router.push('/portfolio')
+      this.$router.push("/portfolio");
     },
   },
 };
@@ -247,7 +265,8 @@ export default {
           }
         }
       }
-      input, .valor-input {
+      input,
+      .valor-input {
         border: none;
         width: 70%;
         color: var(--color-text-dark);
@@ -259,7 +278,7 @@ export default {
           outline: none;
         }
       }
-      .valor-input-placeholder{
+      .valor-input-placeholder {
         color: var(--color-text-light);
       }
       span {
