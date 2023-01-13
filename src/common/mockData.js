@@ -92,7 +92,7 @@ export const partners_up_part1 = [
     id: 5,
     name: 'Urbana',
     image: 'Urbana.png',
-    description: 'Desarrollador inmobiliario especializado en construcción.',
+    description: 'Desarrollador inmobiliario.',
   },
   {
     id: 6,
@@ -137,7 +137,7 @@ export const partners_up_part2 = [
     id: 12,
     name: 'Urbana',
     image: 'Urbana.png',
-    description: 'Desarrollador inmobiliario especializado en construcción.',
+    description: 'Desarrollador inmobiliario.',
   },
   {
     id: 13,
@@ -147,80 +147,80 @@ export const partners_up_part2 = [
   },
 ]
 
-export const partners_down_part1 = [
-  {
-    id: 10,
-    name: 'HUBi',
-    image: 'HUBi.png',
-    description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
-  },
-  {
-    id: 11,
-    name: 'Welcome Home',
-    image: 'Welcomehome.png',
-    description: 'Comercializadora inmobiliaria especializada en proyectos.',
-  },
-  {
-    id: 12,
-    name: 'Bantra Tech',
-    image: 'BantraTech.png',
-    description: 'Especialistas en tecnología proptech.',
-  },
-  {
-    id: 13,
-    name: 'Alkilable',
-    image: 'Alkilable.png',
-    description: 'Administración de propiedades y proyectos habitacionales.',
-  },
-  {
-    id: 14,
-    name: 'UKI',
-    image: 'UKI.png',
-    description: 'Administradora hotelera de proyectos de nicho.',
-  },
-  {
-    id: 15,
-    name: 'Lobbi',
-    image: 'Lobbi-IGE.png',
-    description: 'Consultoría y gestión legal especializada en inmuebles.',
-  },
-]
+// export const partners_down_part1 = [
+//   {
+//     id: 10,
+//     name: 'HUBi',
+//     image: 'HUBi.png',
+//     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
+//   },
+//   {
+//     id: 11,
+//     name: 'Welcome Home',
+//     image: 'Welcomehome.png',
+//     description: 'Comercializadora inmobiliaria especializada en proyectos.',
+//   },
+//   {
+//     id: 12,
+//     name: 'Bantra Tech',
+//     image: 'BantraTech.png',
+//     description: 'Especialistas en tecnología proptech.',
+//   },
+//   {
+//     id: 13,
+//     name: 'Alkilable',
+//     image: 'Alkilable.png',
+//     description: 'Administración de propiedades y proyectos habitacionales.',
+//   },
+//   {
+//     id: 14,
+//     name: 'UKI',
+//     image: 'UKI.png',
+//     description: 'Administradora hotelera de proyectos de nicho.',
+//   },
+//   {
+//     id: 15,
+//     name: 'Lobbi',
+//     image: 'Lobbi-IGE.png',
+//     description: 'Consultoría y gestión legal especializada en inmuebles.',
+//   },
+// ]
 
-export const partners_down_part2 = [
-  {
-    id: 16,
-    name: 'HUBi',
-    image: 'HUBi.png',
-    description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
-  },
-  {
-    id: 17,
-    name: 'Welcome Home',
-    image: 'Welcomehome.png',
-    description: 'Comercializadora inmobiliaria especializada en proyectos.',
-  },
-  {
-    id: 18,
-    name: 'Bantra Tech',
-    image: 'BantraTech.png',
-    description: 'Especialistas en tecnología proptech.',
-  },
-  {
-    id: 19,
-    name: 'Alkilable',
-    image: 'Alkilable.png',
-    description: 'Administración de propiedades y proyectos habitacionales.',
-  },
-  {
-    id: 20,
-    name: 'UKI',
-    image: 'UKI.png',
-    description: 'Administradora hotelera de proyectos de nicho.',
-  },
-  {
-    id: 21,
-    name: 'Lobbi',
-    image: 'Lobbi-IGE.png',
-    description: 'Consultoría y gestión legal especializada en inmuebles.',
-  },
-]
+// export const partners_down_part2 = [
+//   {
+//     id: 16,
+//     name: 'HUBi',
+//     image: 'HUBi.png',
+//     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
+//   },
+//   {
+//     id: 17,
+//     name: 'Welcome Home',
+//     image: 'Welcomehome.png',
+//     description: 'Comercializadora inmobiliaria especializada en proyectos.',
+//   },
+//   {
+//     id: 18,
+//     name: 'Bantra Tech',
+//     image: 'BantraTech.png',
+//     description: 'Especialistas en tecnología proptech.',
+//   },
+//   {
+//     id: 19,
+//     name: 'Alkilable',
+//     image: 'Alkilable.png',
+//     description: 'Administración de propiedades y proyectos habitacionales.',
+//   },
+//   {
+//     id: 20,
+//     name: 'UKI',
+//     image: 'UKI.png',
+//     description: 'Administradora hotelera de proyectos de nicho.',
+//   },
+//   {
+//     id: 21,
+//     name: 'Lobbi',
+//     image: 'Lobbi-IGE.png',
+//     description: 'Consultoría y gestión legal especializada en inmuebles.',
+//   },
+// ]
