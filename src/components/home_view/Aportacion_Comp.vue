@@ -8,14 +8,18 @@
         <div class="metros-aportaciones">
           <div class="row">
             <div class="col-12 col-xxl-7 mb-3 mb-xxl-0">
-              <div class="d-flex justify-content-between justify-content-xxl-start align-items-center w-100">
-                <span>+ 1,322,718.32 m²</span>
+              <div
+                class="d-flex justify-content-between justify-content-xxl-start align-items-center w-100"
+              >
+                <span>+ {{ enAportacion }} m²</span>
                 <h4>En aportación</h4>
               </div>
             </div>
             <div class="col-12 col-xxl-5">
-              <div class="d-flex justify-content-between justify-content-xxl-end align-items-center w-100">
-                <span>+ 22,250.00 m²</span>
+              <div
+                class="d-flex justify-content-between justify-content-xxl-end align-items-center w-100"
+              >
+                <span>+ {{ aportado }} m²</span>
                 <h4>Aportado</h4>
               </div>
             </div>
@@ -32,7 +36,8 @@
       </div>
       <div class="col col-9 col-sm-8 info-titles-right">
         <p>
-          Conectamos inmuebles, propietarios e inversionistas para crear nuevas oportunidades de negocio. 
+          Conectamos inmuebles, propietarios e inversionistas para crear nuevas
+          oportunidades de negocio.
         </p>
       </div>
     </div>
@@ -51,12 +56,40 @@
 
 <script>
 import { metodologiasMockData as metodologias } from "@/common/mockData.js";
+import Variables from "@/common/variable_services.js";
 export default {
   name: "AportacionComp",
   data() {
     return {
       metodologias: metodologias,
+      variables: [],
     };
+  },
+  mounted() {
+    this.getVariables();
+  },
+  computed: {
+    aportado() {
+      return this.variables.length > 0
+        ? this.variables.filter(
+            (variable) => variable.attributes.name === "aportado"
+          )[0].attributes.value
+        : 0;
+    },
+    enAportacion() {
+      return this.variables.length > 0
+        ? this.variables.filter(
+            (variable) => variable.attributes.name === "aportacion"
+          )[0].attributes.value
+        : 0;
+    },
+  },
+  methods: {
+    async getVariables() {
+      await Variables.getAll().then((res) => {
+        this.variables = res.data.data;
+      });
+    },
   },
 };
 </script>
