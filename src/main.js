@@ -11,12 +11,14 @@ import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import { init } from '@emailjs/browser';
+import Vuelidate from 'vuelidate'
 init("JxIrk4_V8WSebe34h4G_2");
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.use(Toast);
 Vue.use(VueAxios, axios)
 Vue.use(VueMask);
+Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
 // add process env variable

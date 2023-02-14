@@ -5,7 +5,9 @@ import ProjectsView from '../views/ProjectsView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
 import TerminosView from '@/views/TerminosView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
+import SignInView from '@/views/login/SignInView.vue'
 import VueMeta from 'vue-meta'
+import { isLoggedIn } from '@/auth'
 
 Vue.use(VueMeta)
 Vue.use(VueRouter)
@@ -24,7 +26,7 @@ const routes = [
   {
     path: '/project/:id?/:name?',
     name: 'project',
-    component: () => import('@/views/ProjectView.vue')
+    component: () => import('@/views/ProjectView.vue'),
   },
   {
     path: '/terminos-y-condiciones',
@@ -37,6 +39,11 @@ const routes = [
     component: PrivacyView
   },
   {
+    path: '/login',
+    name: 'login',
+    component: SignInView
+  },
+  {
     path: "*",
     component: PageNotFoundView
   },
@@ -47,6 +54,19 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 })
+
+router.beforeEach(async (to, from, next) => {
+  if (to.name == "login" && isLoggedIn()) {
+    next({ path: "/" });
+  } else if (to.meta.requiresAuth && !isLoggedIn()) {
+    next({
+      path: "/login",
+      query: { redirect: to.fullPath },
+    });
+  } else {
+    next();
+  }
+});
 
 // Metodo para Catchar errores de rutas repetidas
 const originalPush = VueRouter.prototype.push;

@@ -36,15 +36,13 @@
 </template>
 
 <script>
-import { partners_up_part1, partners_up_part2, partners_down_part1, partners_down_part2 } from "@/common/mockData.js";
+import { partners_up_part1, partners_up_part2 } from "@/common/mockData.js";
   export default {
     name: 'PartnersComp',
     data() {
       return {
         partnersUp1: partners_up_part1,
         partnersUp2: partners_up_part2,
-        partnersDown1: partners_down_part1,
-        partnersDown2: partners_down_part2, 
       }
     },
   }
