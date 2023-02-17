@@ -5,13 +5,19 @@
         <router-link to="/">
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
-        <div class="nav-options">
+        <div class="menu-dashboard">
+          <h5>menu</h5>
+          <button class="btn btn-primary" @click="toggleNav()">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        <!-- <div class="nav-options">
           <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
           <router-link to="/portfolio"><span>Portafolio</span></router-link>
           <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
           <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
           <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
-        </div>
+        </div> -->
         <div class="nav-options-min" :class="{ 'active' : active }">
           <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
           <router-link to="/portfolio" @click.native="active = false"><span>Portafolio</span></router-link>
@@ -34,15 +40,19 @@
 
     <!-- FOOTER -->
     <FooterComp />
+
+    <DrawerMenuComp :active="active" @updateActive="active = $event" />
   </div>
 </template>
 
 <script>
 import FooterComp from '@/components/FooterComp.vue'
+import DrawerMenuComp from '@/components/DrawerMenuComp.vue';
 export default {
   components: {
-    FooterComp
-  },  
+    FooterComp,
+    DrawerMenuComp
+},  
   data() {
     return {
       active: false,
@@ -73,7 +83,7 @@ export default {
 
 .navbar-container {
   position: relative;
-  z-index: 1000;
+  z-index: 100;
   background: rgba($color: #101010, $alpha: 0.7);
   backdrop-filter: blur( 24px );
   -webkit-backdrop-filter: blur( 24px );
@@ -97,6 +107,13 @@ export default {
   .logo:hover {
     opacity: 0.8;
   }
+
+  .menu-dashboard {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+  }
+
   .nav-options {
     display: flex;
     align-items: center;

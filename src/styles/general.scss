@@ -149,3 +149,19 @@ input {
     height: 0px;
   }
 }
+
+
+//button base 
+.button-base {
+  width: fit-content;
+  min-width: 30px;
+  height: fit-content;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  background-color: var(--color-complementary-2);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}

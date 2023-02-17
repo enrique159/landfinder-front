@@ -15,7 +15,7 @@
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>
-    <BannerCtaComp/>
+    <!-- <BannerCtaComp/> -->
     <NewsletterFormComp/>
   </div>
 </template>
