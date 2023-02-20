@@ -7,8 +7,12 @@
         </router-link>
         <div class="menu-dashboard">
           <h5>menu</h5>
-          <button class="btn btn-primary" @click="toggleNav()">
-            <i class="bi bi-three-dots"></i>
+          <button class="button-nav" @click="toggleNav()">
+            <div class="button-icon">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </button>
         </div>
         <!-- <div class="nav-options">
@@ -18,20 +22,13 @@
           <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
           <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
         </div> -->
-        <div class="nav-options-min" :class="{ 'active' : active }">
+        <!-- <div class="nav-options-min" :class="{ 'active' : active }">
           <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
           <router-link to="/portfolio" @click.native="active = false"><span>Portafolio</span></router-link>
           <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
           <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
           <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
-        </div>
-        <button class="button-nav" @click="toggleNav()">
-          <div class="button-icon">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </button>
+        </div> -->
       </nav>
     </div>
     <div class="spacer-120" id="header-search"></div>
@@ -48,6 +45,7 @@
 <script>
 import FooterComp from '@/components/FooterComp.vue'
 import DrawerMenuComp from '@/components/DrawerMenuComp.vue';
+import { isLoggedIn, logoutUser } from '@/auth'
 export default {
   components: {
     FooterComp,
@@ -60,6 +58,9 @@ export default {
         topOfPage: true,
       },
     }
+  },
+  mounted() {
+    if (!isLoggedIn) logoutUser();
   },
   methods: {
     toggleNav() {
@@ -186,7 +187,7 @@ export default {
     background: transparent;
     border: none;
     cursor: pointer;
-    display: none;
+    display: inline-block;
     position: relative;
     z-index: 100;
     .button-icon {
@@ -223,9 +224,6 @@ export default {
       left: 0;
       width: 100%;
       height: 0px;
-    }
-    .button-nav {
-      display: inline-block;
     }
     .active {
       display: flex;
