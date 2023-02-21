@@ -165,3 +165,35 @@ input {
   transition: var(--transition-fast);
   cursor: pointer;
 }
+
+// TEXT COLORS
+.tc-primary { color: var(--color-primary) !important; }
+.tc-error { color: var(--color-error) !important; }
+.tc-title { color: var(--color-title) !important; }
+.tc-text { color: var(--color-text) !important; }
+.tc-text-light { color: var(--color-text-light) !important; }
+.tc-text-dark { color: var(--color-text-dark) !important; }
+.tc-checker { color: var(--color-checker) !important; }
+.tc-background { color: var(--color-background) !important; }
+.tc-white { color: var(--color-white) !important; }
+.tc-selected-menu { color: var(--color-selected-menu) !important; }
+
+
+// TEXTS SIZES
+.ts-biggest { font-size: var(--biggest-font-size); }
+.ts-h1 { font-size: var(--h1-font-size); }
+.ts-h2 { font-size: var(--h2-font-size); }
+.ts-h3 { font-size: var(--h3-font-size); }
+.ts-normal { font-size: var(--normal-font-size); }
+.ts-small { font-size: var(--small-font-size); }
+.ts-smaller { font-size: var(--smaller-font-size); }
+.ts-smallest { font-size: var(--smallest-font-size); }
+
+// TEXT WEIGHTS
+.tw-black { font-weight: var(--font-black) !important; }
+.tw-heavy { font-weight: var(--font-heavy) !important; }
+.tw-bold { font-weight: var(--font-bold) !important; }
+.tw-medium { font-weight: var(--font-medium) !important; }
+.tw-regular { font-weight: var(--font-regular) !important; }
+.tw-light { font-weight: var(--font-light) !important; }
+.tw-thin { font-weight: var(--font-thin) !important; }

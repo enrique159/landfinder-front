@@ -6,7 +6,14 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="menu-dashboard">
-          <h5>menu</h5>
+          <div class="menu-dashboard__info">
+            <h5 class="text-end mb-0">menu</h5>
+            <div class="d-flex" v-if="isLogged">
+              <i class="bi bi-person tc-text-light pe-2"></i>
+              <span class="ts-small tc-text-light">{{ username }}</span>
+            </div>
+          </div>
+          <i class="bi bi-person tc-text-light icon-min"></i>
           <button class="button-nav" @click="toggleNav()">
             <div class="button-icon">
               <div></div>
@@ -15,20 +22,6 @@
             </div>
           </button>
         </div>
-        <!-- <div class="nav-options">
-          <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
-          <router-link to="/portfolio"><span>Portafolio</span></router-link>
-          <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
-          <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
-          <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
-        </div> -->
-        <!-- <div class="nav-options-min" :class="{ 'active' : active }">
-          <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
-          <router-link to="/portfolio" @click.native="active = false"><span>Portafolio</span></router-link>
-          <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
-          <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
-          <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
-        </div> -->
       </nav>
     </div>
     <div class="spacer-120" id="header-search"></div>
@@ -46,17 +39,26 @@
 import FooterComp from '@/components/FooterComp.vue'
 import DrawerMenuComp from '@/components/DrawerMenuComp.vue';
 import { isLoggedIn, logoutUser } from '@/auth'
+import store from '@/store'
 export default {
   components: {
     FooterComp,
     DrawerMenuComp
-},  
+  },  
   data() {
     return {
       active: false,
       view: {
         topOfPage: true,
       },
+    }
+  },
+  computed: {
+    isLogged() {
+      return isLoggedIn();
+    },
+    username() {
+      return isLoggedIn() ? store.state.user.username : '';
     }
   },
   mounted() {
@@ -92,7 +94,7 @@ export default {
 
 #navbar {
   width: 100%;
-  height: fit-content;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,6 +115,8 @@ export default {
     display: flex;
     align-items: center;
     column-gap: 1rem;
+    .icon-min { display: none; }
+    &__info { display: block; }
   }
 
   .nav-options {
@@ -254,6 +258,15 @@ export default {
       a:nth-child(3) {
         border-bottom: 1px solid var(--color-white);
       }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #navbar {
+    .menu-dashboard {
+      &__info { display: none; }
+      .icon-min { display: block; }
     }
   }
 }

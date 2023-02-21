@@ -12,7 +12,7 @@
             <a @click="logout()">Cerrar sesión</a>
           </div>
           <div class="menu-user pt-4" v-else>
-            <router-link to="/login" @click.native="active = false" class="button-base button-signin">Inicia sesión</router-link>
+            <router-link to="/login" @click.native="activeProp = false" class="button-base button-signin">Inicia sesión</router-link>
             <button class="btn button-base button-register">
               registrarme
             </button>
