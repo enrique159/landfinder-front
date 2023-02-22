@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import FooterComp from '@/components/FooterComp.vue'
+import FooterComp from '@/components/Footer/FooterNewComp.vue'
 import DrawerMenuComp from '@/components/DrawerMenuComp.vue';
 import { isLoggedIn, logoutUser } from '@/auth'
 import store from '@/store'
