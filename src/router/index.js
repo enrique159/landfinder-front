@@ -6,6 +6,7 @@ import PageNotFoundView from '../views/PageNotFoundView.vue'
 import TerminosView from '@/views/TerminosView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import SignInView from '@/views/login/SignInView.vue'
+import ContactView from '@/views/ContactView.vue'
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
 
@@ -37,6 +38,11 @@ const routes = [
     path: '/politicas-privacidad',
     name: 'policy',
     component: PrivacyView
+  },
+  {
+    path: '/contacto',
+    name: 'contact',
+    component: ContactView
   },
   {
     path: '/login',
