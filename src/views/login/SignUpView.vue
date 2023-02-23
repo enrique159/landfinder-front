@@ -24,6 +24,7 @@
           <input
             type="text"
             class="form-input"
+            :class="{ 'is-invalid': $v.password.$error }"
             placeholder="Mi nombre"
             id="nameInput"
             v-model="name"
@@ -35,6 +36,7 @@
           <input
             type="text"
             class="form-input"
+            :class="{ 'is-invalid': $v.password.$error }"
             placeholder="Apellido"
             id="lastnameInput"
             v-model="lastname"
@@ -46,7 +48,7 @@
           <input
             type="text"
             class="form-input"
-             :class="{ 'is-invalid': $v.phone.$error }"
+            :class="{ 'is-invalid': $v.phone.$error }"
             placeholder="612000000"
             id="phoneInput"
             v-model="phone"
@@ -55,7 +57,9 @@
         </div>
 
         <div class="form-group mb-3">
-          <label for="bussinesNameInput" class="ms-2">Correo electrónico *</label>
+          <label for="bussinesNameInput" class="ms-2"
+            >Correo electrónico *</label
+          >
           <input
             type="email"
             class="form-input"
@@ -85,10 +89,17 @@
         </div>
         <button type="submit" class="form-button">
           <span v-if="!loading">Registrarme</span>
-          <span v-if="loading" class="spinner-border spinner-border-sm ml-3" role="status" aria-hidden="true"></span>
-          </button>
+          <span
+            v-if="loading"
+            class="spinner-border spinner-border-sm ml-3"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
       </form>
-      <small class="require-label">Campos obligatorios   <strong>*</strong></small>
+      <small class="require-label"
+        >Campos obligatorios <strong>*</strong></small
+      >
       <p>
         ¿Ya tienes una cuenta?
         <router-link class="link-router" to="/login"
@@ -102,7 +113,7 @@
 <script>
 import { required, minLength, email } from "vuelidate/lib/validators";
 import AuthServices from "@/services/AuthServices";
-import maxLength from 'vuelidate/lib/validators/maxLength';
+import maxLength from "vuelidate/lib/validators/maxLength";
 
 export default {
   data() {
@@ -124,6 +135,12 @@ export default {
     };
   },
   validations: {
+    name: {
+      required,
+    },
+    lastname: {
+      required,
+    },
     email: {
       required,
       email,
@@ -135,7 +152,7 @@ export default {
     phone: {
       required,
       minLength: minLength(10),
-      maxLength: maxLength(10)
+      maxLength: maxLength(10),
     },
   },
   methods: {
@@ -154,13 +171,13 @@ export default {
         this.loading = true;
 
         const user = {
-          username: this.name.toLowerCase() + this.lastname.toLowerCase(),
-          email: this.email,
+          username: this.name.toLowerCase().trim() + this.lastname.toLowerCase().trim(),
+          email: this.email.trim(),
           password: this.password,
-          name: this.name,
-          lastname: this.lastname,
+          name: this.name.trim(),
+          lastname: this.lastname.trim(),
           usertype: this.selectedChip.value,
-          phone: this.phone,
+          phone: this.phone.trim(),
           verified: "NONE",
         };
 
@@ -168,7 +185,7 @@ export default {
           .then((res) => {
             console.log(res);
             //this.setUserLogin(res.data);
-            this.$router.push('/confirm-email');
+            this.$router.push("/confirm-email");
           })
           .catch((err) => {
             console.log(err);
@@ -194,7 +211,7 @@ export default {
     text-decoration: underline;
   }
 
-  .require-label{
+  .require-label {
     color: var(--color-complementary-1);
   }
 
@@ -216,14 +233,15 @@ export default {
           background-color: transparent;
           border: 2px solid var(--color-black-3);
           border-radius: 24px;
-          color: var(--color-black-3);
+          color: var(--color-white-2);
           cursor: pointer;
           font-weight: var(--font-semi-bold);
           padding: 0.5rem 1rem;
           transition: var(--transition-fast);
           &.active {
-            background-color: var(--color-black);
-            color: var(--color-white);
+            background-color: var(--color-complementary-1-dark);
+            border: 2px solid var(--color-background);
+            color: var(--color-black);
           }
         }
       }
