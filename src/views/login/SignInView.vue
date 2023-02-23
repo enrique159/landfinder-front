@@ -35,7 +35,7 @@
       <router-link class="link-router" to="/forgot-password" >Olvidé mi contraseña</router-link >
       <p>
         ¿No tienes una cuenta?
-        <router-link class="link-router" to="/register">Regístrate aquí</router-link>
+        <router-link class="link-router" to="/signup">Regístrate aquí</router-link>
       </p>
     </div>
   </div>

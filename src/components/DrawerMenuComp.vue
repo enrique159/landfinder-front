@@ -13,7 +13,7 @@
           </div>
           <div class="menu-user pt-4" v-else>
             <router-link to="/login" @click.native="active = false" class="button-base button-signin">Inicia sesión</router-link>
-            <button class="btn button-base button-register">
+            <button @click="toSignUp" class="btn button-base button-register">
               registrarme
             </button>
           </div>
@@ -74,6 +74,10 @@ export default {
       logoutUser()
       this.$router.push('/')
     },
+    toSignUp(){
+      this.$router.push('/signup')
+      this.activeProp = false;
+    }
   }
 }
 </script>
