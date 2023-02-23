@@ -12,7 +12,7 @@
             <a @click="logout()">Cerrar sesión</a>
           </div>
           <div class="menu-user pt-4" v-else>
-            <router-link to="/login" @click.native="active = false" class="button-base button-signin">Inicia sesión</router-link>
+            <router-link to="/login" @click.native="activeProp = false" class="button-base button-signin">Inicia sesión</router-link>
             <button @click="toSignUp" class="btn button-base button-register">
               registrarme
             </button>
@@ -25,7 +25,7 @@
             <router-link to="/portfolio" @click.native="activeProp = false"><span>Portafolio</span></router-link>
             <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
             <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
-            <router-link to="/#contacto" @click.native="scrollFix('#contacto')"><span>Contacto</span></router-link>
+            <router-link to="/contacto" @click.native="activeProp = false"><span>Contacto</span></router-link>
           </div>
         </div>
       </div>

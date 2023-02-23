@@ -30,7 +30,14 @@
           </div>
           <span></span>
         </div>
-        <button type="submit" class="form-button">Ingresar</button>
+        <button type="submit" class="form-button">
+          <div class="spinner-border spinner-border-sm text-light ms-1" role="status" v-if="loading">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span v-else>
+            Ingresar
+          </span> 
+        </button>
       </form>
       <router-link class="link-router" to="/forgot-password" >Olvidé mi contraseña</router-link >
       <p>
@@ -51,7 +58,6 @@ export default {
       email: "",
       password: "",
       showPassword: false,
-      error: false,
       loading: false,
     };
   },
@@ -79,13 +85,20 @@ export default {
         this.loading = true;
         AuthServices.login(this.email, this.password)
           .then((res) => {
-            console.log(res)
-            this.setUserLogin(res.data);
-            this.$router.push({ name: "home" });
+            if (res.status == 200) {
+              this.setUserLogin(res.data);
+              this.$router.push({ name: "home" });
+            } else {
+              if (res.status == 400) {
+                this.showToast('error', 'Usuario o contraseña incorrectos')
+              } else {
+                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+              }
+            }
           })
           .catch((err) => {
             console.log(err)
-            this.error = true;
+            this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
           }).finally(() => {
             this.loading = false;
           });
@@ -97,6 +110,25 @@ export default {
       setAuthToken(data.jwt);
       setUser(data.user);
     },
+
+    // SHOW TOAST
+    showToast(type, message) {
+      this.$toast(message, {
+        type: type,
+        position: 'top-right',
+        duration: 3000,
+        dismissible: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: false,
+        closeButton: 'button',
+        icon: true,
+        rtl: false,
+      });
+    }
   },
 };
 </script>
