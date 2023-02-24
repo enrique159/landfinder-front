@@ -2,20 +2,30 @@
   <div class="drawer-menu-container" :class="{ 'active': activeProp }" @click.self="toggleNav()">
     <div class="drawer-menu" :class="{ 'active': activeProp }">
       <div class="d-flex justify-content-end py-3">
-        <button class="btn btn-primary" @click="toggleNav()">close</button>
+        <button class="button-close" @click="toggleNav()">
+          <i class="bi bi-x-circle"></i>
+        </button>
       </div>
       <div class="row">
         <div class="col col-5 col-md-4">
           <span class="title-content">Mi cuenta</span>
+
+          <!-- MENU NO LOGGED -->
           <div class="menu-user pt-4" v-if="isLogged">
-            <router-link to="/account">Mi cuenta</router-link>
+            <router-link to="/account">Mi perfil</router-link>
             <a @click="logout()">Cerrar sesión</a>
           </div>
+
+          <!-- MENU NO LOGGED -->
           <div class="menu-user pt-4" v-else>
-            <router-link to="/login" @click.native="activeProp = false" class="button-base button-signin">Inicia sesión</router-link>
+            <router-link to="/login" @click.native="activeProp = false">Inicia sesión</router-link>
             <button @click="toSignUp" class="btn button-base button-register">
               registrarme
             </button>
+          </div>
+
+          <div class="menu-user pt-4">
+            <router-link to="/support">Ayuda y soporte</router-link>
           </div>
         </div>
         <div class="col col-7 col-md-8">
@@ -101,6 +111,16 @@ export default {
     z-index: 200;
   }
 
+  .button-close {
+    background-color: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 2rem;
+    &:hover {
+      color: var(--color-text-dark);
+    }
+  }
+
   .drawer-menu {
     position: absolute;
     top: 0;
@@ -139,9 +159,9 @@ export default {
         }
       }
       .button-register {
-        border: 2px solid var(--color-complementary-1);
+        border: none;
         color: var(--color-complementary-1);
-        background-color: transparent;
+        background-color: rgba($color: #0DBA6A, $alpha: 0.2);
         &:hover {
           background-color: var(--color-complementary-1);
           color: var(--color-white);
