@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center flex-column align-items-center">
       <h1 class="text-center">Registrarme</h1>
       <p class="text-center">Ingresa tus datos para registrarte en LFM</p>
-      <form id="signUnForm" class="mb-4" @submit.prevent="signUp()">
+      <form id="signUpForm" class="mb-4" @submit.prevent="signUp()">
         <div class="form-group mb-3 mt-3">
           <span class="text-form mb-2">¿Qué soy? *</span>
           <div class="chips-selector">
@@ -24,10 +24,12 @@
           <input
             type="text"
             class="form-input"
+            :class="{ 'is-invalid': $v.name.$error }"
             placeholder="Mi nombre"
             id="nameInput"
             v-model="name"
           />
+          <small v-if="$v.name.$error && !$v.name.required" class="error-label ms-2">Este campo es requerido</small>
         </div>
 
         <div class="form-group mb-3">
@@ -35,10 +37,12 @@
           <input
             type="text"
             class="form-input"
+            :class="{ 'is-invalid': $v.lastname.$error }"
             placeholder="Apellido"
             id="lastnameInput"
             v-model="lastname"
           />
+           <small v-if="$v.lastname.$error && !$v.lastname.required" class="error-label ms-2">Este campo es requerido</small>
         </div>
 
         <div class="form-group mb-3">
@@ -46,16 +50,20 @@
           <input
             type="text"
             class="form-input"
-             :class="{ 'is-invalid': $v.phone.$error }"
+            :class="{ 'is-invalid': $v.phone.$error }"
             placeholder="612000000"
             id="phoneInput"
             v-model="phone"
             maxlength="10"
+            @keypress="validatePhone($event)"
           />
+           <small v-if="$v.phone.$error && !$v.phone.required" class="error-label ms-2">Este campo es requerido</small>
         </div>
 
         <div class="form-group mb-3">
-          <label for="bussinesNameInput" class="ms-2">Correo electrónico *</label>
+          <label for="bussinesNameInput" class="ms-2"
+            >Correo electrónico *</label
+          >
           <input
             type="email"
             class="form-input"
@@ -63,9 +71,11 @@
             placeholder="micorreo@mail.com"
             id="emailInput"
             v-model="email"
+            @keypress="validateEmail($event)"
           />
+           <small v-if="$v.email.$error && !$v.email.required" class="error-label ms-2">Este campo es requerido</small>
         </div>
-        <div class="form-group mb-4">
+        <div class="form-group mb-3">
           <label for="emailInput" class="ms-2">Contraseña *</label>
           <div class="password-container">
             <i
@@ -79,16 +89,48 @@
               placeholder="Mi contraseña"
               id="passwordInput"
               v-model="password"
+              @keypress="validatePassword($event)"
             />
           </div>
+           <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es requerido</small>
+           <small v-if="$v.password.$error && !$v.password.minLength < 8" class="error-label ms-2">La contraseña debe de contener mínimo 8 caracteres</small>
+          <span></span>
+        </div>
+
+         <div class="form-group mb-4">
+          <label for="emailInput" class="ms-2">Repetir contraseña *</label>
+          <div class="password-container">
+            <i
+              :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"
+              @click="showPassword = !showPassword"
+            ></i>
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              class="form-input"
+              :class="{ 'is-invalid': $v.password.$error }"
+              placeholder="Repetir contraseña"
+              id="passwordInput"
+              v-model="passwordRepeat"
+              @keypress="validatePassword($event)"
+            />
+          </div>
+           <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es requerido</small>
+           <small v-if="!passwordMatch" class="error-label ms-2">La contraseñas deben de ser iguales</small>
           <span></span>
         </div>
         <button type="submit" class="form-button">
           <span v-if="!loading">Registrarme</span>
-          <span v-if="loading" class="spinner-border spinner-border-sm ml-3" role="status" aria-hidden="true"></span>
-          </button>
+          <span
+            v-if="loading"
+            class="spinner-border spinner-border-sm ml-3"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
       </form>
-      <small class="require-label">Campos obligatorios   <strong>*</strong></small>
+      <small class="require-label"
+        >Campos obligatorios <strong>*</strong></small
+      >
       <p>
         ¿Ya tienes una cuenta?
         <router-link class="link-router" to="/login"
@@ -100,9 +142,9 @@
 </template>
 
 <script>
-import { required, minLength, email } from "vuelidate/lib/validators";
+import { required, minLength, maxLength, email } from "vuelidate/lib/validators";
+import { validateNumber, validatePassword, validateEmail } from '@/utils/keyPressValidate'
 import AuthServices from "@/services/AuthServices";
-import maxLength from 'vuelidate/lib/validators/maxLength';
 
 export default {
   data() {
@@ -118,12 +160,19 @@ export default {
       email: "",
       phone: "",
       password: "",
+      passwordRepeat: "",
       showPassword: false,
       error: false,
       loading: false,
     };
   },
   validations: {
+    name: {
+      required,
+    },
+    lastname: {
+      required,
+    },
     email: {
       required,
       email,
@@ -132,11 +181,20 @@ export default {
       required,
       minLength: minLength(8),
     },
+    passwordRepeat: {
+      required,
+      minLength: minLength(8),
+    },
     phone: {
       required,
       minLength: minLength(10),
-      maxLength: maxLength(10)
+      maxLength: maxLength(10),
     },
+  },
+  computed: {
+    passwordMatch(){
+      return this.password == this.passwordRepeat
+    }
   },
   methods: {
     validForm() {
@@ -146,21 +204,30 @@ export default {
       }
       return true;
     },
+    validatePhone(event){
+      validateNumber(event)
+    },
+    validatePassword(event){
+      validatePassword(event)
+    },
+    validateEmail(event){
+      validateEmail(event)
+    },
     selectChip(id) {
       this.selectedChip = id;
     },
     signUp() {
-      if (this.validForm()) {
+      if (this.validForm() && this.passwordMatch) {
         this.loading = true;
 
         const user = {
-          username: this.name.toLowerCase() + this.lastname.toLowerCase(),
-          email: this.email,
+          username: this.name.toLowerCase().trim() + this.lastname.toLowerCase().trim(),
+          email: this.email.trim(),
           password: this.password,
-          name: this.name,
-          lastname: this.lastname,
+          name: this.name.trim(),
+          lastname: this.lastname.trim(),
           usertype: this.selectedChip.value,
-          phone: this.phone,
+          phone: this.phone.trim(),
           verified: "NONE",
         };
 
@@ -168,7 +235,7 @@ export default {
           .then((res) => {
             console.log(res);
             //this.setUserLogin(res.data);
-            this.$router.push('/confirm-email');
+            this.$router.push("/confirm-email");
           })
           .catch((err) => {
             console.log(err);
@@ -194,13 +261,13 @@ export default {
     text-decoration: underline;
   }
 
-  .require-label{
+  .require-label {
     color: var(--color-complementary-1);
   }
 
-  #signUnForm {
+  #signUpForm {
     width: 100%;
-    max-width: 400px;
+    max-width: 320px;
     margin: 0 auto;
     .form-group {
       display: flex;
@@ -216,14 +283,15 @@ export default {
           background-color: transparent;
           border: 2px solid var(--color-black-3);
           border-radius: 24px;
-          color: var(--color-black-3);
+          color: var(--color-white-2);
           cursor: pointer;
           font-weight: var(--font-semi-bold);
           padding: 0.5rem 1rem;
           transition: var(--transition-fast);
           &.active {
-            background-color: var(--color-black);
-            color: var(--color-white);
+            background-color: var(--color-complementary-1-dark);
+            border: 2px solid var(--color-background);
+            color: var(--color-black);
           }
         }
       }
@@ -240,6 +308,7 @@ export default {
         }
       }
       .form-input {
+        width: 100%;
         background-color: transparent;
         border: none;
         border: 2px solid var(--color-black-3);
@@ -248,6 +317,7 @@ export default {
         color: var(--color-white-2);
         font-weight: var(--font-semi-bold);
         outline: none !important;
+        margin-bottom: 3px;
         &::placeholder {
           color: rgb(100, 100, 100);
           opacity: 1;
@@ -273,6 +343,10 @@ export default {
         background-color: var(--color-black-3);
       }
     }
+    .error-label{
+      color: var(--color-error);
+      font-size: .8rem;
+    }
   }
 }
 
@@ -280,6 +354,9 @@ export default {
   .signup-view {
     padding-top: 5%;
     padding-bottom: 5%;
+    #signUpForm{
+      min-width: 400px;
+    }
   }
 }
 </style>
