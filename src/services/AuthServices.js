@@ -10,5 +10,10 @@ export default {
     return axios.post('/auth/local/register', user)
       .then(response => response)
       .catch(error => error.response);
+  },
+  forgotPassword(email) {
+    return axios.post('/auth/forgot-password/', {email: email})
+      .then(response => response)
+      .catch(error => error.response);
   }
 }
