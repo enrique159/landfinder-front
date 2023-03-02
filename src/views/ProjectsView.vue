@@ -1,9 +1,7 @@
 <template>
   <div class="projects-view container">
-    <h2 class="main-title">
-      <img @click="goBack()" src="@/assets/icons/back.svg" alt="" />Resultados de búsqueda:
-    </h2>
-    <div class="parameters">
+    <h2 class="main-title ps-2"> Marketplace </h2>
+    <!-- <div class="parameters">
       <div class="parameters-options">
         <div class="option option-class">
           <span>
@@ -17,9 +15,6 @@
         <div class="option">
           {{ parameters.minLand }} m²
         </div>
-       <!--  <div class="option">
-          {{ parameters.minValue }} MXN
-        </div> -->
         <button class="button-delete-filters" @click="resetParameters">
           <i class="bi bi-x"></i>
           <span>Borrar filtros</span> 
@@ -29,39 +24,51 @@
         <span class="d-none d-lg-flex me-2">Búsqueda</span> 
         <i class="bi bi-search"></i>
       </button>
-    </div>
+    </div> -->
 
-    <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
-      <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
-        <span class="visually-hidden">Loading...</span>
+    
+
+    <div class="row">
+      <div class="col col-3">
+        <SearchBarComp />
       </div>
-    </div>
 
-    <div class="projects-list mt-5" v-else>
-      <div
-        class="project-card animate__animated animate__fadeInUp"
-        :style="'animation-delay: ' + (index * 0.1) + 's'"
-        v-for="(project, index) in filteredProjects"
-        :key="index"
-        @click="openProject(project.id)"
-      >
-        <img
-          :src="project.attributes.image_review"
-          alt="image_review"
-          loading="lazy"
-        />
-        <div class="bloc-shadow"></div>
-        <h4 class="position-relative">{{ project.attributes.mod }}</h4>
-        <div>
-          <h2 class="position-relative">{{ project.attributes.name }}</h2>
-          <p class="position-relative">
-            {{ project.attributes.hood }}, {{ project.attributes.estate }}
-          </p>
+      <!-- LIST OF PROJECTS -->
+      <div class="col col-9">
+        <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+          <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <div class="projects-list" v-else>
+          <div
+            class="project-card animate__animated animate__fadeInUp"
+            :style="'animation-delay: ' + (index * 0.1) + 's'"
+            v-for="(project, index) in filteredProjects"
+            :key="index"
+            @click="openProject(project.id)"
+          >
+            <img
+              :src="project.attributes.image_review"
+              alt="image_review"
+              loading="lazy"
+            />
+            <div class="bloc-shadow"></div>
+            <h4 class="position-relative">{{ project.attributes.mod }}</h4>
+            <div>
+              <h2 class="position-relative">{{ project.attributes.name }}</h2>
+              <p class="position-relative">
+                {{ project.attributes.hood }}, {{ project.attributes.estate }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="errorEmpty">
+          No hay proyectos con esos parámetros de búsqueda
         </div>
       </div>
-    </div>
-    <div v-if="errorEmpty">
-      No hay proyectos con esos parámetros de búsqueda
     </div>
   </div>
 </template>
@@ -69,7 +76,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import Projects from "@/common/project_services.js";
+import SearchBarComp from "@/components/projects_view/SearchBarComp.vue";
 export default {
+  components: {
+    SearchBarComp,
+  },
   data() {
     return {
       projects: [],
@@ -168,7 +179,7 @@ export default {
   min-height: 80vh;
 
   .main-title {
-    font-size: var(--h1-font-size);
+    font-size: var(--h2-font-size);
     font-weight: var(--font-medium);
     color: var(--color-white-2);
     img {
@@ -302,6 +313,7 @@ export default {
         margin: 0;
       }
       &:hover {
+        box-shadow: 0 6px 24px 0px rgba($color: #0DBA6A, $alpha: 0.1);
         img {
           transform: scale(1.1);
         }

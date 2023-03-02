@@ -112,6 +112,7 @@ export default {
     };
   },
   created() {
+    console.log(this.places)
     this.selectedPlace = this.places.findIndex(
       (item) => item.value == this.$store.state.parameters.location.value
     );
