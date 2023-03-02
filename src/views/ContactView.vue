@@ -210,6 +210,9 @@ export default {
     }
   },
   methods: {
+    selectChip(id) {
+      this.selectedChip = id;
+    },
     validarForm() {
       if (emptyString(this.email))
         return "El correo electrónico es requerido";
