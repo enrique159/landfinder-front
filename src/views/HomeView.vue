@@ -11,7 +11,7 @@
     </div>
     <AportacionComp/>
     <DestacadosComp/>
-    <FaqComp />
+    <!-- <FaqComp /> -->
     <ConoceComp/>
     <PartnersComp/>
     <ContactoComp/>
