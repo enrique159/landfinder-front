@@ -6,19 +6,19 @@
       <label class="ts-small ps-2 pb-1">Tipo de inmueble</label>
       <div class="selector-type">
         <button
-          :class="[parameters.class == 'Todos' ? 'active' : '']"
+          :class="[type == 'Todos' ? 'active' : '']"
           @click="selectType('Todos')"
         >
           Todos
         </button>
         <button
-          :class="[parameters.class == 'Edificio' ? 'active' : '']"
+          :class="[type == 'Edificio' ? 'active' : '']"
           @click="selectType('Edificio')"
         >
           Edificio
         </button>
         <button
-          :class="[parameters.class == 'Terreno' ? 'active' : '']"
+          :class="[type == 'Terreno' ? 'active' : '']"
           @click="selectType('Terreno')"
         >
           Tierra
@@ -73,6 +73,7 @@ export default {
       places: places,
       selectedPlace: 0,
       minSurface: 0,
+      type: "Todos",
     };
   },
   computed: {
@@ -84,6 +85,7 @@ export default {
     },
   },
   created() {
+    this.type = this.parameters.class;
     this.minSurface = this.parameters.minLand;
     this.selectedPlace = this.places.findIndex(
       (item) => item.value == this.parameters.location.value
@@ -94,11 +96,12 @@ export default {
       this.selectedPlace = item.id;
     },
     selectType(type) {
-      store.state.parameters.class = type;
+      this.type = type;
     },
 
      // method to set the values in vuex
     setValues() {
+      store.state.parameters.class = this.type;
       store.state.parameters.location = {
         name: this.places[this.selectedPlace].name,
         value: this.places[this.selectedPlace].value,

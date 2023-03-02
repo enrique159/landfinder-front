@@ -1,13 +1,27 @@
 <template>
   <div class="projects-view container">
-    <h2 class="main-title ps-2"> Marketplace </h2>
+    <h2 class="main-title ps-2 text-center text-sm-start"> Marketplace </h2>
     <div class="row">
-      <div class="col col-12 col-md-4 col-lg-3 mb-4">
+      <div class="col col-12 col-md-4 col-lg-3 mb-4 px-5 px-sm-0">
         <SearchBarComp />
+
+        <!-- UPLOAD YOUR PROPERTY -->
+        <div class="upload-property-banner">
+          <div class="upload-property-banner__content">
+            <h3>¿Quieres vender tu propiedad?</h3>
+            <p>
+              Publica tu propiedad en nuestro marketplace y comienza a recibir
+              ofertas.
+            </p>
+            <router-link to="/signup" class="button-upload">
+              Registrarme
+            </router-link>
+          </div>
+        </div>
       </div>
 
       <!-- LIST OF PROJECTS -->
-      <div class="col col-12 col-md-8 col-lg-9">
+      <div class="col col-12 col-md-8 col-lg-9 ps-md-5 ps-0">
         <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
           <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -25,7 +39,6 @@
             <img
               :src="project.attributes.image_review"
               alt="image_review"
-              loading="lazy"
             />
             <div class="bloc-shadow"></div>
             <h4 class="position-relative">{{ project.attributes.mod }}</h4>
@@ -36,10 +49,14 @@
               </p>
             </div>
           </div>
+
         </div>
 
-        <div v-if="errorEmpty & filterEmptyResults">
-          No hay proyectos con esos parámetros de búsqueda
+        <div v-if="filteredProjects.length == 0 && !isLoading">
+          <div class="d-flex flex-column justify-content-center align-items-center" style="height: 50vh;">
+            <lottie-player src="./search-not-found.json" background="transparent" style="max-width: 320px;"  speed="1" loop autoplay></lottie-player>
+            <h2 class="text-center ts-h3">No hay proyectos que coincidan con tu búsqueda</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -74,13 +91,6 @@ export default {
     ...mapGetters({
       parameters: 'getParameters'
     }),
-    filterEmptyResults() {
-      if(this.filteredProjects.length == 0) {
-        return true;
-      } else {
-        return false;
-      }
-    },
     // filter by type, place and price
     filteredProjects() {
       return this.projects.filter(
@@ -293,7 +303,6 @@ export default {
         margin: 0;
       }
       &:hover {
-        box-shadow: 0 6px 24px 0px rgba($color: #0DBA6A, $alpha: 0.1);
         img {
           transform: scale(1.1);
         }
@@ -318,6 +327,56 @@ export default {
       grid-template-columns: 1fr;
       gap: 1.5rem;
       padding: 0 24px;
+    }
+  }
+
+  .upload-property-banner {
+    // give me a gradian background between green and yellow
+    background: linear-gradient(
+      180deg,
+      rgba(33, 231, 128, 0.684) 0%,
+      rgba(24, 213, 255, 0.944) 100%
+    );
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .text {
+      h2 {
+        font-size: var(--h2-font-size);
+        font-weight: var(--font-medium);
+        color: var(--color-white);
+        margin: 0;
+      }
+      p {
+        font-size: var(--small-font-size);
+        font-weight: var(--font-medium);
+        color: var(--color-white);
+        margin: 0;
+      }
+    }
+    .button-upload {
+      background-color: var(--color-white);
+      font-size: var(--normal-font-size);
+      font-weight: var(--font-medium);
+      color: var(--color-complementary-1);
+      border-radius: 12px;
+      padding: 0.5rem 1.5rem 0.4rem;
+      transition: 0.2s ease-in-out;
+      border: none;
+      &:hover {
+        background-color: var(--color-complementary-1);
+        color: var(--color-white);
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      display: none;
     }
   }
 }
