@@ -3,11 +3,13 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import PageNotFoundView from '../views/PageNotFoundView.vue'
-import PageConfirmEmailView from '../views/PageConfirmEmailView.vue'
 import TerminosView from '@/views/TerminosView.vue'
 import PrivacyView from '@/views/PrivacyView.vue'
 import SignInView from '@/views/login/SignInView.vue'
 import SignUpView from '@/views/login/SignUpView.vue'
+import PageConfirmEmailView from '../views/login/PageConfirmEmailView.vue'
+import ForgotPasswordView from '../views/login/ForgotPasswordView.vue'
+import ResetPasswordView from '../views/login/ResetPasswordView.vue'
 import ContactView from '@/views/ContactView.vue'
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
@@ -57,12 +59,22 @@ const routes = [
     component: SignUpView
   },
   {
-    path: "*",
-    component: PageNotFoundView
-  },
-  {
     path: "/confirm-email",
     component: PageConfirmEmailView
+  },
+  {
+    path: '/forgot-password',
+    name: 'forgot-password',
+    component: ForgotPasswordView
+  },
+  {
+    path: '/reset-password',
+    name: 'reset-password',
+    component: ResetPasswordView
+  },
+  {
+    path: "*",
+    component: PageNotFoundView
   },
 ]
 
