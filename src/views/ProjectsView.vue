@@ -1,40 +1,13 @@
 <template>
   <div class="projects-view container">
     <h2 class="main-title ps-2"> Marketplace </h2>
-    <!-- <div class="parameters">
-      <div class="parameters-options">
-        <div class="option option-class">
-          <span>
-            {{ parameters.class }} 
-          </span>
-        </div>
-        <div class="option">
-          <i class="bi bi-geo-alt-fill me-1"></i>
-          {{ parameters.location.name }}
-        </div>
-        <div class="option">
-          {{ parameters.minLand }} m²
-        </div>
-        <button class="button-delete-filters" @click="resetParameters">
-          <i class="bi bi-x"></i>
-          <span>Borrar filtros</span> 
-        </button>
-      </div>
-      <button class="button-search" @click="goBack">
-        <span class="d-none d-lg-flex me-2">Búsqueda</span> 
-        <i class="bi bi-search"></i>
-      </button>
-    </div> -->
-
-    
-
     <div class="row">
-      <div class="col col-3">
+      <div class="col col-12 col-md-4 col-lg-3 mb-4">
         <SearchBarComp />
       </div>
 
       <!-- LIST OF PROJECTS -->
-      <div class="col col-9">
+      <div class="col col-12 col-md-8 col-lg-9">
         <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
           <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -65,7 +38,7 @@
           </div>
         </div>
 
-        <div v-if="errorEmpty">
+        <div v-if="errorEmpty & filterEmptyResults">
           No hay proyectos con esos parámetros de búsqueda
         </div>
       </div>
@@ -101,6 +74,13 @@ export default {
     ...mapGetters({
       parameters: 'getParameters'
     }),
+    filterEmptyResults() {
+      if(this.filteredProjects.length == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     // filter by type, place and price
     filteredProjects() {
       return this.projects.filter(

@@ -112,10 +112,16 @@ export default {
     };
   },
   created() {
-    console.log(this.places)
     this.selectedPlace = this.places.findIndex(
       (item) => item.value == this.$store.state.parameters.location.value
     );
+    if (this.$store.state.parameters.class == "Todos") {
+      this.options = 1;
+    } else if (this.$store.state.parameters.class == "Terreno") {
+      this.options = 2;
+    } else {
+      this.options = 3;
+    }
   },
   computed: {
     getClassProject() {

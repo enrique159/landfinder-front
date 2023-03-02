@@ -6,14 +6,20 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="menu-dashboard">
+          <div class="d-flex justify-content-center align-center me-4">
+            <router-link class="tw-medium portfolio-link" to="/portfolio">
+              <i class="bi bi-bag pt-1 pe-2"></i>
+              <span>marketplace</span>
+            </router-link>
+          </div>
           <div class="menu-dashboard__info">
-            <h5 class="text-end mb-0">menu</h5>
+            <!-- <h5 class="text-end mb-0">menu</h5> -->
             <div class="d-flex" v-if="isLogged">
               <i class="bi bi-person tc-text-light pe-2"></i>
               <span class="ts-small tc-text-light">{{ username }}</span>
             </div>
           </div>
-          <i class="bi bi-person tc-text-light icon-min"></i>
+          <i v-if="isLogged" class="bi bi-person tc-text-light icon-min"></i>
           <button class="button-nav" @click="toggleNav()">
             <div class="button-icon">
               <div></div>
@@ -119,6 +125,27 @@ export default {
     &__info { display: block; }
   }
 
+  .portfolio-link {
+    width: fit-content;
+    font-size: 1.25rem;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-text);
+      transition: width 0.3s;
+    }
+    &:hover { color: var(--color-text); }
+    &:hover::before {
+      width: 100%;
+    }
+  };
+
   .nav-options {
     display: flex;
     align-items: center;
@@ -218,6 +245,10 @@ export default {
   }
 
   @media screen and (max-width: 768px) {
+    .portfolio-link {
+      span { display: none; }
+    }
+
     .nav-options {
       display: none;
     }

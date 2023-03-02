@@ -5,15 +5,32 @@
       <!-- TYPE PROJECT -->
       <label class="ts-small ps-2 pb-1">Tipo de inmueble</label>
       <div class="selector-type">
-        <button :class="[ parameters.class == 'Todos' ? 'active' : '' ]" @click="selectType('Todos')">Todos</button>
-        <button :class="[ parameters.class == 'Edificio' ? 'active' : '' ]" @click="selectType('Edificio')">Edificio</button>
-        <button :class="[ parameters.class == 'Terreno' ? 'active' : '' ]" @click="selectType('Terreno')">Tierra</button>
+        <button
+          :class="[parameters.class == 'Todos' ? 'active' : '']"
+          @click="selectType('Todos')"
+        >
+          Todos
+        </button>
+        <button
+          :class="[parameters.class == 'Edificio' ? 'active' : '']"
+          @click="selectType('Edificio')"
+        >
+          Edificio
+        </button>
+        <button
+          :class="[parameters.class == 'Terreno' ? 'active' : '']"
+          @click="selectType('Terreno')"
+        >
+          Tierra
+        </button>
       </div>
 
       <!-- PLACE SELECTION -->
-      <label for="dropdown_search_home" class="ts-small ps-2 pb-1">Ubicación</label>
+      <label for="dropdown_search_home" class="ts-small ps-2 pb-1"
+        >Ubicación</label
+      >
       <button
-        class="button-base button-location dropdown-toggle"
+        class="button-base button-location dropdown-toggle mb-4"
         type="button"
         name="dropdown_search_home"
         id="dropdown_search_home"
@@ -32,6 +49,16 @@
           }}</a>
         </li>
       </ul>
+
+      <!-- SURFACE RANGE -->
+      <label class="ts-small ps-2 pb-1">Superficie mínima: {{ getMinSurfaceFormat }} m²</label>
+      <input type="range" class="form-range surface-range px-1" min="0" max="10000" id="surfacerangepicker" step="100" v-model="minSurface">
+
+      <!-- FILTER -->
+      <button class="button-base button-filter mt-4" @click="setValues()">
+        <i class="bi bi-funnel"></i>
+        Filtrar
+      </button>
     </div>
   </div>
 </template>
@@ -45,14 +72,19 @@ export default {
     return {
       places: places,
       selectedPlace: 0,
-    }
+      minSurface: 0,
+    };
   },
   computed: {
     ...mapGetters({
-      parameters: 'getParameters'
+      parameters: "getParameters",
     }),
+    getMinSurfaceFormat() {
+      return this.minSurface.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   created() {
+    this.minSurface = this.parameters.minLand;
     this.selectedPlace = this.places.findIndex(
       (item) => item.value == this.parameters.location.value
     );
@@ -63,21 +95,45 @@ export default {
     },
     selectType(type) {
       store.state.parameters.class = type;
-    }
+    },
+
+     // method to set the values in vuex
+    setValues() {
+      store.state.parameters.location = {
+        name: this.places[this.selectedPlace].name,
+        value: this.places[this.selectedPlace].value,
+      };
+      //this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
+      store.state.parameters.minLand = this.minSurface;
+      store.state.parameters.active = true;
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
+@mixin track() {
+  margin-top: 1rem;
+  height: 2px;
+  padding: 0;
+  cursor: pointer;
+  background: #454545;
+}
+
+@mixin progress() {
+  background: #0dba6a;
+  height: 2px;
+  /*también podéis cambiar border, etc...*/
+}
+
 .search-bar-comp {
   width: 100%;
   height: fit-content;
   background: rgba($color: #282828, $alpha: 0.7);
-  padding: 1rem 1.3rem;
+  padding: 1rem 1.3rem 1.5rem;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-
 
   .option-location {
     display: flex;
@@ -103,13 +159,13 @@ export default {
         align-items: center;
         justify-content: center;
         font-size: 0.8rem;
+        transition: var(--transition-fast);
 
         &:hover {
-          background-color: rgba($color: #ffffff, $alpha: 0.1);
           color: var(--color-text);
         }
         &.active {
-          background-color: rgba($color: #0DBA6A, $alpha: 0.2);
+          background-color: rgba($color: #0dba6a, $alpha: 0.2);
           color: var(--color-complementary-1);
         }
       }
@@ -135,7 +191,7 @@ export default {
       }
 
       &:hover {
-        background-color: rgba($color: #0DBA6A, $alpha: 0.2);
+        background-color: rgba($color: #0dba6a, $alpha: 0.2);
         color: var(--color-complementary-1);
       }
     }
@@ -150,6 +206,56 @@ export default {
           font-size: var(--small-font-size);
           font-weight: var(--font-semi-bold);
         }
+      }
+    }
+
+    .surface-range {
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 5px;
+      background: none;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: 0.2s;
+      transition: opacity 0.2s;
+      margin-bottom: 1.5rem;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -9px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--color-complementary-1);
+        cursor: pointer;
+      }
+
+      &::-webkit-slider-runnable-track { @include track }
+      &::-moz-range-track { @include track }
+      &::-ms-track { @include track }
+
+      &::-moz-range-progress { @include progress }
+      &::-ms-fill-upper { @include progress }
+
+      &::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--color-complementary-1);
+        cursor: pointer;
+      }
+    }
+
+    .button-filter {
+      width: 100%;
+      background-color: var(--color-complementary-1);
+      color: var(--color-black-1);
+      font-weight: var(--font-semi-bold);
+      border-radius: 12px;
+      &:hover {
+        background-color: var(--color-complementary-1-dark);
       }
     }
   }
