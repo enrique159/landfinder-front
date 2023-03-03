@@ -1,7 +1,15 @@
 <template>
   <div class="drawer-menu-container" :class="{ 'active': activeProp }" @click.self="toggleNav()">
     <div class="drawer-menu" :class="{ 'active': activeProp }">
-      <div class="d-flex justify-content-end py-3">
+      <div class="d-flex justify-content-between py-3">
+        <div class="d-flex align-items-center" v-if="isLogged">
+          <i class="bi bi-person ts-h2 pe-2"></i>
+          <div>
+            <p class="ts-small tc-text mb-0">{{ getUser.name + " " + getUser.lastname }}</p>
+            <p class="ts-small tc-text-light mb-0">{{ getUser.email }}</p>
+          </div>
+        </div>
+        <div v-else></div>
         <button class="button-close" @click="toggleNav()">
           <i class="bi bi-x-circle"></i>
         </button>
@@ -10,7 +18,7 @@
         <div class="col col-5 col-md-4">
           <span class="title-content">Mi cuenta</span>
 
-          <!-- MENU NO LOGGED -->
+          <!-- MENU LOGGED -->
           <div class="menu-user pt-4" v-if="isLogged">
             <router-link to="/account">Mi perfil</router-link>
             <a @click="logout()">Cerrar sesión</a>
@@ -24,18 +32,48 @@
             </button>
           </div>
 
-          <div class="menu-user pt-4">
-            <router-link to="/support">Ayuda y soporte</router-link>
+          <div class="menu-user pt-5">
+            <router-link to="/support" @click.native="activeProp = false">
+              <span class="ts-small tc-text-light">Ayuda y soporte</span>
+            </router-link>
+            <router-link to="/terminos-y-condiciones" @click.native="activeProp = false">
+              <span class="ts-small tc-text-light">Términos y condiciones</span>
+            </router-link>
+            <router-link to="/politicas-privacidad" @click.native="activeProp = false">
+              <span class="ts-small tc-text-light">Privacidad</span>
+            </router-link>
           </div>
         </div>
         <div class="col col-7 col-md-8">
           <span class="title-content">Menú</span>
           <div class="menu-content pt-4">
-            <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Buscar</span></router-link>
-            <router-link to="/portfolio" @click.native="activeProp = false"><span>Portafolio</span></router-link>
+            <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Inicio</span></router-link>
+            <router-link to="/portfolio" @click.native="activeProp = false"><span>Marketplace</span></router-link>
             <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
             <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
             <router-link to="/contacto" @click.native="activeProp = false"><span>Contacto</span></router-link>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-footer">
+        <div class="container fluid px-0">
+          <div class="row" >
+            <div class="col col-8 col-sm-6">
+              <p class="tc-text-dark ts-small mb-0">Contáctanos</p>
+              <a href="mailto:hola@landfindermexico.com" class="ml-2 tc-text-light">hola@landfindermexico.com</a>
+            </div>
+            <div class="col col-4 col-sm-6">
+              <p class="tc-text-dark ts-small mb-0">Nuestras redes</p>
+              <a href="https://www.facebook.com/landfinderm" target="_blank" class="me-3 tc-text-light">
+                <i class="bi bi-facebook">
+              </i></a>
+              <a href="https://www.linkedin.com/company/landfindermexico/" target="_blank" class="me-3 tc-text-light">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="https://www.twitter.com/LandFinderMx" target="_blank" class="me-3 tc-text-light">
+                <i class="bi bi-twitter"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -46,6 +84,7 @@
 <script>
 import store from '@/store'
 import { logoutUser } from '@/auth'
+import { mapGetters } from 'vuex'
 export default {
   name: 'DrawerMenuComp',
   props: {
@@ -60,6 +99,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getUser']),
     isLogged() {
       return store.getters['getIsLoggedIn']
     },
@@ -133,6 +173,8 @@ export default {
     color: var(--color-text);
     transition: all 0.3s ease-in-out;
     transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
     // container
     padding: 1rem 3rem;
     &.active {
@@ -144,7 +186,13 @@ export default {
       color: var(--color-text-light);
     }
 
-    
+    .dashboard-footer {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem 0;
+    }
     
     .menu-user {
       display: flex;
