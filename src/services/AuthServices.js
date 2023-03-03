@@ -15,5 +15,10 @@ export default {
     return axios.post('/auth/forgot-password/', {email: email})
       .then(response => response)
       .catch(error => error.response);
+  },
+  resetPassword(payload) {
+    return axios.post('/auth/reset-password/', payload)
+      .then(response => response)
+      .catch(error => error.response);
   }
 }
