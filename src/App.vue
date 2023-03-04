@@ -7,7 +7,7 @@
         </router-link>
         <div class="menu-dashboard">
           <div class="d-flex justify-content-center align-center me-0 me-sm-4">
-            <button id="#buttonMarketplace" class="button-marketplace" ref="buttonMarketplace">
+            <button id="#buttonMarketplace" class="button-marketplace" ref="buttonMarketplace" @click="goTo('/marketplace', true)">
               <span>marketplace</span>
             </button>
           </div>
@@ -136,7 +136,7 @@ export default {
     position: relative;
 
     span {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     &::before {

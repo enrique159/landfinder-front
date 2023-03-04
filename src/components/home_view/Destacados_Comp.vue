@@ -65,7 +65,7 @@ export default {
         .replace(/[^\w-]+/g, "");
     },
     toPortfolio(){
-      this.$router.push("/portfolio");
+      this.$router.push("/marketplace");
     }
   },
 };

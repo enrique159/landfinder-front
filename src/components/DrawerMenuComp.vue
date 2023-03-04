@@ -48,7 +48,7 @@
           <span class="title-content">Menú</span>
           <div class="menu-content pt-4">
             <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Inicio</span></router-link>
-            <router-link to="/portfolio" @click.native="activeProp = false"><span>Marketplace</span></router-link>
+            <router-link to="/marketplace" @click.native="activeProp = false"><span>Marketplace</span></router-link>
             <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
             <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
             <router-link to="/contacto" @click.native="activeProp = false"><span>Contacto</span></router-link>

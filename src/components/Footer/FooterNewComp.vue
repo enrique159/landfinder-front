@@ -2,7 +2,7 @@
   <div id="footer" class="container">
     <div class="menu-footer mb-3">
       <router-link to="/">Inicio</router-link>
-      <router-link to="/portfolio">Marketplace</router-link>
+      <router-link to="/marketplace">Marketplace</router-link>
       <router-link to="/">Nosotros</router-link>
       <router-link to="/">Metodología</router-link>
       <router-link to="/">Partners</router-link>

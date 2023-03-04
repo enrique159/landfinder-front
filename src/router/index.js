@@ -24,8 +24,8 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/portfolio',
-    name: 'portfolio',
+    path: '/marketplace',
+    name: 'marketplace',
     component: ProjectsView
   },
   {

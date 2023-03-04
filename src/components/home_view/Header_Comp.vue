@@ -146,7 +146,7 @@ export default {
       //this.$store.state.parameters.minValue = !this.value ? 0 : this.value;
       this.$store.state.parameters.minLand = !this.minLand ? 0 : this.minLand;
       this.$store.state.parameters.active = true;
-      this.$router.push("/portfolio");
+      this.$router.push("/marketplace");
     },
   },
 };
