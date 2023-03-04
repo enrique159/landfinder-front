@@ -6,11 +6,10 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="menu-dashboard">
-          <div class="d-flex justify-content-center align-center me-4">
-            <router-link class="tw-medium portfolio-link" to="/portfolio">
-              <i class="bi bi-bag pt-1 pe-2"></i>
+          <div class="d-flex justify-content-center align-center me-0 me-sm-4">
+            <button id="#buttonMarketplace" class="button-marketplace" ref="buttonMarketplace">
               <span>marketplace</span>
-            </router-link>
+            </button>
           </div>
           <div class="menu-dashboard__info">
             <!-- <h5 class="text-end mb-0">menu</h5> -->
@@ -69,6 +68,8 @@ export default {
   },
   mounted() {
     if (!isLoggedIn) logoutUser();
+    const buttonMarketplace = this.$refs.buttonMarketplace;
+    buttonMarketplace.addEventListener('mousemove', this.handleOnMouseMove);
   },
   methods: {
     toggleNav() {
@@ -81,6 +82,15 @@ export default {
     scrollFix: function(hashbang) {
       if (this.active) this.active = false;
       location.href = hashbang;
+    },
+    handleOnMouseMove(event) {
+      const { currentTarget: target } = event;
+      const rect = target.getBoundingClientRect(),
+        x = event.clientX - rect.left,
+        y = event.clientY - rect.top;
+
+      target.style.setProperty('--mouse-x', `${ x }px`);
+      target.style.setProperty('--mouse-y', `${ y }px`);
     }
   }
 };
@@ -115,6 +125,41 @@ export default {
   }
   .logo:hover {
     opacity: 0.8;
+  }
+
+  .button-marketplace {
+    border: 1px solid var(--color-black-3);
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+
+    span {
+      font-size: 1.2rem;
+    }
+
+    &::before {
+      background: radial-gradient(
+        200px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.2),
+        transparent 40%
+      );
+      border-radius: inherit;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.3s;
+      top: 0;
+      left: 0;
+      content: '';
+      z-index: 2;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
   }
 
   .menu-dashboard {
@@ -247,6 +292,12 @@ export default {
   @media screen and (max-width: 768px) {
     .portfolio-link {
       span { display: none; }
+    }
+
+    .button-marketplace {
+      span {
+        font-size: 1rem;
+      }
     }
 
     .nav-options {
