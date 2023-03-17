@@ -20,5 +20,10 @@ export default {
     return axios.post('/auth/reset-password/', payload)
       .then(response => response)
       .catch(error => error.response);
+  },
+  sendEmailConfirmation(email) {
+    return axios.post('/auth/send-email-confirmation/', {email: email})
+      .then(response => response)
+      .catch(error => error.response);
   }
 }

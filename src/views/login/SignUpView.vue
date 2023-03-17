@@ -1,251 +1,136 @@
 <template>
-  <div class="signup-view container">
-    <div class="d-flex justify-content-center flex-column align-items-center">
-      <h1 class="text-center">Registrarme</h1>
-      <p class="text-center">Ingresa tus datos para registrarte en LFM</p>
-      <form id="signUpForm" class="mb-4" @submit.prevent="signUp()">
-        <div class="form-group mb-3 mt-3">
-          <span class="text-form mb-2">¿Qué soy? *</span>
-          <div class="chips-selector">
-            <div
-              class="chip"
-              v-for="chip in chips"
-              :key="chip.id"
-              :class="{ active: chip.id === selectedChip }"
-              @click="selectChip(chip.id)"
-            >
-              {{ chip.name }}
-            </div>
-          </div>
+  <div class="signup-view">
+    <div class="left-section">
+      <section class="headers py-3 px-sm-5">
+        <div class="lfm-icon mb-4">
+          <img src="@/assets/lfm_plus.svg" alt="LFM">
         </div>
+        <h3 class="ts-h2 tw-bold">Bienvenido a LFM+</h3>
 
-        <div class="form-group mb-3">
-          <label for="nameInput" class="ms-2">Nombre *</label>
-          <input
-            type="text"
-            class="form-input"
-            :class="{ 'is-invalid': $v.name.$error }"
-            placeholder="Mi nombre"
-            id="nameInput"
-            v-model="name"
-          />
-          <small v-if="$v.name.$error && !$v.name.required" class="error-label ms-2">Este campo es requerido</small>
+        <div class="stepper pt-3">
+          <div class="step" :class="{ active: currentStep == 1 }"></div>
+          <div class="step" :class="{ active: currentStep == 2 }"></div>
+          <div class="step" :class="{ active: currentStep == 3 }"></div>
         </div>
+      </section>
 
-        <div class="form-group mb-3">
-          <label for="lastnameInput" class="ms-2">Apellido *</label>
-          <input
-            type="text"
-            class="form-input"
-            :class="{ 'is-invalid': $v.lastname.$error }"
-            placeholder="Apellido"
-            id="lastnameInput"
-            v-model="lastname"
-          />
-           <small v-if="$v.lastname.$error && !$v.lastname.required" class="error-label ms-2">Este campo es requerido</small>
-        </div>
-
-        <div class="form-group mb-3">
-          <label for="phoneInput" class="ms-2">Telefono *</label>
-          <input
-            type="text"
-            class="form-input"
-            :class="{ 'is-invalid': $v.phone.$error }"
-            placeholder="612000000"
-            id="phoneInput"
-            v-model="phone"
-            maxlength="10"
-            @keypress="validatePhone($event)"
-          />
-           <small v-if="$v.phone.$error && !$v.phone.required" class="error-label ms-2">Este campo es requerido</small>
-        </div>
-
-        <div class="form-group mb-3">
-          <label for="bussinesNameInput" class="ms-2"
-            >Correo electrónico *</label
-          >
-          <input
-            type="email"
-            class="form-input"
-            :class="{ 'is-invalid': $v.email.$error }"
-            placeholder="micorreo@mail.com"
-            id="emailInput"
-            v-model="email"
-            @keypress="validateEmail($event)"
-          />
-           <small v-if="$v.email.$error && !$v.email.required" class="error-label ms-2">Este campo es requerido</small>
-        </div>
-        <div class="form-group mb-3">
-          <label for="emailInput" class="ms-2">Contraseña *</label>
-          <div class="password-container">
-            <i
-              :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"
-              @click="showPassword = !showPassword"
-            ></i>
-            <input
-              :type="showPassword ? 'text' : 'password'"
-              class="form-input"
-              :class="{ 'is-invalid': $v.password.$error }"
-              placeholder="Mi contraseña"
-              id="passwordInput"
-              v-model="password"
-              @keypress="validatePassword($event)"
-            />
-          </div>
-           <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es requerido</small>
-           <small v-if="$v.password.$error && !$v.password.minLength < 8" class="error-label ms-2">La contraseña debe de contener mínimo 8 caracteres</small>
-          <span></span>
-        </div>
-
-         <div class="form-group mb-4">
-          <label for="emailInput" class="ms-2">Repetir contraseña *</label>
-          <div class="password-container">
-            <i
-              :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"
-              @click="showPassword = !showPassword"
-            ></i>
-            <input
-              :type="showPassword ? 'text' : 'password'"
-              class="form-input"
-              :class="{ 'is-invalid': $v.password.$error }"
-              placeholder="Repetir contraseña"
-              id="passwordInput"
-              v-model="passwordRepeat"
-              @keypress="validatePassword($event)"
-            />
-          </div>
-           <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es requerido</small>
-           <small v-if="!passwordMatch" class="error-label ms-2">La contraseñas deben de ser iguales</small>
-          <span></span>
-        </div>
-        <button type="submit" class="form-button">
-          <span v-if="!loading">Registrarme</span>
-          <span
-            v-if="loading"
-            class="spinner-border spinner-border-sm ml-3"
-            role="status"
-            aria-hidden="true"
-          ></span>
-        </button>
-      </form>
-      <small class="require-label"
-        >Campos obligatorios <strong>*</strong></small
-      >
-      <p>
-        ¿Ya tienes una cuenta?
-        <router-link class="link-router" to="/login"
-          >Inicia sesion aqui</router-link
+      <section class="content">
+        <component 
+          ref="currentStep" 
+          :is="currentComponent" 
+          :user="user"
+          :loading="loading"
+          v-on:update:user="updateUser($event)" 
+          v-on:next="goNext()" 
+          v-on:back="goBack()"
         >
-      </p>
+          <template #description>
+            <p class="text-center ts-small tc-text-light">{{ stepInfo }}</p>
+          </template>
+        </component>
+      </section>
+
+      <section class="pt-5 px-5">
+        <p class="text-center ts-small tc-text-light">
+          ¿Ya tienes una cuenta? <router-link to="/signup"><span class="tc-complementary-1">Inicia sesión</span></router-link>
+        </p>
+
+        <p class="text-center ts-small tc-text-light">Consulta nuestros <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>
+          y nuestras <router-link to="/politicas-de-privacidad">Políticas de privacidad</router-link>.
+        </p>
+      </section>
+    </div>
+
+    <div class="right-section">
+      <div class="right-section-content">
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { required, minLength, maxLength, email } from "vuelidate/lib/validators";
-import { validateNumber, validatePassword, validateEmail } from '@/utils/keyPressValidate'
+import SelectUserTypeComp from "@/components/signup_view/SelectUserTypeComp.vue";
+import UserDataFormComp from "@/components/signup_view/UserDataFormComp.vue";
+import UserAccountFormComp from "@/components/signup_view/UserAccountFormComp.vue";
 import AuthServices from "@/services/AuthServices";
 
 export default {
+  components: {
+    SelectUserTypeComp,
+    UserDataFormComp,
+    UserAccountFormComp,
+  },
   data() {
     return {
-      chips: [
-        { id: 1, value: "INVESTOR", name: "Desarrollador" },
-        { id: 2, value: "OWNER", name: "Propietario" },
-        { id: 3, value: "REALESTATE", name: "Inmobiliaria" },
-      ],
-      selectedChip: 1,
-      name: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      password: "",
-      passwordRepeat: "",
-      showPassword: false,
       error: false,
       loading: false,
+      currentStep: 1,
+      user: {
+        username: "",
+        name: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        password: "",
+        passwordRepeat: "",
+        type: "OWNER",
+        verified: "NONE",
+      }
     };
-  },
-  validations: {
-    name: {
-      required,
-    },
-    lastname: {
-      required,
-    },
-    email: {
-      required,
-      email,
-    },
-    password: {
-      required,
-      minLength: minLength(8),
-    },
-    passwordRepeat: {
-      required,
-      minLength: minLength(8),
-    },
-    phone: {
-      required,
-      minLength: minLength(10),
-      maxLength: maxLength(10),
-    },
   },
   computed: {
     passwordMatch(){
       return this.password == this.passwordRepeat
+    },
+    currentComponent() {
+      if (this.currentStep == 1) return "SelectUserTypeComp";
+      if (this.currentStep == 2) return "UserDataFormComp";
+      if (this.currentStep == 3) return "UserAccountFormComp";
+      return 0
+    },
+    stepInfo() {
+      if (this.currentStep == 1) return "Selecciona la opción que represente tu perfil";
+      if (this.currentStep == 2) return "Completa los siguientes campos para seguir";
+      if (this.currentStep == 3) return "Crea tu contraseña y listo. Debe contener mínimo 8 caracteres";
     }
   },
   methods: {
-    validForm() {
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return false;
-      }
-      return true;
-    },
-    validatePhone(event){
-      validateNumber(event)
-    },
-    validatePassword(event){
-      validatePassword(event)
-    },
-    validateEmail(event){
-      validateEmail(event)
-    },
-    selectChip(id) {
-      this.selectedChip = id;
-    },
-    signUp() {
-      if (this.validForm() && this.passwordMatch) {
-        this.loading = true;
+    async signUp() {
+      this.loading = true;
 
-        const user = {
-          username: this.name.toLowerCase().trim() + this.lastname.toLowerCase().trim(),
-          email: this.email.trim(),
-          password: this.password,
-          name: this.name.trim(),
-          lastname: this.lastname.trim(),
-          usertype: this.selectedChip.value,
-          phone: this.phone.trim(),
-          verified: "NONE",
-        };
+      this.user.username = this.user.name.toLowerCase().trim() + this.user.lastname.toLowerCase().trim() + Math.floor(Math.random() * 1000);
 
-        AuthServices.signup(user)
-          .then((res) => {
-            console.log(res);
-            //this.setUserLogin(res.data);
-            this.$router.push("/confirm-email");
-          })
-          .catch((err) => {
-            console.log(err);
-            this.error = true;
-          })
-          .finally(() => {
-            this.loading = false;
-          });
+      await AuthServices.signup(this.user)
+        .then((res) => {
+          this.$router.push({ path: '/confirm-email', query: {email: this.user.email}});
+        })
+        .catch((err) => {
+          console.log(err);
+          this.error = true;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+    updateUser(event) {
+      this.user = event;
+    },
+    goNext() {
+      if (this.currentStep == 1) {
+        this.currentStep = 2;
+      } else if (this.currentStep == 2) {
+        this.currentStep = 3;
+      } else if (this.currentStep == 3) {
+        this.signUp();
       }
     },
+    goBack() {
+      if (this.currentStep == 2) {
+        this.currentStep = 1;
+      } else if (this.currentStep == 3) {
+        this.currentStep = 2;
+      }
+    }
   },
 };
 </script>
@@ -253,9 +138,8 @@ export default {
 <style lang="scss" scoped>
 .signup-view {
   width: 100%;
-  height: 100%;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  height: calc(100vh - 120px);
+  display: flex;
 
   .link-router {
     text-decoration: underline;
@@ -265,97 +149,86 @@ export default {
     color: var(--color-complementary-1);
   }
 
-  #signUpForm {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    .form-group {
+  .left-section {
+    width: 40%;
+    height: 100%;
+
+    .headers {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
+      .lfm-icon {
+        width: 48px;
+        aspect-ratio: 1;
+        background-color: var(--color-complementary-1-dark);
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        img {
+          width: 42px;
+          padding-left: 8px;
+        }
+      }
 
-      .chips-selector {
+      .stepper {
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-        gap: 0.6rem;
-        .chip {
-          background-color: transparent;
-          border: 2px solid var(--color-black-3);
-          border-radius: 24px;
-          color: var(--color-white-2);
-          cursor: pointer;
-          font-weight: var(--font-semi-bold);
-          padding: 0.5rem 1rem;
-          transition: var(--transition-fast);
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        .step {
+          width: 48px;
+          height: 4px;
+          border-radius: 2px;
+          background-color: var(--color-text-dark);
           &.active {
             background-color: var(--color-complementary-1-dark);
-            border: 2px solid var(--color-background);
-            color: var(--color-black);
           }
         }
       }
-
-      .password-container {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        i {
-          position: absolute;
-          top: calc(50% - 0.7rem);
-          right: 1rem;
-          cursor: pointer;
-        }
-      }
-      .form-input {
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        border: 2px solid var(--color-black-3);
-        border-radius: 12px;
-        padding: 0.5rem 1rem;
-        color: var(--color-white-2);
-        font-weight: var(--font-semi-bold);
-        outline: none !important;
-        margin-bottom: 3px;
-        &::placeholder {
-          color: rgb(100, 100, 100);
-          opacity: 1;
-        }
-      }
-
-      .is-invalid {
-        border-color: var(--color-error);
-      }
     }
-    .form-button {
+    .content {
       width: 100%;
-      height: fit-content;
-      border-radius: 12px;
-      padding: 0.5rem 1rem;
-      font-size: var(--normal-font-size);
-      font-weight: var(--font-bold);
-      color: var(--color-white);
-      background-color: var(--color-complementary-1);
-      transition: var(--transition-fast);
-      cursor: pointer;
-      &:hover {
-        background-color: var(--color-black-3);
+      max-width: 360px;
+      margin: 0 auto;
+
+      .btn-continue {
+        background-color: #0c0c0c;
+        color: var(--color-white-2);
+        padding: 0.5rem 1rem;
+        font-weight: var(--font-semi-bold);
+        img { width: 12px; transform: rotate(-90deg); }
+        border-radius: 12px;
+      }
+
+      .btn-goback {
+        background-color: transparent;
+        color: var(--color-text-light);
+        padding: 0.5rem 1rem;
+        font-weight: var(--font-semi-bold);
+        border-radius: 12px;
       }
     }
-    .error-label{
-      color: var(--color-error);
-      font-size: .8rem;
-    }
+  }
+
+  .right-section {
+    background-image: url('~@/assets/signup_background.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    width: 60%;
+    margin: 1rem;
+    border-radius: 2rem;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (max-width: 992px) {
   .signup-view {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    #signUpForm{
-      min-width: 400px;
+    .left-section {
+      width: 100%;
+    }
+    .right-section {
+      display: none;
     }
   }
 }
