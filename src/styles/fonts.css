@@ -61,3 +61,11 @@
   font-display: auto;
   src: local("Gilroy Thin"), url("@/assets/fonts/Gilroy-Thin.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "Anton";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("Anton Regular"), url("@/assets/fonts/Anton-Regular.ttf") format("truetype");
+}

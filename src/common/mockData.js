@@ -27,6 +27,25 @@ export const placesMockData = [
   // },
 ]
 
+export const projectTypesMockData = [
+  {
+    id: 1,
+    name: "Todos",
+    value: "Todos",
+  },
+  {
+    id: 2,
+    name: "Terreno",
+    value: "Terreno",
+  },
+  {
+    id: 3,
+    name: "Edificio",
+    value: "Edificio",
+  },
+]
+
+
 export const faq = [
   {
     title: "¿Qué es una aportación?",

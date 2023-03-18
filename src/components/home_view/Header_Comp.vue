@@ -1,85 +1,95 @@
 <template>
-  <div class="container">
-    <div class="search-header animate__animated animate__zoomIn">
-      <h1 class="animate__animated animate__fadeInDown animate__delay">
-        ¡El primer marketplace <br />
-        de tierra en aportación!
-      </h1>
-      <div
-        class="select-type animate__animated animate__fadeInDown animate__delay"
-      >
-        <div
-          class="selected-box"
-          :class="[
-            { 'first-selected': options == 1 },
-            { 'second-selected': options == 2 },
-            { 'third-selected': options == 3 },
-          ]"
-        ></div>
-        <button @click="options = 1" :class="{ selected: options == 1 }">
-          Todos
-        </button>
-        <button @click="options = 2" :class="{ selected: options == 2 }">
-          Tierra
-        </button>
-        <button @click="options = 3" :class="{ selected: options == 3 }">
-          Edificios
-        </button>
-      </div>
-      <div
-        class="search-bar animate__animated animate__fadeInUp animate__delay"
-      >
-        <!-- DROPDOWN LOCATION -->
-        <div class="search-input" style="width: 47%">
-          <h3>Ubicación</h3>
-          <div class="dropdown">
-            <button
-              class="button-location dropdown-toggle"
-              type="button"
-              id="dropdown_search_home"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {{ places[selectedPlace].name }}
-            </button>
-            <ul
-              class="dropdown-menu dropdown-search-list"
-              aria-labelledby="dropdown_search_home"
-            >
-              <li v-for="item in places" :key="item.id">
-                <a class="dropdown-item" @click="selectPlace(item)">{{
-                  item.name
-                }}</a>
-              </li>
-            </ul>
+  <div class="header-comp">
+    <div class="search-header animate__animated animate__slideInDown">
+      <div class="container padding-container">
+        <h1 class="animate__animated animate__fadeInDown animate__delay">
+          ¡Más de 
+          <ICountUp
+            class="counter"
+            :endVal="enAportacion"
+            :options="options"
+            @ready="onReady"
+          />
+          <span>m</span> en aportación para desarrollo!
+        </h1>
+        <div class="search-bar animate__animated animate__fadeInUp animate__delay" >
+          <!-- DROPDOWN LOCATION -->
+          <div class="search-input input-w-40">
+            <h3>Ubicación</h3>
+            <div class="dropdown">
+              <button
+                class="button-location dropdown-toggle"
+                type="button"
+                id="dropdown_search_home"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ places[selectedPlace].name }}
+              </button>
+              <ul
+                class="dropdown-menu dropdown-search-list"
+                aria-labelledby="dropdown_search_home"
+              >
+                <li v-for="item in places" :key="item.id">
+                  <a class="dropdown-item" @click="selectPlace(item)">{{
+                    item.name
+                  }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
+          <!-- PROYECT TYPE -->
+          <div class="search-input input-w-40">
+            <h3>Tipo de propiedad</h3>
+            <div class="dropdown">
+              <button
+                class="button-location dropdown-toggle"
+                type="button"
+                id="dropdown_search_home"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ getClassProject }}
+              </button>
+              <ul
+                class="dropdown-menu dropdown-search-list"
+                aria-labelledby="dropdown_search_home"
+              >
+                <li v-for="item in types" :key="item.id">
+                  <a class="dropdown-item" @click="selectType(item)">{{
+                    item.name
+                  }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- SUPERFICIE -->
+          <div class="search-input">
+            <h3>Superficie mínima</h3>
+            <div class="d-flex surface-input p-relative">
+              <input type="text" placeholder="500" v-model="minLand" />
+            </div>
+          </div>
+
+          <!-- BOTON SEARCH -->
+          <button class="button-search ms-0 ms-md-4" @click="setValues">Buscar</button>
         </div>
-        <!-- SUPERFICIE -->
-        <div class="search-input">
-          <h3>Superficie mínima</h3>
-          <div class="d-flex">
-            <input type="text" placeholder="500" v-model="minLand" />
-            <span>m²</span>
+
+        <div class="animate__animated animate__fadeIn animate__delay pt-3 ps-1 header-text-container">
+          <p class="header-text">
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut labore unde! 
+            Expedita architecto minima praesentium, illo temporibus aliquam, omnis at ducimus 
+            nihil."
+          </p>
+          <div class="d-flex gap-1 ts-small">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
           </div>
-        </div>
-        <!-- VALOR PRICE -->
-        <!--  <div class="search-input">
-          <h3>Valor (min.)</h3>
-          <div class="d-flex">
-            <Money
-              min="0"
-              class="valor-input"
-              :class="{ 'valor-input-placeholder': value == 0 }"
-              placeholder="$3'000'000.00"
-              v-model="value"
-              v-bind="money"
-            />
-            <span>MXN</span>
-          </div>
-        </div> -->
-        <!-- BOTON SEARCH -->
-        <div class="search-input">
-          <button class="button-search" @click="setValues">Buscar</button>
+          <h6>
+            Franchesco Virgollini @FranV - CEO Real Investment
+          </h6>
         </div>
       </div>
     </div>
@@ -88,12 +98,15 @@
 
 <script>
 import { placesMockData as places } from "@/common/mockData.js";
+import { projectTypesMockData as types } from "@/common/mockData.js";
+import Variables from "@/common/variable_services.js";
+import ICountUp from 'vue-countup-v2';
 import { Money } from "v-money";
-import { mapGetters } from "vuex";
 export default {
   name: "HeaderComp",
   components: {
     Money,
+    ICountUp,
   },
   data() {
     return {
@@ -102,13 +115,24 @@ export default {
       //value: 0,
       minLand: null,
       places: places,
+      types: types,
+      variables: [],
       money: {
         decimal: ".",
-        thousands: "'",
-        prefix: "$ ",
+        thousands: ",",
         precision: 2,
         masked: false,
       },
+      counterInstance: null,
+      delay: 0,
+      options: {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.',
+        prefix: '',
+        suffix: 'm'
+      }
     };
   },
   created() {
@@ -122,6 +146,7 @@ export default {
     } else {
       this.options = 3;
     }
+    this.getVariables();
   },
   computed: {
     getClassProject() {
@@ -131,10 +156,25 @@ export default {
         ? "Terreno"
         : "Edificio";
     },
+    enAportacion() {
+      // return this.variables.length > 0
+      //   ? this.variables.filter(
+      //       (variable) => variable.attributes.name === "aportacion"
+      //     )[0].attributes.value
+      //   : 0;
+      return 1316518
+    },
   },
   methods: {
+    onReady: function(instance, CountUp) {
+      this.counterInstance = instance;
+      instance.update(instance.endVal);
+    },
     selectPlace(place) {
       this.selectedPlace = place.id;
+    },
+    selectType(type) {
+      this.options = type.id;
     },
     // method to set the values in vuex
     setValues() {
@@ -148,6 +188,11 @@ export default {
       this.$store.state.parameters.active = true;
       this.$router.push("/marketplace");
     },
+    async getVariables() {
+      await Variables.getAll().then((res) => {
+        this.variables = res.data.data;
+      });
+    },
   },
 };
 </script>
@@ -156,134 +201,139 @@ export default {
 .search-header {
   position: relative;
   width: 100%;
-  height: 480px;
-  background-image: url("@/assets/search-background-min.webp");
+  height: fit-content;
+  background-image: url("@/assets/header_background.webp");
   background-position: 0% 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  //background-attachment: fixed;
-  border-radius: 24px;
-  padding: 2rem;
-  text-align: center;
+  padding: 5rem 3rem;
   animation-duration: 1s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+  }
+
+  .padding-container {
+    padding: 0;
+  }
 
   h1 {
-    margin-top: 5rem;
-    font-size: var(--biggest-font-size);
-    font-weight: var(--font-semi-bold);
+    font-family: var(--font-secondary);
+    font-size: 4rem;
+    font-weight: var(--font-regular);
     color: var(--color-text);
+    margin-bottom: 2rem;
+    .counter, span { color: var(--color-complementary-1)}
+    width: 100%;
   }
-  .select-type {
-    background-color: var(--color-white);
-    position: absolute;
-    display: block;
-    bottom: 48px;
-    left: calc(50% - 177px);
-    width: 354px;
-    padding: 10px;
-    border-radius: 12px;
-    animation-duration: 1.5s;
-    button {
-      position: relative;
-      z-index: 10;
-      width: 110px;
-      background-color: transparent;
-      border: none;
-      padding: 0.6rem 0;
-      color: var(--color-text-light);
-      font-weight: var(--font-semi-bold);
-      transition: var(--transition-fast);
-      &:hover {
-        color: var(--color-text-dark);
-      }
+
+  .header-text-container {
+    width: 100%;
+    .header-text {
+      font-weight: var(--font-medium);
     }
-    .selected {
-      color: var(--color-text) !important;
+  }
+
+  @media only screen and (min-width: 1400px) {
+    .padding-container {
+      padding: 0 200px;
+    }  
+    .header-text-container {
+      width: 50%;
     }
-    .selected-box {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 122px;
-      height: 52px;
-      background-color: var(--color-background);
-      border-radius: 8px;
-      transition: all 0.3s ease-in-out;
-    }
-    .first-selected {
-      left: 6px;
-    }
-    .second-selected {
-      left: 116px;
-    }
-    .third-selected {
-      left: 226px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    .padding-container {
+      padding: 0 100px;
+    } 
+    h1 {
+      width: 768px;
+    } 
+    .header-text-container {
+      width: 60%;
     }
   }
 
   .search-bar {
     background-color: var(--color-white);
-    position: absolute;
-    bottom: -62px;
-    left: calc(50% - 350px);
-    width: 700px;
-    height: 86px;
-    padding: 10px 28px;
+    width: 100%;
+    height: fit-content;
+    padding: 24px 18px;
     border-radius: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     animation-duration: 1.6s;
+    margin-bottom: 5rem;
     .search-input {
       text-align: left;
       padding: 0 12px;
       .button-location {
         border: none;
-        background-color: transparent;
-        color: var(--color-text-dark);
-        font-weight: var(--font-semi-bold);
-        padding: 0;
-      }
-      .button-search {
-        border: none;
-        background-color: var(--color-complementary-1);
-        color: var(--color-text);
-        font-weight: var(--font-semi-bold);
-        border-radius: 12px;
-        padding: 0.6rem 2rem;
-        transition: var(--transition-fast);
-        &:hover {
-          background-color: var(--color-complementary-1-dark);
-        }
-        &:active {
-          outline: none;
-          transform: translateY(4px);
-        }
+        background-color: #efefef;
+        color: #7e7e7e;
+        font-weight: var(--font-medium);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        align-items: center;
+        padding: 0.5rem 1rem;
       }
       .dropdown-search-list {
         background-color: var(--color-white);
-        border-radius: 18px;
+        border-radius: 12px;
         li {
           cursor: pointer;
           a {
             border-radius: 8px;
-            font-size: var(--small-font-size);
+            font-size: var(--normal-font-size);
             font-weight: var(--font-semi-bold);
           }
         }
       }
       input,
       .valor-input {
-        border: none;
-        width: 70%;
+        width: 100%;
+        background-color: #efefef;
         color: var(--color-text-dark);
-        font-weight: var(--font-semi-bold);
+        font-weight: var(--font-medium);
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        align-items: center;
+        padding: 0.5rem 1rem;
         &::placeholder {
           color: var(--color-text-light);
         }
         &:focus {
           outline: none;
         }
+      }
+      .surface-input::before {
+        content: "m²";
+        position: absolute;
+        width: 24px;
+        height: 20px;
+        border-left: #9b9b9b solid 1px;
+        right: 6px;
+        top: calc(50% - 10px);
+        padding-left: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--small-font-size);
+        color: var(--color-text-light);
       }
       .valor-input-placeholder {
         color: var(--color-text-light);
@@ -294,78 +344,52 @@ export default {
       }
       h3 {
         font-size: var(--big-font-size);
-        font-weight: var(--font-medium);
-        color: var(--color-text-light);
+        font-weight: var(--font-semi-bold);
+        color: var(--color-text-dark);
         margin: 0 0 6px;
+        padding-left: 4px;
       }
+    }
+    .button-search {
+      border: none;
+      background-color: var(--color-complementary-1-dark);
+      color: var(--color-text);
+      font-weight: var(--font-semi-bold);
+      border-radius: 12px;
+      padding: 0.6rem 2rem;
+      transition: var(--transition-fast);
+      &:hover {
+        background-color: var(--color-complementary-1-dark);
+      }
+      &:active {
+        outline: none;
+        transform: translateY(4px);
+      }
+    }
+
+    .input-w-40 {
+      width: 40%;
     }
   }
   @media screen and (max-width: 992px) {
-    height: 360px;
-    margin-bottom: 240px;
-    h1 {
-      margin-top: 2rem;
-      font-size: var(--h1-font-size);
-    }
-    .select-type {
-      left: calc(50% - 150px);
-      width: 300px;
-      button {
-        width: 33.3%;
-      }
-      .selected-box {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 100px;
-        height: 52px;
-        background-color: var(--color-background);
-        border-radius: 8px;
-        transition: all 0.3s ease-in-out;
-      }
-      .first-selected {
-        left: 6px;
-      }
-      .second-selected {
-        left: 100px;
-      }
-      .third-selected {
-        left: 193px;
-      }
-    }
+    h1 { font-size: var(--biggest-font-size); }
     .search-bar {
-      bottom: -180px;
-      left: calc(50% - 150px);
-      width: 300px;
-      height: fit-content;
-      padding: 16px 6px;
-      border-radius: 18px;
+      width: 100%;
+      max-width: 360px;
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      row-gap: 1rem;
       animation-duration: 1.6s;
-      .search-input {
+      input, .search-input {
         width: 100% !important;
-        margin-bottom: 12px;
-        text-align: center;
-        input {
-          width: 144px !important;
-          text-align: left;
-        }
-        div {
-          justify-content: center;
-        }
-      }
-      div:last-child {
-        margin-bottom: 0 !important;
       }
     }
   }
   @media screen and (max-width: 768px) {
     h1 {
-      margin-top: 2rem;
-      font-size: var(--h2-font-size);
+      font-size: var(--h1-font-size);
     }
   }
 }

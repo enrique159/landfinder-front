@@ -22,6 +22,7 @@
 
 
   --font-primary: 'Gilroy', system-ui, sans-serif;
+  --font-secondary: 'Anton', system-ui, sans-serif;
   --biggest-font-size: 3rem;
   --h1-font-size: 2.5rem;
   --h2-font-size: 1.8rem;
@@ -198,3 +199,12 @@ input {
 .tw-regular { font-weight: var(--font-regular) !important; }
 .tw-light { font-weight: var(--font-light) !important; }
 .tw-thin { font-weight: var(--font-thin) !important; }
+
+// FONTS
+.ff-primary { font-family: var(--font-primary) !important; }
+.ff-secondary { font-family: var(--font-secondary) !important; }
+
+// POSITIONS
+.p-relative { position: relative; }
+.p-absolute { position: absolute; }
+.p-fixed { position: fixed; }

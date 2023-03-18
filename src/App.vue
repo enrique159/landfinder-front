@@ -6,9 +6,14 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="menu-dashboard">
-          <div class="d-flex justify-content-center align-center me-0 me-sm-4">
-            <button id="#buttonMarketplace" class="button-marketplace" ref="buttonMarketplace" @click="goTo('/marketplace', true)">
-              <span>marketplace</span>
+          <div class="d-flex justify-content-center align-items-center gap-2 me-0 me-sm-2">
+            <button id="#buttonLogin" class="button-login" ref="buttonLogin" @click="goTo('/login', true)">
+              <span>Iniciar sesión</span>
+              <i class="bi bi-box-arrow-in-right"></i>
+            </button>
+            <button class="button-register" @click="goTo('/signup', true)">
+              <span>Registrarme ahora</span>
+              <i class="bi bi-person-plus-fill"></i>
             </button>
           </div>
           <div class="menu-dashboard__info">
@@ -20,11 +25,13 @@
           </div>
           <i v-if="isLogged" class="bi bi-person tc-text-light icon-min"></i>
           <button class="button-nav" @click="toggleNav()">
-            <div class="button-icon">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <!-- <div class="button-icon">
               <div></div>
               <div></div>
               <div></div>
-            </div>
+            </div> -->
           </button>
         </div>
       </nav>
@@ -68,8 +75,8 @@ export default {
   },
   mounted() {
     if (!isLoggedIn) logoutUser();
-    const buttonMarketplace = this.$refs.buttonMarketplace;
-    buttonMarketplace.addEventListener('mousemove', this.handleOnMouseMove);
+    const buttonLogin = this.$refs.buttonLogin;
+    buttonLogin.addEventListener('mousemove', this.handleOnMouseMove);
   },
   methods: {
     toggleNav() {
@@ -101,6 +108,7 @@ export default {
 @import "@/styles/general.scss";
 
 .navbar-container {
+  width: 100%;
   position: relative;
   z-index: 100;
   background: rgba($color: #101010, $alpha: 0.7);
@@ -127,16 +135,18 @@ export default {
     opacity: 0.8;
   }
 
-  .button-marketplace {
-    border: 1px solid var(--color-black-3);
-    background: var(--color-background);
+  .button-login {
+    height: 38px;
+    border: 2px solid #969696;
+    background: transparent;
     color: var(--color-text);
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
     position: relative;
 
     span {
-      font-size: 1.1rem;
+      font-size: var(--small-font-size);
+      font-weight: var(--font-bold);
     }
 
     &::before {
@@ -159,6 +169,45 @@ export default {
 
     &:hover::before {
       opacity: 1;
+    }
+
+    i {
+      display: none;
+    }
+  }
+
+  .button-register {
+    height: 38px;
+    background: linear-gradient(-90deg, var(--color-complementary-1-dark), #101010);
+    color: var(--color-text);
+    padding: 0.2rem 1.5rem;
+    border-radius: 2rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-bold);
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: var(--color-complementary-1-dark);
+      border-radius: 2rem;
+      transition: var(--transition-normal);
+      opacity: 0;
+    }
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+    span {
+      position: relative;
+      z-index: 100;
+    }
+    i {
+      display: none;
     }
   }
 
@@ -260,32 +309,31 @@ export default {
     }
   }
   .button-nav {
-    background: transparent;
-    border: none;
+    background: #141414;
+    border: 1px solid #141414;
     cursor: pointer;
-    display: inline-block;
-    position: relative;
-    z-index: 100;
-    .button-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: fit-content;
-      padding: 1rem;
-      column-gap: 0.2rem;
-      transition: var(--transition-normal);
-      border-radius: 2rem;
-      &:hover {
-        column-gap: 0.4rem;
-        background-color: #323232;
-      }
-      div {
-        width: 0.3rem;
-        height: 0.3rem;
-        background: var(--color-white);
-        border-radius: 50%;
-        transition: var(--transition-fast);
-      }
+    width: 38px;
+    height: 38px;
+    max-width: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    transition: var(--transition-normal);
+    border-radius: 2rem;
+    padding: 6px 0;
+    padding-left: 10px;
+    div {
+      height: 2px;
+      background: var(--color-white);
+      transition: var(--transition-fast);
+    }
+    .line-1 { width: 18px; margin-bottom: 3px; }
+    .line-2 { width: 14px; }
+    &:hover {
+      border: 1px solid var(--color-black-2);
+      .line-1 { width: 12px; }
+      .line-2 { width: 8px; }
     }
   }
 
@@ -294,10 +342,25 @@ export default {
       span { display: none; }
     }
 
-    .button-marketplace {
-      span {
-        font-size: 1rem;
-      }
+    .button-login, .button-register {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span { display: none; }
+      i { position: relative; z-index: 100; display: block; line-height: 0; }
+      font-size: 1.2rem;
+    }
+    .button-login i {
+      padding-right: 2px;
+    }
+    .button-register {
+      background: var(--color-complementary-1);
+    }
+    .button-register i {
+      padding-left: 4px;
     }
 
     .nav-options {

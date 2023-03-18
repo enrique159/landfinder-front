@@ -36,7 +36,7 @@
         </p>
 
         <p class="text-center ts-small tc-text-light">Consulta nuestros <router-link to="/terminos-y-condiciones">Términos y condiciones</router-link>
-          y nuestras <router-link to="/politicas-de-privacidad">Políticas de privacidad</router-link>.
+          y nuestras <router-link to="/politicas-privacidad">Políticas de privacidad</router-link>.
         </p>
       </section>
     </div>
@@ -212,13 +212,25 @@ export default {
   }
 
   .right-section {
-    background-image: url('~@/assets/signup_background.jpg');
+    background-image: url('~@/assets/signup_background_alt.jpg');
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     background-repeat: no-repeat;
     width: 60%;
     margin: 1rem;
-    border-radius: 2rem;
+    margin-right: 0;
+    border-radius: 2rem 0 0 2rem;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 2rem 0 0 2rem;
+    }
   }
 }
 
