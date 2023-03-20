@@ -34,7 +34,7 @@
             :style="'animation-delay: ' + (index * 0.1) + 's'"
             v-for="(project, index) in filteredProjects"
             :key="index"
-            @click="openProject(project.id)"
+            @click="openProject(project.id, convertToSlug(project.attributes.name))"
           >
             <img
               :src="project.attributes.image_review"
@@ -140,11 +140,12 @@ export default {
       });
     },
 
-    openProject(id) {
+    openProject(id, name) {
       this.$router.push({
         name: "project",
         params: {
           id: id,
+          name: name
         },
       });
     },
@@ -152,6 +153,14 @@ export default {
     // reset parameters
     resetParameters() {
       this.$store.commit('resetParameters');
+    },
+
+    // convert spaces into - for url
+    convertToSlug(text) {
+      return text
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
     },
 
     goBack() {

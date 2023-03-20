@@ -3,7 +3,7 @@
     <div class="row info-titles mb-5">
       <div class="col col-9 col-sm-8 info-titles-left">
         <p class="animate__animated">
-          Encontramos el mayor y mejor uso para tu inmueble ¡Visita nuestro portafolio!
+          Encontramos el mayor y mejor uso para tu inmueble ¡Visita nuestro marketplace!
         </p>
       </div>
       <div @click="toPortfolio" class="col col-3 col-sm-4 info-titles-right">
@@ -11,8 +11,19 @@
         <h4>Ver portafolio completo</h4>
       </div>
     </div>
-    <div class="top-projects">
-      <div class="project-card" v-for="project in projects" :key="project.id" @click="openProject(project.id, convertToSlug(project.attributes.name))">
+    <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 300px;">
+      <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div class="top-projects" v-else>
+      <div 
+        class="project-card animate__animated animate__fadeInUp" 
+        :style="'animation-delay: ' + (index * 0.1) + 's'"
+        v-for="(project, index) in projects" 
+        :key="project.id"  
+        @click="openProject(project.id, convertToSlug(project.attributes.name))"
+      >
         <img :src="project.attributes.image_review" alt="image_review" loading="lazy"/>
         <div class="bloc-shadow"></div>
         <h4 class="position-relative">{{ project.attributes.mod }}</h4>
@@ -34,6 +45,7 @@ export default {
   data() {
     return {
       projects: [],
+      isLoading: false,
     };
   },
   mounted() {
@@ -41,12 +53,21 @@ export default {
   },
   methods: {
     async getTopProjects() {
-      const projects = await Projects.getTopList();
-      if (projects.status == 200) {
-        this.projects = projects.data.data;
-      } else {
-        console.log("Error al obtener los proyectos");
-      }
+      this.isLoading = true;
+      await Projects.getTopList()
+        .then((res) => {
+          if (res.status == 200) {
+            this.projects = res.data.data;
+          } else {
+            console.log("Error al obtener los proyectos");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
     openProject(id, name) {
       this.$router.push({
