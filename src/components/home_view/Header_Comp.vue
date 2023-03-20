@@ -7,7 +7,7 @@
           <ICountUp
             class="counter"
             :endVal="enAportacion"
-            :options="options"
+            :options="optionsCounter"
             @ready="onReady"
           />
           <span>m</span> en aportación para desarrollo!
@@ -124,8 +124,8 @@ export default {
         masked: false,
       },
       counterInstance: null,
-      delay: 0,
-      options: {
+      delay: 1000,
+      optionsCounter: {
         useEasing: true,
         useGrouping: true,
         separator: ',',
@@ -146,7 +146,7 @@ export default {
     } else {
       this.options = 3;
     }
-    this.getVariables();
+    //this.getVariables();
   },
   computed: {
     getClassProject() {

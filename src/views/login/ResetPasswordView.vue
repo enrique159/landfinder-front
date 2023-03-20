@@ -49,6 +49,10 @@ import { validatePassword } from '@/utils/keyPressValidate'
 import AuthServices from "@/services/AuthServices";
 
 export default {
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Nueva contraseña",
+  },
   data() {
     return {
       password: "",

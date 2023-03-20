@@ -1,7 +1,7 @@
 <template>
   <div class="mb-5">
     <HeaderComp/>
-    <div class="spacer-130"></div>
+    <!-- <div class="spacer-130"></div> -->
     <!-- <div class="container mb-5">
       <div class="d-flex justify-content-center" style="column-gap: 3rem">
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
@@ -10,6 +10,7 @@
       </div>
     </div> -->
     <DestacadosComp/>
+    <AportacionComp/>
     <!-- <FaqComp /> -->
     <ConoceComp/>
     <PartnersComp/>

@@ -53,6 +53,10 @@ import { required, minLength, email } from 'vuelidate/lib/validators'
 import { setAuthToken, setUser, isLoggedIn } from "@/auth";
 import AuthServices from "@/services/AuthServices";
 export default {
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Iniciar sesión",
+  },
   data() {
     return {
       email: "",

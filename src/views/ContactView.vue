@@ -187,6 +187,10 @@ export default {
   components: {
     MapaComp,
   },
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Contacto",
+  },
   data() {
     return {
       faqList: faq,

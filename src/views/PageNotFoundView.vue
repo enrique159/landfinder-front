@@ -10,7 +10,10 @@
 
 <script>
 export default {
-  
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | 404",
+  },
 }
 </script>
 

@@ -13,6 +13,10 @@
 <script>
 import AuthServices from '@/services/AuthServices';
 export default {
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Confirmar correo",
+  },
   data() {
     return {
       email: '',

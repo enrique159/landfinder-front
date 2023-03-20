@@ -55,6 +55,10 @@ import UserAccountFormComp from "@/components/signup_view/UserAccountFormComp.vu
 import AuthServices from "@/services/AuthServices";
 
 export default {
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Registro",
+  },
   components: {
     SelectUserTypeComp,
     UserDataFormComp,

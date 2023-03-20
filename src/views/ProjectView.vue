@@ -108,7 +108,7 @@ export default {
   },
   metaInfo: {
     title: 'Land Finder México',
-    titleTemplate: '%s | Projecto'
+    titleTemplate: `%s | Propiedad`
   },
   mounted() {
     this.getProject();
@@ -127,6 +127,9 @@ export default {
         ", " +
         this.project.attributes.country
       );
+    },
+    projectName() {
+      return this.project.attributes.name || "";
     },
     projectLocation() {
       return {

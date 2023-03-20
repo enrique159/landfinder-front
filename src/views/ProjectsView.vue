@@ -80,7 +80,7 @@ export default {
   },
   metaInfo: {
     title: 'Land Finder México',
-    titleTemplate: '%s | Proyectos'
+    titleTemplate: '%s | Marketplace'
   },
   mounted() {
     this.getProjects();

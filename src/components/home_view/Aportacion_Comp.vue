@@ -1,32 +1,5 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6">
-        <h2 class="title">Espacios en aportación</h2>
-      </div>
-      <div class="col-12 col-md-6">
-        <div class="metros-aportaciones">
-          <div class="row">
-            <div class="col-12 col-xxl-7 mb-3 mb-xxl-0">
-              <div
-                class="d-flex justify-content-between justify-content-xxl-start align-items-center w-100"
-              >
-                <span>+ {{ enAportacion }} m²</span>
-                <h4>En aportación</h4>
-              </div>
-            </div>
-            <div class="col-12 col-xxl-5">
-              <div
-                class="d-flex justify-content-between justify-content-xxl-end align-items-center w-100"
-              >
-                <span>+ {{ aportado }} m²</span>
-                <h4>Aportado</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div id="methodology" class="row info-titles mb-5">
       <div class="col col-3 col-sm-4 info-titles-left">
         <a href="#contacto">
@@ -64,9 +37,6 @@ export default {
       metodologias: metodologias,
       variables: [],
     };
-  },
-  mounted() {
-    this.getVariables();
   },
   computed: {
     aportado() {

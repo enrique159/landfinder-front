@@ -27,6 +27,10 @@
 import { required, email } from 'vuelidate/lib/validators'
 import AuthServices from "@/services/AuthServices";
 export default {
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Olvidé mi contraseña",
+  },
   data() {
     return {
       email: "",

@@ -2,8 +2,9 @@
   <div class="drawer-menu-container" :class="{ 'active': activeProp }" @click.self="toggleNav()">
     <div class="drawer-menu" :class="{ 'active': activeProp }">
       <div class="d-flex justify-content-between py-3">
-        <div class="d-flex align-items-center" v-if="isLogged">
-          <i class="bi bi-person ts-h2 pe-2"></i>
+        <div class="d-flex align-items-center gap-3" v-if="isLogged">
+          <!-- <i class="bi bi-person ts-h2 pe-2"></i> -->
+          <img :src="require(`@/assets/lfm_type_${getTypeImage}.png`)" alt="Img" style="width: 32px">
           <div>
             <p class="ts-small tc-text mb-0">{{ getUser.name + " " + getUser.lastname }}</p>
             <p class="ts-small tc-text-light mb-0">{{ getUser.email }}</p>
@@ -15,7 +16,7 @@
         </button>
       </div>
       <div class="row">
-        <div class="col col-5 col-md-4">
+        <div class="col col-12 col-md-4">
           <span class="title-content">Mi cuenta</span>
 
           <!-- MENU LOGGED -->
@@ -26,13 +27,15 @@
 
           <!-- MENU NO LOGGED -->
           <div class="menu-user pt-4" v-else>
-            <router-link to="/login" @click.native="activeProp = false">Inicia sesión</router-link>
+            <button @click="toLogin" class="btn button-base button-login">
+              inicia sesión
+            </button>
             <button @click="toSignUp" class="btn button-base button-register">
               registrarme
             </button>
           </div>
 
-          <div class="menu-user pt-5">
+          <div class="menu-user pt-2 pt-md-5">
             <router-link to="/support" @click.native="activeProp = false">
               <span class="ts-small tc-text-light">Ayuda y soporte</span>
             </router-link>
@@ -44,7 +47,7 @@
             </router-link>
           </div>
         </div>
-        <div class="col col-7 col-md-8">
+        <div class="col col-12 col-md-8">
           <span class="title-content">Menú</span>
           <div class="menu-content pt-4">
             <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Inicio</span></router-link>
@@ -111,6 +114,12 @@ export default {
         this.$emit('updateActive', value)
       },
     },
+    getUsertype() {
+      return store.getters['getUserType']
+    },
+    getTypeImage() {
+      return this.getUsertype == 'OWNER' ? 1 : this.getUsertype == 'INVESTOR' ? 2 : 3
+    }
   },
   methods: {
     toggleNav() {
@@ -126,6 +135,10 @@ export default {
     },
     toSignUp(){
       this.$router.push('/signup')
+      this.activeProp = false;
+    },
+    toLogin(){
+      this.$router.push('/login')
       this.activeProp = false;
     }
   }
@@ -206,10 +219,23 @@ export default {
           color: var(--color-white);
         }
       }
+      .button-login {
+        border: 2px solid #969696;
+        background: transparent;
+        color: var(--color-text);
+        padding: 0.3rem 1rem;
+        width: 100%;
+        max-width: 128px;
+        &:hover {
+          border: 2px solid var(--color-text-dark);
+        }
+      }
       .button-register {
         border: none;
         color: var(--color-complementary-1);
         background-color: rgba($color: #0DBA6A, $alpha: 0.2);
+        width: 100%;
+        max-width: 128px;
         &:hover {
           background-color: var(--color-complementary-1);
           color: var(--color-white);
@@ -268,17 +294,23 @@ export default {
   .drawer-menu-container {
     .drawer-menu {
       width: 100%;
+      .menu-user {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
     }
   }
 }
 
 @media screen and (max-width: 768px) {
   .drawer-menu-container {
+    overflow-y: auto;
     .drawer-menu {
       padding: 1rem 2rem;
       .menu-content {
         a {
-          font-size: var(--h2-font-size);
+          font-size: var(--h1-font-size);
         }
       }
     }

@@ -1410,6 +1410,10 @@ export default {
   mounted() {
     window.scrollTo(0, 0);
   },
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Aviso de Privacidad",
+  },
 };
 </script>
 

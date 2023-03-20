@@ -6,7 +6,7 @@
           <img class="logo" src="@/assets/logo.svg" alt="">
         </router-link>
         <div class="menu-dashboard">
-          <div class="d-flex justify-content-center align-items-center gap-2 me-0 me-sm-2">
+          <div class="d-flex justify-content-center align-items-center gap-2 me-0 me-sm-2" v-if="!isLogged">
             <button id="#buttonLogin" class="button-login" ref="buttonLogin" @click="goTo('/login', true)">
               <span>Iniciar sesión</span>
               <i class="bi bi-box-arrow-in-right"></i>
@@ -16,22 +16,16 @@
               <i class="bi bi-person-plus-fill"></i>
             </button>
           </div>
-          <div class="menu-dashboard__info">
-            <!-- <h5 class="text-end mb-0">menu</h5> -->
-            <div class="d-flex" v-if="isLogged">
-              <i class="bi bi-person tc-text-light pe-2"></i>
-              <span class="ts-small tc-text-light">{{ username }}</span>
-            </div>
+          <div class="menu-dashboard__info" v-if="isLogged">
+            <button class="button-market" @click="goTo('/marketplace', true)">
+              <span>marketplace</span>
+            </button>
+            <i class="bi bi-person tc-text-light pe-2"></i>
           </div>
           <i v-if="isLogged" class="bi bi-person tc-text-light icon-min"></i>
           <button class="button-nav" @click="toggleNav()">
             <div class="line-1"></div>
             <div class="line-2"></div>
-            <!-- <div class="button-icon">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div> -->
           </button>
         </div>
       </nav>
@@ -76,7 +70,15 @@ export default {
   mounted() {
     if (!isLoggedIn) logoutUser();
     const buttonLogin = this.$refs.buttonLogin;
-    buttonLogin.addEventListener('mousemove', this.handleOnMouseMove);
+    if (buttonLogin) {
+      buttonLogin.addEventListener('mousemove', this.handleOnMouseMove);
+    }
+  },
+  beforeUnmount() {
+    const buttonLogin = this.$refs.buttonLogin;
+    if (buttonLogin) {
+      buttonLogin.removeEventListener('mousemove', this.handleOnMouseMove);
+    }
   },
   methods: {
     toggleNav() {
@@ -216,7 +218,20 @@ export default {
     align-items: center;
     column-gap: 1rem;
     .icon-min { display: none; }
-    &__info { display: block; }
+    &__info { 
+      display: flex;
+      align-items: center;
+      column-gap: 1rem; 
+      .button-market {
+        height: 38px;
+        border: 2px solid #969696;
+        background: transparent;
+        color: var(--color-text);
+        padding: 0.3rem 1rem;
+        border-radius: 2rem;
+        position: relative;
+      }
+    }
   }
 
   .portfolio-link {

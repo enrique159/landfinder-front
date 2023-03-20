@@ -30,6 +30,7 @@ export default new Vuex.Store({
     getParameters: state => state.parameters,
     getToken: state => state.token,
     getUser: state => state.user,
+    getUserType: state => state.user.usertype || 'NONE',
     getIsLoggedIn: state => isLoggedIn(),
   },
   mutations: {
