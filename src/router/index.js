@@ -11,6 +11,7 @@ import PageConfirmEmailView from '../views/login/PageConfirmEmailView.vue'
 import ForgotPasswordView from '../views/login/ForgotPasswordView.vue'
 import ResetPasswordView from '../views/login/ResetPasswordView.vue'
 import ContactView from '@/views/ContactView.vue'
+import Collaborators from '@/views/CollaboratorsView.vue'
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
 
@@ -32,6 +33,11 @@ const routes = [
     path: '/project/:id?/:name?',
     name: 'project',
     component: () => import('@/views/ProjectView.vue'),
+  },
+  {
+    path: '/collaborators',
+    name: 'collaborators',
+    component: Collaborators,
   },
   {
     path: '/terminos-y-condiciones',

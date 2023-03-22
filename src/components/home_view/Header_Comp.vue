@@ -10,7 +10,7 @@
             :options="optionsCounter"
             @ready="onReady"
           />
-          <span>m</span> en aportación para desarrollo!
+          <span>m²</span> en aportación para desarrollo!
         </h1>
         <div class="search-bar animate__animated animate__fadeInUp animate__delay" >
           <!-- DROPDOWN LOCATION -->
@@ -131,7 +131,6 @@ export default {
         separator: ',',
         decimal: '.',
         prefix: '',
-        suffix: 'm'
       }
     };
   },
