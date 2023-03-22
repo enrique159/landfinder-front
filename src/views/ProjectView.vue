@@ -229,7 +229,6 @@ export default {
           .then((res) => {
             if (res.status == 200) {
               setUser(res.data);
-              this.showToast('success', 'Agregado a guardados')
             } else {
               this.showToast('error', 'Error al agregar a guardados')
             }
@@ -256,7 +255,6 @@ export default {
           .then((res) => {
             if (res.status == 200) {
               setUser(res.data);
-              this.showToast('success', 'Eliminado de guardados')
             } else {
               this.showToast('error', 'Error al eliminar de guardados')
             }
