@@ -35,6 +35,12 @@ const routes = [
     component: () => import('@/views/ProjectView.vue'),
   },
   {
+    path: '/saved',
+    name: 'saved',
+    component: () => import('@/views/SavedProjectsView.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/collaborators',
     name: 'collaborators',
     component: Collaborators,

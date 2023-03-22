@@ -14,13 +14,38 @@
       <div class="row">
         <div class="col col-12 col-md-7 col-lg-8 col-xl-9">
           <!-- NAME & ADDRESS PROJECT -->
-          <div class="title-project d-flex justify-content-between flex-wrap">
+          <div class="title-project d-flex justify-content-between">
             <h1>{{ project.attributes.name }}</h1>
-            <a class="d-none d-lg-block" target="_blank" :href="mapUrl">Ver en el mapa</a>
+            <div v-if="logged">
+              <button
+                class="btn-remove"
+                @click="removeFavourites(project.id)" 
+                :disabled="saving"
+                :class="{ 'disabled': saving }"
+                v-if="isProjectInFavourites"
+              >
+                <i class="bi bi-bookmark-fill me-1"></i>
+                <span v-if="saving">Removiendo...</span>
+                <span v-else>Remover de guardados</span>
+              </button>
+              <button 
+                v-else
+                @click="addFavourites(project.id)" 
+                :disabled="saving"
+                :class="{ 'disabled': saving }"
+              >
+                <i class="bi bi-bookmark me-1"></i>
+                <span v-if="saving">Guardando...</span>
+                <span v-else>Guardar</span>
+              </button>
+            </div>
+            <div v-else></div>
           </div>
-          <p class="address mb-5">
-            <i class="bi bi-geo-alt-fill"></i> {{ projectAddress }}
-          </p>
+          <div class="pb-5">
+            <a class="address" target="_blank" :href="mapUrl">
+              <i class="bi bi-geo-alt-fill"></i> {{ projectAddress }}
+            </a>
+          </div>
           <!-- PROJECT DETAILS -->
           <div class="divider mb-4"></div>
           <DetallesComp :project="project.attributes" />
@@ -81,6 +106,10 @@ import MapaComp from "@/components/project_view/Mapa_Comp.vue";
 import SimilaresComp from "@/components/project_view/Similares_Comp.vue";
 import FormularioComp from "@/components/project_view/Formulario_Comp.vue";
 import Project from "@/common/project_services.js";
+import UserServices from "@/services/UserServices";
+import ToastMixin from "@/mixins/ToastMixin.vue";
+import store from "@/store";
+import { isLoggedIn, setUser } from "@/auth";
 export default {
   name: "ProjectView",
   components: {
@@ -91,6 +120,7 @@ export default {
     SimilaresComp,
     FormularioComp,
   },
+  mixins: [ToastMixin],
   data() {
     return {
       project: {},
@@ -104,6 +134,7 @@ export default {
         message: "",
       },
       isLoading: false,
+      saving: false,
     };
   },
   metaInfo: {
@@ -137,9 +168,15 @@ export default {
         lng: this.lng,
       };
     },
+    isProjectInFavourites() {
+      return store.getters.getSavedProjects.includes(this.project.id);
+    },
     mapUrl(){
       return `https://www.google.com/maps/?q=${this.lat},${this.lng}`
       //return `https://www.google.com.mx/maps/place/24%C2%B008'24.8%22N+110%C2%B018'49.6%22W/@${this.lat},${this.lng},17z/`
+    },
+    logged() {
+      return isLoggedIn();
     }
   },
   methods: {
@@ -185,6 +222,56 @@ export default {
         console.log("Error al obtener los proyectos similares");
       }
     },
+    async addFavourites(idProject) {
+      if (this.logged) {
+        this.saving = true;
+        await UserServices.updateUser(store.getters.getUser.id, { favourites: [...store.getters.getSavedProjects, idProject], })
+          .then((res) => {
+            if (res.status == 200) {
+              setUser(res.data);
+              this.showToast('success', 'Agregado a guardados')
+            } else {
+              this.showToast('error', 'Error al agregar a guardados')
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+            this.showToast('error', 'Error al agregar a guardados')
+          })
+          .finally(() => {
+            this.saving = false;
+          });        
+      } else {
+        this.showToast('info', 'Para agregar a guardados debes iniciar sesión')
+      }
+    },
+
+    async removeFavourites(idProject) {
+      if (this.logged) {
+        this.saving = true;
+        const favourites = store.getters.getSavedProjects.filter((project) => {
+          return project !== idProject;
+        })
+        await UserServices.updateUser(store.getters.getUser.id, { favourites: [...favourites] })
+          .then((res) => {
+            if (res.status == 200) {
+              setUser(res.data);
+              this.showToast('success', 'Eliminado de guardados')
+            } else {
+              this.showToast('error', 'Error al eliminar de guardados')
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+            this.showToast('error', 'Error al eliminar de guardados')
+          })
+          .finally(() => {
+            this.saving = false;
+          });       
+      } else {
+        this.showToast('info', 'Para eliminar de guardados debes iniciar sesión')
+      }
+    }
   },
 };
 </script>
@@ -199,9 +286,10 @@ export default {
       font-weight: var(--font-semi-bold);
       margin-bottom: 1rem;
     }
-    a {
+    button {
       height: fit-content;
       border: 1px solid var(--color-complementary-1);
+      background-color: transparent;
       font-size: var(--small-font-size);
       font-weight: var(--font-medium);
       color: var(--color-complementary-1);
@@ -213,9 +301,20 @@ export default {
         background-color: rgba($color: #0dba6a, $alpha: 0.2);
       }
     }
+
+    .btn-remove {
+      border: none;
+      background-color: rgba($color: #0dba6a, $alpha: 0.2);
+    }
+    .disabled {
+      opacity: 0.5;
+    }
   }
   .address {
     color: var(--color-text-light);
+    &:hover {
+      color: var(--color-text);
+    }
   }
   .company-link {
     color: #eab60e;

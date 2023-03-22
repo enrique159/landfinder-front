@@ -31,6 +31,7 @@ export default new Vuex.Store({
     getToken: state => state.token,
     getUser: state => state.user,
     getUserType: state => state.user.usertype || 'NONE',
+    getSavedProjects: state => state.user.favourites || [],
     getIsLoggedIn: state => isLoggedIn(),
   },
   mutations: {
