@@ -5,7 +5,7 @@
       <router-link to="/marketplace">Marketplace</router-link>
       <router-link to="/">Nosotros</router-link>
       <router-link to="/">Metodología</router-link>
-      <router-link to="/">Partners</router-link>
+      <router-link to="/collaborators">Colaboradores</router-link>
       <router-link to="/contacto">Contacto</router-link>
     </div>
 

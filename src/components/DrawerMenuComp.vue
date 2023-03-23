@@ -55,7 +55,7 @@
             <router-link to="/marketplace" @click.native="activeProp = false"><span>Marketplace</span></router-link>
             <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
             <router-link to="/collaborators" @click.native="activeProp = false"><span>Colaboradores</span></router-link>
-            <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link>
+            <!-- <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link> -->
             <router-link to="/contacto" @click.native="activeProp = false"><span>Contacto</span></router-link>
           </div>
         </div>

@@ -22,15 +22,20 @@
             </div>
         </div>
 
+        <!-- <parallax :speedFactor="0.5"></parallax> -->
         <div class="banner-collaborators d-flex justify-content-center align-items-center">
             <img class="logo-collaborators" src="@/assets/logo-colaboradores.svg" alt="">
         </div>
+        
     </div>
 </template>
 
 <script>
+import Parallax from 'vue-parallaxy'
 export default {
-
+    components: {
+      Parallax
+    },
     mounted() {
         const buttonCertificate = this.$refs.buttonCertificate;
         if (buttonCertificate) {
@@ -144,7 +149,7 @@ export default {
     width: 100%;
     height: 500px;
     background-image: url('@/assets/collaborators-cover.jpg');
-    background-position: center bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
