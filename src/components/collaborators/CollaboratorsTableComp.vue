@@ -6,14 +6,32 @@
             <div class="search-input">
                 <div class="d-flex surface-input p-relative">
                     <input type="text" placeholder="Escribe aquí un número de matrícula, nombre o empresa"
-                        v-model="minLand" />
+                        v-model="searchData" />
                 </div>
             </div>
 
-            <button class="button-search" @click="() => { }">
+            <button class="button-search" @click="search">
                 <span>Buscar</span>
             </button>
         </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="tc-text-light" v-for="item in headers" :key="item.id" scope="col">{{ item }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tc-text" v-for="item in this.filterData" :key="item.folio">
+                    <th class="py-4" scope="row">{{ item.folio }}</th>
+                    <td class="py-4">{{ item.name }} {{ item.lastname }}</td>
+                    <td class="py-4">{{ item.company }}</td>
+                    <td class="py-4">{{ item.city }}</td>
+                    <td class="py-4">{{ item.certificate }}</td>
+                    <td class="py-4"><button class="button-more"></button></td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 </template>
@@ -22,7 +40,9 @@
 export default {
     data() {
         return {
-            Headers: [
+            searchData: "",
+            filterData: [],
+            headers: [
                 'Folio',
                 'Nombre',
                 'Empresa',
@@ -34,6 +54,47 @@ export default {
                 {
                     folio: "WH-12613-19302",
                     name: "Juan",
+                    lastname: "Perez",
+                    company: "Welcome Home Baja",
+                    city: "La Paz",
+                    certificate: "CCLFM2023",
+                },
+                {
+                    folio: "WH-12613-19303",
+                    name: "Carlos",
+                    lastname: "Perez",
+                    company: "Welcome Home Baja",
+                    city: "La Paz",
+                    certificate: "CCLFM2023",
+                },
+                {
+                    folio: "WH-12613-19304",
+                    name: "Pedro",
+                    lastname: "Perez",
+                    company: "Welcome Home Baja",
+                    city: "La Paz",
+                    certificate: "CCLFM2023",
+                },
+                {
+                    folio: "WH-12613-19305",
+                    name: "Juan",
+                    lastname: "Torres",
+                    company: "Keller Williams",
+                    city: "La Paz",
+                    certificate: "CCLFM2023",
+                },
+                {
+                    folio: "WH-12613-19306",
+                    name: "Diego",
+                    lastname: "Torres",
+                    company: "Keller Williams",
+                    city: "La Paz",
+                    certificate: "CCLFM2023",
+                },
+                {
+                    folio: "WH-12613-19307",
+                    name: "Juan",
+                    lastname: "Escutia",
                     company: "Welcome Home Baja",
                     city: "La Paz",
                     certificate: "CCLFM2023",
@@ -41,14 +102,32 @@ export default {
             ]
         };
     },
+    created(){
+        this.filterData = this.collaboratorsList
+    },
+    methods: {
+        search() {
+            this.filterData = this.collaboratorsList.filter((item) => {
+                const fullname = item.name + ' ' + item.lastname;
+                return fullname.toLowerCase().includes(this.searchData.toLowerCase()) ||
+                item.folio.toLowerCase().includes(this.searchData.toLowerCase()) ||
+                item.company.toLowerCase().includes(this.searchData.toLowerCase())
+            })
+            this.filterData = filterData ? filterData : this.collaboratorsList
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+table{
+    margin: 5rem 0;
+}
 .search-input {
     text-align: left;
     padding: 0 1.5rem;
     width: 80%;
+
     input {
         width: 100%;
         background-color: #efefef;
@@ -121,5 +200,11 @@ export default {
     i {
         display: none;
     }
+}
+
+.button-more {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
 }
 </style>
