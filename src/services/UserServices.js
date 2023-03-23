@@ -6,7 +6,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'authorization': 'Bearer ' + store.getters.getToken
+      'authorization': `Bearer ${store.getters.getToken}`
     }
     return axios.get('/users/me', { headers })
       .then(response => response)
@@ -17,7 +17,7 @@ export default {
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'authorization': 'Bearer ' + store.getters.getToken
+      'authorization': `Bearer ${store.getters.getToken}`
     }
     return axios.put(`/users/${id}`, data, { headers })
       .then(response => response)

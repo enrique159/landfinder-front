@@ -13,7 +13,6 @@ export function setUser(user) {
 }
 
 export function setAuthToken(token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
   store.dispatch("setToken", { token })
 }
 
