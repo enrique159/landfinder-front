@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="container py-5">
+        <div class="container header-title-collab">
             <h1 class="ff-secondary ts-biggest text-center mb-4">Colaboramos para hacer <br class="d-none d-sm-block"> más y
                 mejores negocios
             </h1>
             <p class="text-center tc-text-light ts-normal mb-5">El programa
                 <span class="tw-bold" style="font-style: italic;">Colaboradores Land Finder </span> capacita y certifica el
                 conocimiento <br class="d-none d-sm-block"> en materia de desarrollo inmobiliario y aportaciones de los
-                profesionales inobiliarios.
+                profesionales inmobiliarios.
             </p>
             <div class="d-flex justify-content-center gap-3 mb-5">
                 <button id="#buttonCertificate" class="button-certificate" ref="buttonCertificate" @click="() => { }">
@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.header-title-collab{
+    padding: 8rem 0;
+}
 .button-certificate {
     height: 38px;
     border: 2px solid #969696;
