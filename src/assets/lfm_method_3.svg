@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="72" viewBox="0 0 92 72">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.486" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#335947"/>
+      <stop offset="1" stop-color="#329567"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_2039" data-name="Grupo 2039" transform="translate(-20941.301 -9930)">
+    <rect id="Rectángulo_1038" data-name="Rectángulo 1038" width="72" height="72" rx="10" transform="translate(20961.301 9930)" fill="#0dba6a" opacity="0.162"/>
+    <rect id="Rectángulo_1039" data-name="Rectángulo 1039" width="72" height="72" rx="10" transform="translate(20951.301 9930)" fill="#0dba6a" opacity="0.5"/>
+    <rect id="Rectángulo_1060" data-name="Rectángulo 1060" width="72" height="72" rx="10" transform="translate(20941.301 9930)" fill="url(#linear-gradient)"/>
+    <g id="chart" transform="translate(20963.863 9952.561)">
+      <line id="Línea_1" data-name="Línea 1" y2="9.219" transform="translate(7.218 11.023)" fill="none" stroke="#0dba6a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"/>
+      <line id="Línea_2" data-name="Línea 2" y2="13.632" transform="translate(13.491 6.611)" fill="none" stroke="#0dba6a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"/>
+      <line id="Línea_3" data-name="Línea 3" y2="4.348" transform="translate(19.661 15.895)" fill="none" stroke="#0dba6a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"/>
+      <path id="Trazado_1200" data-name="Trazado 1200" d="M19.737,0H7.142C2.752,0,0,3.107,0,7.506V19.373c0,4.4,2.739,7.506,7.142,7.506H19.737c4.4,0,7.142-3.107,7.142-7.506V7.506C26.879,3.107,24.14,0,19.737,0Z" fill="none" stroke="#0dba6a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

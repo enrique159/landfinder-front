@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="72" viewBox="0 0 92 72">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.486" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#335947"/>
+      <stop offset="1" stop-color="#329567"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_2040" data-name="Grupo 2040" transform="translate(-20941.301 -10016)">
+    <rect id="Rectángulo_1032" data-name="Rectángulo 1032" width="72" height="72" rx="10" transform="translate(20961.301 10016)" fill="#0dba6a" opacity="0.162"/>
+    <rect id="Rectángulo_1033" data-name="Rectángulo 1033" width="72" height="72" rx="10" transform="translate(20951.301 10016)" fill="#0dba6a" opacity="0.5"/>
+    <rect id="Rectángulo_1061" data-name="Rectángulo 1061" width="72" height="72" rx="10" transform="translate(20941.301 10016)" fill="url(#linear-gradient)"/>
+    <path id="archive" d="M12.766,17.8h5.383a1.346,1.346,0,0,0,0-2.691H12.766a1.346,1.346,0,0,0,0,2.691ZM24.877,3H6.037A4.037,4.037,0,0,0,2,7.037v4.037A1.346,1.346,0,0,0,3.346,12.42H4.691V23.186a4.037,4.037,0,0,0,4.037,4.037H22.186a4.037,4.037,0,0,0,4.037-4.037V12.42h1.346a1.346,1.346,0,0,0,1.346-1.346V7.037A4.037,4.037,0,0,0,24.877,3ZM23.531,23.186a1.346,1.346,0,0,1-1.346,1.346H8.729a1.346,1.346,0,0,1-1.346-1.346V12.42H23.531ZM26.223,9.729H4.691V7.037A1.346,1.346,0,0,1,6.037,5.691h18.84a1.346,1.346,0,0,1,1.346,1.346Z" transform="translate(20962.145 10036.889)" fill="#0dba6a"/>
+  </g>
+</svg>
