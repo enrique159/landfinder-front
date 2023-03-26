@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-5">
+    <div id="search" class="container my-5">
         <h1 class="ff-secondary text-center mb-5">Padrón de colaboradores Land Finder 2023</h1>
 
         <div class="d-flex align-items-center justify-content-center">
@@ -22,12 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tc-text" v-for="item in this.filterData" :key="item.folio">
-                    <th class="py-4" scope="row">{{ item.folio }}</th>
-                    <td class="py-4">{{ item.name }} {{ item.lastname }}</td>
-                    <td class="py-4">{{ item.company }}</td>
-                    <td class="py-4">{{ item.city }}</td>
-                    <td class="py-4">{{ item.certificate }}</td>
+                <tr class="tc-text" v-for="item in this.filterData" :key="item.attributes.folio">
+                    <th class="py-4" scope="row">{{ item.attributes.folio }}</th>
+                    <td class="py-4">{{ item.attributes.name }} {{ item.attributes.lastname }}</td>
+                    <td class="py-4">{{ item.attributes.company }}</td>
+                    <td class="py-4">{{ item.attributes.city }}</td>
+                    <td class="py-4">{{ item.attributes.certificate }}</td>
                     <td class="py-4"><button class="button-more"></button></td>
                 </tr>
             </tbody>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import CollaboratorServices from '@/services/CollaboratorServices';
+
 export default {
     data() {
         return {
@@ -50,79 +52,67 @@ export default {
                 'Certificacion',
                 'Mas'
             ],
-            collaboratorsList: [
-                {
-                    folio: "WH-12613-19302",
-                    name: "Juan",
-                    lastname: "Perez",
-                    company: "Welcome Home Baja",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                },
-                {
-                    folio: "WH-12613-19303",
-                    name: "Carlos",
-                    lastname: "Perez",
-                    company: "Welcome Home Baja",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                },
-                {
-                    folio: "WH-12613-19304",
-                    name: "Pedro",
-                    lastname: "Perez",
-                    company: "Welcome Home Baja",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                },
-                {
-                    folio: "WH-12613-19305",
-                    name: "Juan",
-                    lastname: "Torres",
-                    company: "Keller Williams",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                },
-                {
-                    folio: "WH-12613-19306",
-                    name: "Diego",
-                    lastname: "Torres",
-                    company: "Keller Williams",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                },
-                {
-                    folio: "WH-12613-19307",
-                    name: "Juan",
-                    lastname: "Escutia",
-                    company: "Welcome Home Baja",
-                    city: "La Paz",
-                    certificate: "CCLFM2023",
-                }
-            ]
+            collaboratorsList: [],
         };
     },
-    created(){
-        this.filterData = this.collaboratorsList
+    async created() {
+        this.getCollaborators();
+    },
+    computed: {
+        query() {
+            return this.searchData ? `folio=${this.searchData}?name=${this.searchData}?company=${this.searchData}` : "";
+        }
     },
     methods: {
         search() {
             this.filterData = this.collaboratorsList.filter((item) => {
-                const fullname = item.name + ' ' + item.lastname;
+                const fullname = item.attributes.name + ' ' + item.attributes.lastname;
                 return fullname.toLowerCase().includes(this.searchData.toLowerCase()) ||
-                item.folio.toLowerCase().includes(this.searchData.toLowerCase()) ||
-                item.company.toLowerCase().includes(this.searchData.toLowerCase())
+                    item.attributes.folio.toLowerCase().includes(this.searchData.toLowerCase()) ||
+                    item.attributes.company.toLowerCase().includes(this.searchData.toLowerCase())
             })
-            this.filterData = filterData ? filterData : this.collaboratorsList
+            this.filterData = this.filterData ? this.filterData : this.collaboratorsList
+        },
+        async getCollaborators() {
+            await CollaboratorServices.getAll().then((res) => {
+                if (res.status == 200) {
+                    this.collaboratorsList = res.data.data
+                    this.filterData = Object.assign([], this.collaboratorsList)
+                } else {
+                    this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+                }
+            }).catch((err) => {
+                console.log(err)
+                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            })
+        },
+        // SHOW TOAST
+        showToast(type, message) {
+            this.$toast(message, {
+                type: type,
+                position: 'top-right',
+                duration: 3000,
+                dismissible: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.6,
+                showCloseButtonOnHover: false,
+                hideProgressBar: false,
+                closeButton: 'button',
+                icon: true,
+                rtl: false,
+            });
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-table{
+table {
     margin: 5rem 0;
 }
+
 .search-input {
     text-align: left;
     padding: 0 1.5rem;

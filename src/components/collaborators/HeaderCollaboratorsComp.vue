@@ -12,13 +12,14 @@
             <div class="d-flex justify-content-center gap-3 mb-5">
                 <button id="#buttonCertificate" class="button-certificate" ref="buttonCertificate" @click="() => { }">
                     <span>Certificarme</span>
-                    <i class="bi bi-box-arrow-in-right"></i>
                 </button>
 
-                <button class="button-verifyCert" @click="goTo('/signup', true)">
-                    <span>Verificar matricula</span>
-                    <i class="bi bi-person-plus-fill"></i>
+                <a href="#search">
+                    <button class="button-verifyCert" @click="()=>{}">
+                    <span> Verificar matricula</span>
                 </button>
+                </a>
+                
             </div>
         </div>
 
