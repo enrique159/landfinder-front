@@ -9,9 +9,9 @@
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
       </div>
     </div> -->
-    <MethodCompVue/>
+   
     <DestacadosComp/>
-    <AportacionComp/>
+    <MethodCompVue/>
     <!-- <FaqComp /> -->
     <ConoceComp/>
     <PartnersComp/>

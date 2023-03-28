@@ -1,14 +1,16 @@
 <template>
-    <div class="method-comp">
-        <h1 class="ff-secondary ts-biggest text-center my-5">Gracias a nuestra metodología <br> ¡puedes empezar a
-            desarrollar hoy!</h1>
-        <p class="tc-text-light text-center mb-5">¿Cómo funciona Land Finder México?</p>
-        <div class="row">
-            <div v-for="item in methodologies" :key="item.id" class="col col-12 col-sm-4">
-                <div class="method-card px-5 d-flex flex-column justify-content-center gap-1 text-center">
-                    <img :src="item.image" alt="no_img" class="mb-3">
-                    <h2 class="ff-secondary text-center ts-h2">{{ item.title }}</h2>
-                    <p>{{ item.description }}</p>
+    <div class="container">
+        <div id="methodology" class="method-comp">
+            <h1 class="ff-secondary ts-biggest text-center my-5">Gracias a nuestra metodología <br> ¡puedes empezar a
+                desarrollar hoy!</h1>
+            <p class="tc-text-light text-center mb-5">¿Cómo funciona Land Finder México?</p>
+            <div class="row g-4 g-sm-5">
+                <div v-for="item in methodologies" :key="item.id" class="col col-12 col-sm-4">
+                    <div class="method-card px-5 d-flex flex-column justify-content-center gap-1 text-center">
+                        <img :src="item.image" alt="no_img" class="mb-3">
+                        <h2 class="ff-secondary text-center ts-h2">{{ item.title }}</h2>
+                        <p>{{ item.description }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +62,8 @@ export default {
 <style lang="scss" scoped>
 .method-card {
     height: 280px;
+    border-radius: 28px;
+    background-color: var(--color-black);
     img {
         height: 64px;
     }
