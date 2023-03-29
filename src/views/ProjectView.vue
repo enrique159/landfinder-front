@@ -7,37 +7,26 @@
     </div>
     <Alerta404Comp v-if="errorStatus" :error="error" />
     <div v-if="status200">
-      <ImagenesComp
-        :imagenCover="project.attributes.image_cover"
-        :imagenes="project.attributes.images"
-      />
+      <ImagenesComp :imagenCover="project.attributes.image_cover" :imagenes="project.attributes.images" />
       <div class="row">
-        <div class="col col-12 col-md-7 col-lg-8 col-xl-9">
+        <div class="col col-12">
           <!-- NAME & ADDRESS PROJECT -->
           <div class="title-project d-flex justify-content-between">
-            <h1>{{ project.attributes.name }}</h1>
+            <h1 class="ff-secondary ts-biggest">{{ project.attributes.name }}</h1>
             <div v-if="logged">
-              <button
-                class="btn-remove"
-                @click="removeFavourites(project.id)" 
-                :disabled="saving"
-                :class="{ 'disabled': saving }"
-                v-if="isProjectInFavourites"
-              >
+              <button class="btn-remove" @click="removeFavourites(project.id)" :disabled="saving"
+                :class="{ 'disabled': saving }" v-if="isProjectInFavourites">
                 <i class="bi bi-bookmark-fill me-1"></i>
                 <span v-if="saving">Removiendo...</span>
                 <span v-else>Remover de guardados</span>
               </button>
-              <button 
-                v-else
-                @click="addFavourites(project.id)" 
-                :disabled="saving"
-                :class="{ 'disabled': saving }"
-              >
+
+              <button v-else @click="addFavourites(project.id)" :disabled="saving" :class="{ 'disabled': saving }">
                 <i class="bi bi-bookmark me-1"></i>
                 <span v-if="saving">Guardando...</span>
                 <span v-else>Guardar</span>
               </button>
+
             </div>
             <div v-else></div>
           </div>
@@ -46,36 +35,40 @@
               <i class="bi bi-geo-alt-fill"></i> {{ projectAddress }}
             </a>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12">
           <!-- PROJECT DETAILS -->
-          <div class="divider mb-4"></div>
-          <DetallesComp :project="project.attributes" />
           <div class="divider mb-5"></div>
-          <!-- COMMENTS -->
-          <div class="d-flex justify-content-between align-items-end mb-2">
-            <h5 class="m-0">Comentarios:</h5>
-            <a
-              class="company-link"
-              :href="project.attributes.id_company.data.attributes.contact_link"
-              target="_blank"
-              >{{ project.attributes.id_company.data.attributes.name }}</a
-            >
+          <DetallesComp :project="project.attributes" />
+          <div class="divider my-5"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12 col-md-7 col-lg-8 col-xl-9">
+          <!-- DESCRIPTION -->
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <h3 class="ff-secondary">Detalles de la propiedad</h3>
+            <a class="view-more-link" :href="project.attributes.id_company.data.attributes.contact_link"
+              target="_blank">Ver más información</a>
           </div>
           <p class="comments-project mb-5">
             {{ project.attributes.comments }}
           </p>
           <div class="divider mb-5"></div>
           <!-- MAP LOCATION -->
+          <div class="d-flex justify-content-between align-items-end mb-5">
+            <h3 class="ff-secondary">Ubicado en {{ projectShortAddress }}</h3>
+            <a class="view-more-link" :href="mapUrl" target="_blank">Ver ubicación en maps</a>
+          </div>
           <MapaComp :locationProp="projectLocation" />
           <div class="divider my-5"></div>
           <!-- PROYECTOS SIMILARES -->
-          <div class="d-flex similar-projects">
-            <img
-              :src="
-                this.project.attributes.id_company.data.attributes.logo_image
-              "
-              alt="logo-company"
-              class="company-logo me-3"
-            />
+          <!--  <div class="d-flex similar-projects">
+            <img :src="
+              this.project.attributes.id_company.data.attributes.logo_image
+            " alt="logo-company" class="company-logo me-3" />
             <div>
               <h3>
                 Otros projectos de
@@ -85,13 +78,19 @@
                 {{ this.project.attributes.id_company.data.attributes.description }}
               </p>
             </div>
-          </div>
+          </div> -->
+          <h3 class="ff-secondary mb-5">Descubre otras propiedades que <br> te podrían interesar</h3>
           <SimilaresComp :similarProjects="similarProjects" />
           <div class="divider my-5"></div>
         </div>
         <div class="col col-12 col-md-5 col-lg-4 col-xl-3 px-4 px-md-0 ps-md-3">
           <!-- FORMULARIO -->
           <FormularioComp :name_project="this.project.attributes.name" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <RegisterBannerComp class="mt-5" v-if="!isLoggedIn" />
         </div>
       </div>
     </div>
@@ -105,6 +104,7 @@ import DetallesComp from "@/components/project_view/Detalles_Comp.vue";
 import MapaComp from "@/components/project_view/Mapa_Comp.vue";
 import SimilaresComp from "@/components/project_view/Similares_Comp.vue";
 import FormularioComp from "@/components/project_view/Formulario_Comp.vue";
+import RegisterBannerComp from "@/components/project_view/RegisterBannerComp.vue";
 import Project from "@/common/project_services.js";
 import UserServices from "@/services/UserServices";
 import ToastMixin from "@/mixins/ToastMixin.vue";
@@ -119,6 +119,7 @@ export default {
     MapaComp,
     SimilaresComp,
     FormularioComp,
+    RegisterBannerComp
   },
   mixins: [ToastMixin],
   data() {
@@ -159,6 +160,17 @@ export default {
         this.project.attributes.country
       );
     },
+    projectShortAddress() {
+      return (
+        this.project.attributes.hood +
+        ", " +
+        this.project.attributes.city +
+        ", " +
+        this.project.attributes.estate +
+        ", " +
+        this.project.attributes.country
+      );
+    },
     projectName() {
       return this.project.attributes.name || "";
     },
@@ -171,7 +183,7 @@ export default {
     isProjectInFavourites() {
       return store.getters.getSavedProjects.includes(this.project.id);
     },
-    mapUrl(){
+    mapUrl() {
       return `https://www.google.com/maps/?q=${this.lat},${this.lng}`
       //return `https://www.google.com.mx/maps/place/24%C2%B008'24.8%22N+110%C2%B018'49.6%22W/@${this.lat},${this.lng},17z/`
     },
@@ -239,7 +251,7 @@ export default {
           })
           .finally(() => {
             this.saving = false;
-          });        
+          });
       } else {
         this.showToast('info', 'Para agregar a guardados debes iniciar sesión')
       }
@@ -265,7 +277,7 @@ export default {
           })
           .finally(() => {
             this.saving = false;
-          });       
+          });
       } else {
         this.showToast('info', 'Para eliminar de guardados debes iniciar sesión')
       }
@@ -279,56 +291,65 @@ export default {
   min-height: 60vh;
 
   .title-project {
-    h1 {
-      font-size: var(--h2-font-size);
-      font-weight: var(--font-semi-bold);
-      margin-bottom: 1rem;
-    }
     button {
       height: fit-content;
-      border: 1px solid var(--color-complementary-1);
+      border: 1px solid var(--color-white-2);
       background-color: transparent;
       font-size: var(--small-font-size);
       font-weight: var(--font-medium);
-      color: var(--color-complementary-1);
+      color: var(--color-white-2);
       text-decoration: none;
       padding: 0.5rem 1.5rem;
-      border-radius: 12px;
+      border-radius: 2rem;
       transition: 0.2s ease-in-out;
+
       &:hover {
         background-color: rgba($color: #0dba6a, $alpha: 0.2);
+        color: var(--color-complementary-1);
+        border: 1px solid var(--color-complementary-1);
+
       }
     }
 
     .btn-remove {
       border: none;
-      background-color: rgba($color: #0dba6a, $alpha: 0.2);
+      background-color: transparent;
+      color: var(--color-white-2);
+      border: 1px solid var(--color-white-2);
     }
+
     .disabled {
       opacity: 0.5;
     }
   }
+
   .address {
-    color: var(--color-text-light);
+    color: var(--color-white-2);
+
     &:hover {
       color: var(--color-text);
     }
   }
-  .company-link {
-    color: #eab60e;
-    text-decoration: none;
-    font-size: var(--normal-font-size);
+
+  .view-more-link {
+    color: var(--color-complementary-1);
+    text-decoration: underline;
+    font-size: var(--smaller-font-size);
     font-weight: var(--font-medium);
+    font-style: italic;
     transition: 0.2s ease-in-out;
+
     &:hover {
-      color: #fecd2d;
+      color: var(--color-complementary-1-dark);
     }
   }
+
   .comments-project {
     color: var(--color-text-light);
     font-size: var(--normal-font-size);
     line-height: 1.5;
   }
+
   .similar-projects {
     .company-logo {
       width: 76px;
@@ -336,10 +357,12 @@ export default {
       border-radius: 12px;
       object-fit: cover;
     }
+
     h3 {
       font-size: var(--h3-font-size);
       font-weight: var(--font-semi-bold);
     }
+
     p {
       font-size: var(--small-font-size);
       font-weight: var(--font-regular);

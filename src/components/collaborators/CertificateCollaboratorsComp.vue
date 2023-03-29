@@ -20,7 +20,6 @@
                 </ul>
                 <button class="button-begin-collab" @click="() => { }">
                     <span>Empezar a colaborar hoy</span>
-                    <i class="bi bi-person-plus-fill"></i>
                 </button>
             </div>
         </div>
