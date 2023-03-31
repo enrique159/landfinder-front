@@ -208,3 +208,17 @@ input {
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
 .p-fixed { position: fixed; }
+
+
+// PADDING CONTAINER
+.padding-container {
+  padding: 0;
+}
+
+@media only screen and (min-width: 1400px) {
+  .padding-container { padding: 0 200px; }
+}
+
+@media only screen and (min-width: 992px) {
+  .padding-container { padding: 0 100px; } 
+}

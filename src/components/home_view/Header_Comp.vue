@@ -221,10 +221,6 @@ export default {
     left: 0;
   }
 
-  .padding-container {
-    padding: 0;
-  }
-
   h1 {
     font-family: var(--font-secondary);
     font-size: 4rem;
@@ -243,18 +239,12 @@ export default {
   }
 
   @media only screen and (min-width: 1400px) {
-    .padding-container {
-      padding: 0 200px;
-    }  
     .header-text-container {
       width: 50%;
     }
   }
 
   @media only screen and (min-width: 992px) {
-    .padding-container {
-      padding: 0 100px;
-    } 
     h1 {
       width: 768px;
     } 

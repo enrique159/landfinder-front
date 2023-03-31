@@ -11,7 +11,8 @@ import PageConfirmEmailView from '../views/login/PageConfirmEmailView.vue'
 import ForgotPasswordView from '../views/login/ForgotPasswordView.vue'
 import ResetPasswordView from '../views/login/ResetPasswordView.vue'
 import ContactView from '@/views/ContactView.vue'
-import Collaborators from '@/views/CollaboratorsView.vue'
+import CollaboratorsView from '@/views/CollaboratorsView.vue'
+import MyProfileView from '@/views/MyProfileView.vue'
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
 
@@ -43,7 +44,7 @@ const routes = [
   {
     path: '/collaborators',
     name: 'collaborators',
-    component: Collaborators,
+    component: CollaboratorsView,
   },
   {
     path: '/terminos-y-condiciones',
@@ -83,6 +84,12 @@ const routes = [
     path: '/reset-password',
     name: 'reset-password',
     component: ResetPasswordView
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: MyProfileView,
+    meta: { requiresAuth: true }
   },
   {
     path: "*",
