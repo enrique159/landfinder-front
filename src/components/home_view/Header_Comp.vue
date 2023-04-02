@@ -377,6 +377,7 @@ export default {
     }
   }
   @media screen and (max-width: 768px) {
+    padding: 3rem 0;
     h1 {
       font-size: var(--h1-font-size);
     }

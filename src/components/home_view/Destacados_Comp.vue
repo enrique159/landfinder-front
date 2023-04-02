@@ -1,14 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row info-titles mb-5">
-      <div class="col col-9 col-sm-8 info-titles-left">
-        <p class="animate__animated">
-          Encontramos el mayor y mejor uso para tu inmueble ¡Visita nuestro marketplace!
-        </p>
+  <div class="container py-5 padding-container">
+    <div class="row py-5">
+      <div class="col col-12 col-md-9 col-sm-8">
+        <h2 class="ts-biggest ff-secondary animate__animated">
+          Oportunidades de inversión destacadas
+        </h2>
       </div>
-      <div @click="toPortfolio" class="col col-3 col-sm-4 info-titles-right">
-        <img src="@/assets/icons/arrow-down-right.svg" alt="" />
-        <h4>Ver portafolio completo</h4>
+      <div class="col col-12 col-md-3">
+        <div class="w-100 d-flex justify-content-sm-end">
+          <button class="button-outline" @click="toMarket()">
+            Ver todas las propiedades
+          </button>
+        </div>
       </div>
     </div>
     <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 300px;">
@@ -21,12 +24,22 @@
         class="project-card animate__animated animate__fadeInUp" 
         :style="'animation-delay: ' + (index * 0.1) + 's'"
         v-for="(project, index) in projects" 
-        :key="project.id"  
-        @click="openProject(project.id, convertToSlug(project.attributes.name))"
+        :key="project.id"
       >
-        <img :src="project.attributes.image_review" alt="image_review" loading="lazy"/>
-        <div class="bloc-shadow"></div>
-        <h4 class="position-relative">{{ project.attributes.mod }}</h4>
+        <img 
+          :src="project.attributes.image_review" 
+          alt="image_review" loading="lazy"
+        >
+        <div 
+          class="bloc-shadow" 
+          @click.self="openProject(project.id, convertToSlug(project.attributes.name))" 
+        />
+        <div class="d-flex justify-content-between w-100">
+          <h4 class="position-relative">{{ formatLandArea(project.attributes.land_area) }}m²</h4>
+          <button class="position-relative">
+            <i class="bi bi-bookmark tc-white"></i>
+          </button>
+        </div>
         <div>
           <h2 class="position-relative">{{ project.attributes.name }}</h2>
           <p class="position-relative">
@@ -69,6 +82,9 @@ export default {
           this.isLoading = false;
         });
     },
+    formatLandArea(area) {
+      return area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     openProject(id, name) {
       this.$router.push({
         name: "project",
@@ -85,7 +101,7 @@ export default {
         .replace(/ /g, "-")
         .replace(/[^\w-]+/g, "");
     },
-    toPortfolio(){
+    toMarket(){
       this.$router.push("/marketplace");
     }
   },
@@ -170,11 +186,12 @@ export default {
   gap: 1rem;
   .project-card {
     position: relative;
-    height: 400px;
+    aspect-ratio: 3/4;
+    max-height: 360px;
     background-color: var(--color-text-dark);
     border-radius: 18px;
     clip-path: border-box;
-    padding: 24px;
+    padding: 1rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -191,6 +208,24 @@ export default {
       transition: 0.2s ease-in-out;
       z-index: 0;
     }
+    button {
+      aspect-ratio: 1;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      min-height: 32px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.184);
+      font-size: var(--normal-font-size);
+      font-weight: var(--font-semi-bold);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: var(--transition-fast);
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
     .bloc-shadow {
       position: absolute;
       top: 0;
@@ -206,7 +241,6 @@ export default {
       );
     }
     h4 {
-      margin-left: auto;
       width: fit-content;
       border: 1px solid var(--color-white);
       font-size: var(--normal-font-size);
@@ -215,13 +249,13 @@ export default {
       border-radius: 10px;
     }
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: var(--font-semi-bold);
       transition: 0.2s ease-in-out;
       margin: 0;
     }
     p {
-      font-size: var(--small-font-size);
+      font-size: var(--smaller-font-size);
       font-weight: var(--font-medium);
       color: var(--color-text-light);
       transition: 0.2s ease-in-out;

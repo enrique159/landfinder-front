@@ -1,6 +1,6 @@
 <template>
-  <div class="container py-5 px-5">
-    <div id="methodology" class="method-comp padding-container">
+  <div class="container padding-container py-5">
+    <div id="methodology" class="method-comp">
       <h1 class="ff-secondary ts-biggest text-center my-5">
         Gracias a nuestra metodología <br />
         ¡puedes empezar a desarrollar hoy!

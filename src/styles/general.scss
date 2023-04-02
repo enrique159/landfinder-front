@@ -167,6 +167,23 @@ input {
   cursor: pointer;
 }
 
+.button-outline {
+  height: fit-content;
+  min-height: 38px;
+  border: 2px solid #969696;
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.3rem 1rem;
+  border-radius: 2rem;
+  position: relative;
+  transition: var(--transition-fast);
+
+  &:hover {
+    background: #393939;
+    color: var(--color-text);
+  }
+}
+
 // TEXT COLORS
 .tc-primary { color: var(--color-primary) !important; }
 .tc-error { color: var(--color-error) !important; }
@@ -212,7 +229,7 @@ input {
 
 // PADDING CONTAINER
 .padding-container {
-  padding: 0;
+  padding: 0 28px;
 }
 
 @media only screen and (min-width: 1400px) {
