@@ -34,11 +34,8 @@
           class="bloc-shadow" 
           @click.self="openProject(project.id, convertToSlug(project.attributes.name))" 
         />
-        <div class="d-flex justify-content-between w-100">
+        <div class="d-flex justify-content-end w-100">
           <h4 class="position-relative">{{ formatLandArea(project.attributes.land_area) }}m²</h4>
-          <button class="position-relative">
-            <i class="bi bi-bookmark tc-white"></i>
-          </button>
         </div>
         <div>
           <h2 class="position-relative">{{ project.attributes.name }}</h2>

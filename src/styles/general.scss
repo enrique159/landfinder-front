@@ -177,12 +177,29 @@ input {
   border-radius: 2rem;
   position: relative;
   transition: var(--transition-fast);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-bold);
 
   &:hover {
     background: #393939;
     color: var(--color-text);
   }
 }
+
+// BACKGROUND COLORS
+.bc-primary { background-color: var(--color-primary) !important; }
+.bc-error { background-color: var(--color-error) !important; }
+.bc-title { background-color: var(--color-title) !important; }
+.bc-text { background-color: var(--color-text) !important; }
+.bc-text-light { background-color: var(--color-text-light) !important; }
+.bc-text-dark { background-color: var(--color-text-dark) !important; }
+.bc-checker { background-color: var(--color-checker) !important; }
+.bc-background { background-color: var(--color-background) !important; }
+.bc-white { background-color: var(--color-white) !important; }
+.bc-selected-menu { background-color: var(--color-selected-menu) !important; }
+.bc-complementary-1 { background-color: var(--color-complementary-1) !important; }
+.bc-complementary-1-dark { background-color: var(--color-complementary-1-dark) !important; }
+.bc-complementary-2 { background-color: var(--color-complementary-2) !important; }
 
 // TEXT COLORS
 .tc-primary { color: var(--color-primary) !important; }

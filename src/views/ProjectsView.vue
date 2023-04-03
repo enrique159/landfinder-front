@@ -1,27 +1,26 @@
 <template>
   <div class="projects-view container">
-    <h2 class="main-title ps-2 text-center text-sm-start"> Marketplace </h2>
+    <div class="row mb-4 px-3 px-sm-0">
+      <BannerMarketComp class="animate__animated animate__backInDown" />
+    </div>
     <div class="row">
       <div class="col col-12 col-md-4 col-lg-3 mb-4 px-5 px-sm-0">
-        <SearchBarComp />
-
-        <!-- UPLOAD YOUR PROPERTY -->
-        <div class="upload-property-banner">
-          <div class="upload-property-banner__content">
-            <h3>¿Quieres vender tu propiedad?</h3>
-            <p>
-              Publica tu propiedad en nuestro marketplace y comienza a recibir
-              ofertas.
-            </p>
-            <router-link to="/signup" class="button-upload">
-              Registrarme
-            </router-link>
-          </div>
-        </div>
+        <SearchBarComp class="animate__animated animate__fadeInLeft" />
       </div>
 
       <!-- LIST OF PROJECTS -->
       <div class="col col-12 col-md-8 col-lg-9 ps-md-5 ps-0">
+        <div v-if="!isLoading" class="d-flex gap-2 flex-wrap mb-4 justify-content-center justify-content-md-start">
+          <!-- ASC -->
+          <button class="button-outline" :class="{ 'active': currentSort == 0 }" @click="selectSort(0)" > Alfabético A-Z </button>
+          <!-- DESC -->
+          <button class="button-outline" :class="{ 'active': currentSort == 1 }" @click="selectSort(1)" > Alfabético Z-A </button>
+          <!-- LAND_AREA ASC -->
+          <button class="button-outline" :class="{ 'active': currentSort == 2 }" @click="selectSort(2)" > Mayor Superficie </button>
+          <!-- LAND_AREA DESC -->
+          <button class="button-outline" :class="{ 'active': currentSort == 3 }" @click="selectSort(3)" > Menor Superficie </button>
+        </div>
+
         <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
           <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -32,7 +31,7 @@
           <div
             class="project-card animate__animated animate__fadeInUp"
             :style="'animation-delay: ' + (index * 0.1) + 's'"
-            v-for="(project, index) in filteredProjects"
+            v-for="(project, index) in sortedProjects"
             :key="index"
             @click="openProject(project.id, convertToSlug(project.attributes.name))"
           >
@@ -41,7 +40,7 @@
               alt="image_review"
             />
             <div class="bloc-shadow"></div>
-            <h4 class="position-relative">{{ project.attributes.mod }}</h4>
+            <h4 class="position-relative">{{ formatLandArea(project.attributes.land_area) }}m²</h4>
             <div>
               <h2 class="position-relative">{{ project.attributes.name }}</h2>
               <p class="position-relative">
@@ -66,16 +65,19 @@
 <script>
 import { mapGetters } from 'vuex'
 import Projects from "@/common/project_services.js";
+import BannerMarketComp from "@/components/projects_view/BannerMarketComp.vue";
 import SearchBarComp from "@/components/projects_view/SearchBarComp.vue";
 export default {
   components: {
     SearchBarComp,
+    BannerMarketComp
   },
   data() {
     return {
       projects: [],
       isLoading: false,
       errorEmpty: false,
+      currentSort: 0,
     }
   },
   metaInfo: {
@@ -119,6 +121,20 @@ export default {
         }
       );
     },
+    // Sort filtered projects by name
+    sortedProjects() {
+      return this.filteredProjects.sort((a, b) => {
+        if (this.currentSort == 0) {
+          return a.attributes.name.localeCompare(b.attributes.name);
+        } else if (this.currentSort == 1) {
+          return b.attributes.name.localeCompare(a.attributes.name);
+        } else if (this.currentSort == 2) {
+          return b.attributes.land_area - a.attributes.land_area;
+        } else if (this.currentSort == 3) {
+          return a.attributes.land_area - b.attributes.land_area;
+        }
+      });
+    },
     // check if filtered projects is empty
     isProjectsEmpty() {
       return this.filteredProjects.length == 0;
@@ -148,6 +164,14 @@ export default {
           name: name
         },
       });
+    },
+
+    selectSort(sort) {
+      this.currentSort = sort;
+    },
+
+    formatLandArea(area) {
+      return area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     
     // reset parameters
@@ -186,6 +210,16 @@ export default {
       transform: translateY(-4px);
       margin-right: 16px;
     }
+  }
+
+  .active {
+    border: none;
+    background: linear-gradient(90deg, var(--color-complementary-2), #101010);
+    color: var(--color-text);
+    padding: 0.2rem 1.5rem;
+    border-radius: 2rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-bold);
   }
 
   .parameters {
@@ -258,7 +292,7 @@ export default {
       background-color: var(--color-text-dark);
       border-radius: 18px;
       clip-path: border-box;
-      padding: 24px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -299,13 +333,13 @@ export default {
         border-radius: 10px;
       }
       h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: var(--font-semi-bold);
         transition: 0.2s ease-in-out;
         margin: 0;
       }
       p {
-        font-size: var(--small-font-size);
+        font-size: var(--smaller-font-size);
         font-weight: var(--font-medium);
         color: var(--color-text-light);
         transition: 0.2s ease-in-out;

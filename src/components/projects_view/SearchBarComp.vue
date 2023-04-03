@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar-comp">
-    <h5 class="mb-4">Filtrar por:</h5>
+    <h5 class="ff-secondary mb-4">Filtrar por:</h5>
     <div class="option-location">
       <!-- TYPE PROJECT -->
       <label class="ts-small ps-2 pb-1">Tipo de inmueble</label>
@@ -132,7 +132,7 @@ export default {
 .search-bar-comp {
   width: 100%;
   height: fit-content;
-  background: rgba($color: #282828, $alpha: 0.7);
+  background: transparent;
   padding: 1rem 1.3rem 1.5rem;
   border-radius: 12px;
   display: flex;
