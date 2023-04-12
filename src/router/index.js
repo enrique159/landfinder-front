@@ -13,6 +13,9 @@ import ResetPasswordView from '../views/login/ResetPasswordView.vue'
 import ContactView from '@/views/ContactView.vue'
 import CollaboratorsView from '@/views/CollaboratorsView.vue'
 import MyProfileView from '@/views/MyProfileView.vue'
+// Places
+import PlaceLaPaz from '@/views/places/PlaceLaPaz.vue'
+
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
 
@@ -90,6 +93,11 @@ const routes = [
     name: 'profile',
     component: MyProfileView,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/places/la-paz',
+    name: 'places-la-paz',
+    component: PlaceLaPaz
   },
   {
     path: "*",

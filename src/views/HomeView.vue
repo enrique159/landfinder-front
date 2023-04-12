@@ -9,6 +9,7 @@
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
       </div>
     </div> -->
+    <DeslizaAbajoComp/>
     <PlacesComp/>
    
     <DestacadosComp/>
@@ -33,6 +34,7 @@ import FaqComp from '@/components/home_view/Faq_Comp.vue'
 import BannerCtaComp from '@/components/BannerCtaComp.vue'
 import NewsletterFormComp from '@/components/home_view/NewsletterForm_Comp.vue'
 import MethodCompVue from '@/components/home_view/MethodComp.vue'
+import DeslizaAbajoComp from '@/components/DeslizaAbajoComp.vue'
 export default {
   name: "HomeView",
   components: {
@@ -45,7 +47,8 @@ export default {
     FaqComp,
     BannerCtaComp,
     NewsletterFormComp,
-    MethodCompVue
+    MethodCompVue,
+    DeslizaAbajoComp
   },
   metaInfo: {
     title: 'Land Finder México',

@@ -9,6 +9,11 @@ export default {
     .then(response => response)
     .catch(error => error.response);
   },
+  getByLocation(id_location) {
+    return axios.get(`/projects${this.pop}&filters[city][$eq]=${id_location}`)
+    .then(response => response)
+    .catch(error => error.response);
+  },
   getTopList() {
     return axios.get(`/projects${this.pop}${this.top_list}`)
     .then(response => response)

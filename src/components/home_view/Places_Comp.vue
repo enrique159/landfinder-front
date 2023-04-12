@@ -24,6 +24,7 @@
               <div
                 class="carousel-card"
                 :style="{ 'background-image': `url(${place.image})` }"
+                @click="goTo(`/places/${place.path}`)"
               >
                 <div class="info">
                   <span class="ts-smaller tw-medium">Baja California Sur</span>
@@ -51,14 +52,17 @@ export default {
       places: [
         {
           name: "La Paz",
+          path: "la-paz",
           image: require("@/assets/places/lapaz.png"),
         },
         {
           name: "Los Barriles",
+          path: "los-barriles",
           image: require("@/assets/places/barriles.png"),
         },
         {
           name: "Todos Santos",
+          path: "todos-santos",
           image: require("@/assets/places/todos_santos.png"),
         },
       ],
@@ -99,6 +103,9 @@ export default {
     handleResize() {
       // set the min flag to true if the window width is less than 768px
       this.min = window.innerWidth < 768;
+    },
+    goTo(path) {
+      this.$router.push(path);
     },
   },
 };

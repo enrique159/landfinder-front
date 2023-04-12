@@ -888,14 +888,15 @@ export default {
 
 <style lang="scss" scoped>
 .terminos-view {
-  background-color: var(--color-white);
+  background-color: transparent;
   height: fit-content;
   min-height: 500px;
   width: 100%;
-  color: var(--color-black) !important;
+  color: var(--color-text) !important;
 
   .link {
-    color: var(--color-black);
+    color: var(--color-text);
+    font-weight: var(--font-bold);
     text-decoration: underline;
   }
 
@@ -910,7 +911,7 @@ export default {
     li {
       margin-bottom: 0.5rem;
       a {
-        color: var(--color-complementary-2);
+        color: var(--color-complementary-1);
         text-decoration: none;
         &:hover {
           text-decoration: underline;
