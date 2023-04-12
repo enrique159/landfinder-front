@@ -14,7 +14,6 @@
     <MethodCompVue/>
     <!-- <FaqComp /> -->
     <ConoceComp/>
-    <PartnersComp/>
     <ContactoComp/>
     <!-- <BannerCtaComp/> -->
     <NewsletterFormComp/>
@@ -27,7 +26,6 @@ import HeaderComp from '@/components/home_view/Header_Comp.vue'
 import AportacionComp from '@/components/home_view/Aportacion_Comp.vue'
 import DestacadosComp from '@/components/home_view/Destacados_Comp.vue'
 import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
-import PartnersComp from '@/components/home_view/Partners_Comp.vue'
 import ContactoComp from '@/components/home_view/Contacto_Comp.vue'
 import FaqComp from '@/components/home_view/Faq_Comp.vue'
 import BannerCtaComp from '@/components/BannerCtaComp.vue'
@@ -40,7 +38,6 @@ export default {
     AportacionComp,
     DestacadosComp,
     ConoceComp,
-    PartnersComp,
     ContactoComp,
     FaqComp,
     BannerCtaComp,

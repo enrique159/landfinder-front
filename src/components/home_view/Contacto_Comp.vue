@@ -4,14 +4,14 @@
       class="row contacto-form px-3 px-md-5 py-4 py-md-5 justify-content-between"
     >
       <div class="col col-12 col-md-6 mb-4 mb-md-0">
-        <h2>¿Listo para empezar a crear grandes proyectos juntos?</h2>
-        <p class="mb-4 text-subtext">
+        <h2 class="ff-secondary ts-biggest tc-background">¡Contáctanos!</h2>
+        <p class="mb-4 text-subtext tc-background">
           Déjanos un mensaje a nuestro correo electrónico y en breve nos pondremos en contacto contigo.
         </p>
-        <a href="#"
-          >Volver al portafolio
-          <img src="@/assets/icons/arrow-down-right.svg" alt=""
-        /></a>
+        <router-link to="/marketplace" class="tc-background"
+          >Conoce nuestro marketplace
+          <img src="@/assets/icons/arrow-down-right.svg" style="filter:invert()" alt=""
+        /></router-link>
       </div>
       <div class="col col-12 col-md-4 d-flex flex-column">
         <form class="contact-form" v-on:submit.prevent="sendEmail">
@@ -145,7 +145,6 @@ export default {
 
 <style lang="scss" scoped>
 .contacto-section {
-  border-top: 1px solid var(--color-text-dark);
   scroll-margin-top: 120px;
 
   .contacto-form {
