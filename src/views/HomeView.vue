@@ -9,6 +9,7 @@
         <img class="down-arrow" src="@/assets/icons/down-arrow.svg" alt="" />
       </div>
     </div> -->
+    <PlacesComp/>
    
     <DestacadosComp/>
     <MethodCompVue/>
@@ -23,6 +24,7 @@
 <script>
 import { placesMockData as places} from '@/common/mockData.js'
 import HeaderComp from '@/components/home_view/Header_Comp.vue'
+import PlacesComp from '@/components/home_view/Places_Comp.vue'
 import AportacionComp from '@/components/home_view/Aportacion_Comp.vue'
 import DestacadosComp from '@/components/home_view/Destacados_Comp.vue'
 import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
@@ -36,6 +38,7 @@ export default {
   components: {
     HeaderComp,
     AportacionComp,
+    PlacesComp,
     DestacadosComp,
     ConoceComp,
     ContactoComp,
