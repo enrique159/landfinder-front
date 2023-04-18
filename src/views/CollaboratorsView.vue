@@ -3,6 +3,7 @@
     <HeaderCollaboratorsCompVue />
     <CertificateCollaboratorsComp />
     <CollaboratorsTableComp/>
+    <ContactBanner/>
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import HeaderCollaboratorsCompVue from '@/components/collaborators/HeaderCollaboratorsComp.vue'
 import CertificateCollaboratorsComp from '@/components/collaborators/CertificateCollaboratorsComp.vue';
 import CollaboratorsTableComp from '@/components/collaborators/CollaboratorsTableComp.vue';
+import ContactBanner from '@/components/collaborators/ContactBannerComp.vue';
 export default {
   components: {
     HeaderCollaboratorsCompVue,
     CertificateCollaboratorsComp,
-    CollaboratorsTableComp
+    CollaboratorsTableComp,
+    ContactBanner
   },
   mounted() {
     window.scrollTo(0, 0);
