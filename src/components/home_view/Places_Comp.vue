@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-5">
+  <div id="places" class="container p-5">
     <div class="row">
       <div class="col-12 col-lg-4 col-xl-5 py-4">
         <span class="tw-medium d-block mb-3">Ubicaciones LFM</span>

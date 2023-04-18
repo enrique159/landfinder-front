@@ -50,9 +50,10 @@
         </div>
         <div class="col col-12 col-md-8">
           <span class="title-content">Menú</span>
-          <div class="menu-content pt-4">
+          <div class="menu-content pt-4 ff-secondary">
             <router-link to="/#header-search" @click.native="scrollFix('#header-search')"><span>Inicio</span></router-link>
             <router-link to="/marketplace" @click.native="activeProp = false"><span>Marketplace</span></router-link>
+            <router-link to="/#places" @click.native="scrollFix('#places')"><span>Lugares</span></router-link>
             <router-link to="/#methodology" @click.native="scrollFix('#methodology')"><span>Metodología</span></router-link>
             <router-link to="/collaborators" @click.native="activeProp = false"><span>Colaboradores</span></router-link>
             <!-- <router-link to="/#team" @click.native="scrollFix('#team')"><span>Partners</span></router-link> -->
