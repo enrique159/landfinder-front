@@ -16,16 +16,9 @@
       <div class="col-12 col-lg-8 col-xl-7">
         <div class="carousel-container">
           <splide :options="isMobile ? minOptions : options">
-            <splide-slide
-              class="splide-container"
-              v-for="place in places"
-              :key="places.name"
-            >
-              <div
-                class="carousel-card"
-                :style="{ 'background-image': `url(${place.image})` }"
-                @click="goTo(`/places/${place.path}`)"
-              >
+            <splide-slide class="splide-container" v-for="place in places" :key="places.name">
+              <div class="carousel-card" :style="{ 'background-image': `url(${place.image})` }"
+                @click="goTo(`/places/${place.path}`)">
                 <div class="info">
                   <span class="ts-smaller tw-medium">Baja California Sur</span>
                   <h4 class="ff-secondary">{{ place.name }}</h4>
@@ -123,6 +116,7 @@ export default {
   display: grid;
   place-items: center;
 }
+
 .carousel-card {
   width: calc(100% - 2em);
   height: calc(100% - 2em);
@@ -145,11 +139,9 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 100%);
     border-radius: 1rem;
   }
 
@@ -158,7 +150,7 @@ export default {
   }
 }
 
-::v-deep .is-active > .carousel-card {
+::v-deep .is-active>.carousel-card {
   width: calc(100% - 1em);
   height: calc(100% - 1em);
 }
@@ -167,6 +159,7 @@ export default {
   top: calc(100% + 2em);
   background: transparent;
   border: 1px solid var(--color-text-light);
+
   svg {
     fill: var(--color-text-light);
   }

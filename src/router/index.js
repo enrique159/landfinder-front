@@ -15,6 +15,8 @@ import CollaboratorsView from '@/views/CollaboratorsView.vue'
 import MyProfileView from '@/views/MyProfileView.vue'
 // Places
 import PlaceLaPaz from '@/views/places/PlaceLaPaz.vue'
+import PlaceLosBarriles from '@/views/places/PlaceLosBarriles.vue'
+import PlaceTodosSantos from '@/views/places/PlaceTodosSantos.vue'
 
 import VueMeta from 'vue-meta'
 import { isLoggedIn } from '@/auth'
@@ -98,6 +100,16 @@ const routes = [
     path: '/places/la-paz',
     name: 'places-la-paz',
     component: PlaceLaPaz
+  },
+  {
+    path: '/places/los-barriles',
+    name: 'places-los-barriles',
+    component: PlaceLosBarriles
+  },
+  {
+    path: '/places/todos-santos',
+    name: 'places-todos-santos',
+    component: PlaceTodosSantos
   },
   {
     path: "*",
