@@ -57,6 +57,7 @@ export default {
       results: {
         isValid: false
       },
+      userVerified: this.$store.getters.getUser.verified,
       phone: '',
       email: '',
       error: false,
@@ -81,9 +82,12 @@ export default {
       } else return false;
     },
     solicitudText() {
-      if (this.isLoggedIn) {
+      if (isLoggedIn() && this.userVerified == "VERIFIED") {
         return "Ver ficha técnica"
-      } else {
+      } else if (isLoggedIn() && this.userVerified != "VERIFIED"){
+        return "Verificarme para ver"
+      }
+      else{
         return "Registrarme para ver"
       }
     }

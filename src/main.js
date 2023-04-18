@@ -13,16 +13,18 @@ import "vue-toastification/dist/index.css";
 import { init } from '@emailjs/browser';
 import Vuelidate from 'vuelidate'
 import VueSplide from '@splidejs/vue-splide';
+import VueClipboard from 'vue-clipboard2';
 init("JxIrk4_V8WSebe34h4G_2");
 
 import '@splidejs/splide/dist/css/splide.min.css';
 
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.use(Toast);
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 Vue.use(VueMask);
 Vue.use(Vuelidate)
 Vue.use(VueSplide);
+Vue.use(VueClipboard);
 Vue.config.productionTip = false
 
 // add process env variable to axios

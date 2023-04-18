@@ -14,6 +14,12 @@
           <div class="title-project d-flex justify-content-between">
             <h1 class="ff-secondary ts-biggest">{{ project.attributes.name }}</h1>
             <div v-if="logged">
+              <button class="btn-copy mx-3" 
+                @click="copyPath">
+                <i v-if="!copySucceeded" class="bi bi-files"></i>
+                <i v-if="copySucceeded" class="bi bi-check-lg"></i>
+              </button>
+
               <button class="btn-remove" @click="removeFavourites(project.id)" :disabled="saving"
                 :class="{ 'disabled': saving }" v-if="isProjectInFavourites">
                 <i class="bi bi-bookmark-fill me-1"></i>
@@ -81,7 +87,7 @@
           </div> -->
           <h3 class="ff-secondary mb-5">Descubre otras propiedades que <br> te podrían interesar</h3>
           <SimilaresComp :similarProjects="similarProjects" />
-          <div class="divider my-5"></div>
+          <div v-if="!logged" class="divider my-5"></div>
         </div>
         <div class="col col-12 col-md-5 col-lg-4 col-xl-3 px-4 px-md-0 ps-md-3">
           <!-- FORMULARIO -->
@@ -90,7 +96,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <RegisterBannerComp class="mt-5" v-if="!isLoggedIn" />
+          <RegisterBannerComp class="mt-5" v-if="!logged" />
         </div>
       </div>
     </div>
@@ -128,6 +134,7 @@ export default {
       similarProjects: [],
       errorStatus: false,
       status200: false,
+      copySucceeded: false,
       lat: 0,
       lng: 0,
       error: {
@@ -145,6 +152,9 @@ export default {
   mounted() {
     this.getProject();
     window.scrollTo(0, 0);
+  },
+  created() {
+    //console.log(this.$router.currentRoute.fullPath)
   },
   computed: {
     projectAddress() {
@@ -256,7 +266,6 @@ export default {
         this.showToast('info', 'Para agregar a guardados debes iniciar sesión')
       }
     },
-
     async removeFavourites(idProject) {
       if (this.logged) {
         this.saving = true;
@@ -281,6 +290,15 @@ export default {
       } else {
         this.showToast('info', 'Para eliminar de guardados debes iniciar sesión')
       }
+    },
+    copyPath() {
+      this.$copyText(this.$router.currentRoute.fullPath).then(function (e) {
+          
+          console.log(e)
+        }, function (e) {
+          
+          console.log(e)
+        })
     }
   },
 };
@@ -309,6 +327,13 @@ export default {
         border: 1px solid var(--color-complementary-1);
 
       }
+    }
+
+    .btn-copy {
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+      padding: 0;
     }
 
     .btn-remove {

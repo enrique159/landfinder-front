@@ -1,11 +1,12 @@
 <template>
-        <div class="register-banner container d-flex flex-column justify-content-center">
+    <div class="register-banner container d-flex flex-column justify-content-center">
+        <div>
             <h1 class="ff-secondary ts-biggest text-center mb-4">Registrate para ver más<br class="d-none d-sm-block">
                 información de esta propiedad
             </h1>
-            <div class="d-flex justify-content-center gap-3 mb-5">
+            <div class="d-flex justify-content-center gap-3 ">
 
-                <button class="button-register" @click="() => { }">
+                <button class="button-register" @click="toSignUp">
                     <span> Registrarme gratis</span>
                 </button>
 
@@ -15,9 +16,12 @@
 
             </div>
         </div>
+
+    </div>
 </template>
 
 <script>
+import router from '@/router';
 import Parallax from 'vue-parallaxy'
 export default {
     components: {
@@ -44,6 +48,9 @@ export default {
 
             target.style.setProperty('--mouse-x', `${x}px`);
             target.style.setProperty('--mouse-y', `${y}px`);
+        },
+        toSignUp(){
+            this.$router.push("/signup")
         }
     }
 }
@@ -53,7 +60,8 @@ export default {
 .register-banner {
 
     background-image: url('@/assets/register-banner-projectview.png');
-    height: 350px;
+    height: 300px;
+    border-radius: 2rem;
 
     .button-back-home {
         height: 38px;
