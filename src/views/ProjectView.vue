@@ -61,6 +61,7 @@
           <p class="comments-project mb-5">
             {{ project.attributes.comments }}
           </p>
+          <DetailAcordionComp v-if="logged"/>
           <div class="divider mb-5"></div>
           <!-- MAP LOCATION -->
           <div class="d-flex justify-content-between align-items-end mb-5">
@@ -106,6 +107,7 @@
 import Alerta404Comp from "@/components/project_view/Alerta404_Comp.vue";
 import ImagenesComp from "@/components/project_view/Imagenes_Comp.vue";
 import DetallesComp from "@/components/project_view/Detalles_Comp.vue";
+import DetailAcordionComp from '@/components/project_view/DetailAcordionComp.vue'
 import MapaComp from "@/components/project_view/Mapa_Comp.vue";
 import SimilaresComp from "@/components/project_view/Similares_Comp.vue";
 import FormularioComp from "@/components/project_view/Formulario_Comp.vue";
@@ -121,6 +123,7 @@ export default {
     Alerta404Comp,
     ImagenesComp,
     DetallesComp,
+    DetailAcordionComp,
     MapaComp,
     SimilaresComp,
     FormularioComp,
