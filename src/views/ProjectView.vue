@@ -14,8 +14,7 @@
           <div class="title-project d-flex justify-content-between">
             <h1 class="ff-secondary ts-biggest">{{ project.attributes.name }}</h1>
             <div v-if="logged">
-              <button class="btn-copy mx-3" 
-                @click="copyPath">
+              <button class="btn-copy mx-3" @click="copyPath">
                 <i v-if="!copySucceeded" class="bi bi-files"></i>
                 <i v-if="copySucceeded" class="bi bi-check-lg"></i>
               </button>
@@ -292,13 +291,12 @@ export default {
       }
     },
     copyPath() {
-      this.$copyText(this.$router.currentRoute.fullPath).then(function (e) {
-          
-          console.log(e)
-        }, function (e) {
-          
-          console.log(e)
-        })
+      var base_url = window.location.origin;
+      this.$copyText(base_url + this.$router.currentRoute.fullPath).then((e) => {
+        this.copySucceeded = true;
+      }, (e) => {
+        this.copySucceeded = false;
+      })
     }
   },
 };
