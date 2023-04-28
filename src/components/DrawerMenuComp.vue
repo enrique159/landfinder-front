@@ -21,7 +21,7 @@
 
           <!-- MENU LOGGED -->
           <div class="menu-user pt-4" v-if="isLogged">
-            <router-link to="/profile">Mi perfil</router-link>
+            <router-link to="/profile" @click.native="activeProp = false">Mi perfil</router-link>
             <router-link to="/saved" @click.native="activeProp = false">Guardados</router-link>
             <a @click="logout()">Cerrar sesión</a>
           </div>

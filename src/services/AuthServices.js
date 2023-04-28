@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 export default {
   login(email, password) {
@@ -18,6 +19,16 @@ export default {
   },
   resetPassword(payload) {
     return axios.post('/auth/reset-password/', payload)
+      .then(response => response)
+      .catch(error => error.response);
+  },
+  changePassword(payload) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'authorization': `Bearer ${store.getters.getToken}`
+    }
+    return axios.post('/auth/change-password/', payload, { headers })
       .then(response => response)
       .catch(error => error.response);
   },

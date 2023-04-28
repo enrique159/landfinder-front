@@ -186,6 +186,17 @@ input {
   }
 }
 
+.button-simple {
+  background: transparent;
+  color: var(--color-text);
+  padding: 0;
+  position: relative;
+  transition: var(--transition-fast);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-bold);
+  text-decoration: underline;
+}
+
 // BACKGROUND COLORS
 .bc-primary { background-color: var(--color-primary) !important; }
 .bc-error { background-color: var(--color-error) !important; }

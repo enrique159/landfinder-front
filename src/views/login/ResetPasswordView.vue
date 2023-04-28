@@ -5,12 +5,25 @@
       <p class="text-center">Reestablece tu contraseña</p>
       <form id="resetPasswordForm" class="mb-4" @submit.prevent="resetPassword()">
 
+        <div class="form-group mb-3" v-if="getIsLoggedIn">
+          <label for="currentPasswordInput" class="ms-2">Contraseña actual *</label>
+          <div class="password-container">
+            <i :class="showCurrentPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" @click="showCurrentPassword = !showCurrentPassword"></i>
+            <input :type="showCurrentPassword ? 'text' : 'password'" class="form-input"
+              :class="{ 'is-invalid': $v.currentPassword.$error }" placeholder="Mi contraseña actual" id="passwordInput"
+              v-model="currentPassword" @keypress="validatePassword($event)" />
+          </div>
+          <small v-if="$v.currentPassword.$error && !$v.currentPassword.required" class="error-label ms-2">Este campo es
+            requerido</small>
+          <span></span>
+        </div>
+
         <div class="form-group mb-3">
-          <label for="emailInput" class="ms-2">Nueva contraseña *</label>
+          <label for="passwordInput" class="ms-2">Nueva contraseña *</label>
           <div class="password-container">
             <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" @click="showPassword = !showPassword"></i>
             <input :type="showPassword ? 'text' : 'password'" class="form-input"
-              :class="{ 'is-invalid': $v.password.$error }" placeholder="Mi contraseña" id="passwordInput"
+              :class="{ 'is-invalid': $v.password.$error }" placeholder="Nueva contraseña" id="passwordInput"
               v-model="password" @keypress="validatePassword($event)" />
           </div>
           <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es
@@ -21,14 +34,14 @@
         </div>
 
         <div class="form-group mb-4">
-          <label for="emailInput" class="ms-2">Repetir contraseña *</label>
+          <label for="passwordRepeatInput" class="ms-2">Repetir contraseña *</label>
           <div class="password-container">
             <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" @click="showPassword = !showPassword"></i>
             <input :type="showPassword ? 'text' : 'password'" class="form-input"
-              :class="{ 'is-invalid': $v.password.$error }" placeholder="Repetir contraseña" id="passwordInput"
+              :class="{ 'is-invalid': $v.passwordRepeat.$error }" placeholder="Repetir nueva contraseña" id="passwordRepeatInput"
               v-model="passwordRepeat" @keypress="validatePassword($event)" />
           </div>
-          <small v-if="$v.password.$error && !$v.password.required" class="error-label ms-2">Este campo es
+          <small v-if="$v.passwordRepeat.$error && !$v.passwordRepeat.required" class="error-label ms-2">Este campo es
             requerido</small>
           <small v-if="!passwordMatch" class="error-label ms-2">La contraseñas deben de ser iguales</small>
           <span></span>
@@ -47,6 +60,8 @@ import { required, minLength } from "vuelidate/lib/validators";
 import { setAuthToken, setUser } from "@/auth";
 import { validatePassword } from '@/utils/keyPressValidate'
 import AuthServices from "@/services/AuthServices";
+import { isLoggedIn } from "@/auth";
+import { mapGetters } from "vuex";
 
 export default {
   metaInfo: {
@@ -55,14 +70,20 @@ export default {
   },
   data() {
     return {
+      currentPassword: "",
       password: "",
       passwordRepeat: "",
       showPassword: false,
+      showCurrentPassword: false,
       error: false,
       loading: false,
     };
   },
   validations: {
+    currentPassword: {
+      required,
+      minLength: minLength(8),
+    },
     password: {
       required,
       minLength: minLength(8),
@@ -73,6 +94,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["getIsLoggedIn"]),
     passwordMatch() {
       return this.password == this.passwordRepeat
     }
@@ -92,6 +114,11 @@ export default {
       if (this.validForm() && this.passwordMatch) {
         this.loading = true;
 
+        if (isLoggedIn()) {
+          this.resetPasswordAuth();
+          return;
+        }
+
         const payload = {
           code: this.$route.query.code,
           password: this.password,
@@ -104,11 +131,7 @@ export default {
               this.setUserLogin(res.data);
               this.$router.push({ name: "home" });
             } else {
-              if (res.status == 400) {
-                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-              } else {
-                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-              }
+              this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
             }
 
           })
@@ -120,6 +143,33 @@ export default {
             this.loading = false;
           });
       }
+    },
+
+    // Fetch if user is logged
+    resetPasswordAuth() {
+      const payload = {
+        currentPassword: this.currentPassword,
+        password: this.password,
+        passwordConfirmation: this.passwordRepeat.trim(),
+      };
+
+      AuthServices.changePassword(payload)
+        .then((res) => {
+          if (res.status == 200) {
+            this.setUserLogin(res.data);
+            this.$router.push({ name: "profile" });
+          } else {
+            this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+          }
+
+        })
+        .catch((err) => {
+          console.log(err);
+          this.error = true;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
 
     // Método para setear los valores

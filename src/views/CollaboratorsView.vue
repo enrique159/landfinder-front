@@ -19,6 +19,10 @@ export default {
     CollaboratorsTableComp,
     ContactBanner
   },
+  metaInfo: {
+    title: "Land Finder México",
+    titleTemplate: "%s | Colaboradores",
+  },
   mounted() {
     window.scrollTo(0, 0);
   },
