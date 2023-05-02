@@ -75,21 +75,25 @@
           <button class="button-search ms-0 ms-md-4" @click="setValues">Buscar</button>
         </div>
 
-        <div class="animate__animated animate__fadeIn animate__delay pt-3 ps-1 header-text-container">
-          <p class="header-text">
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut labore unde! 
-            Expedita architecto minima praesentium, illo temporibus aliquam, omnis at ducimus 
-            nihil."
-          </p>
-          <div class="d-flex gap-1 ts-small">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
+        <!-- SLIDER -->
+        <div class="row">
+          <div class="col col-12">
+            <Splide :options="optionsSlider">
+              <SplideSlide v-for="item in testimonials" :key="item">
+                <div class="pt-3 pb-4 ps-1 header-text-container">
+                  <p class="header-text">
+                    "{{ item.description }}"
+                  </p>
+                  <div class="d-flex gap-1 ts-small">
+                    <i class="bi bi-star-fill" v-for="star in item.stars" :key="`stars-${item.id}-${star}`"></i>
+                  </div>
+                  <h6>
+                    {{ item.name }} {{ item.account }} - {{ item.position }} {{ item.company }}
+                  </h6>
+                </div>
+              </SplideSlide>
+            </Splide>
           </div>
-          <h6>
-            Franchesco Virgollini @FranV - CEO Real Investment
-          </h6>
         </div>
       </div>
     </div>
@@ -97,8 +101,9 @@
 </template>
 
 <script>
-import { placesMockData as places } from "@/common/mockData.js";
+import { placesMockData as places, testimonialsMockData as testimonials } from "@/common/mockData.js";
 import { projectTypesMockData as types } from "@/common/mockData.js";
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import Variables from "@/common/variable_services.js";
 import ICountUp from 'vue-countup-v2';
 import { Money } from "v-money";
@@ -107,6 +112,8 @@ export default {
   components: {
     Money,
     ICountUp,
+    Splide,
+    SplideSlide,
   },
   data() {
     return {
@@ -131,6 +138,14 @@ export default {
         separator: ',',
         decimal: '.',
         prefix: '',
+      },
+      testimonials: testimonials,
+      optionsSlider: {
+        type: 'loop',
+        autoplay: true,
+        interval: 5000,
+        rewind: true,
+        arrows: false,
       }
     };
   },

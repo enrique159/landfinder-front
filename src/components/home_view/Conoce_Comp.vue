@@ -1,10 +1,10 @@
 <template>
   <div class="container padding-container" id="team">
     <div class="row py-5 border-line">
-      <div class="col col-12 col-sm-6">
-        <h2 class="ff-secondary">Nuestros colaboradores</h2>
+      <div class="col col-12 col-md-3">
+        <h2 class="ff-secondary">Partners</h2>
       </div>
-      <div class="col col-12 col-sm-6">
+      <div class="col col-12 col-md-9">
         <p>
           Gracias a las más de 7 marcas que colaboran con Land Finder México
           podemos seguir ofreciendo certeza y agilidad en la consolidación de

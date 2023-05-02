@@ -27,6 +27,36 @@ export const placesMockData = [
   // },
 ]
 
+export const testimonialsMockData = [
+  {
+    id: 0,
+    name: "Luis",
+    position: "CEO",
+    company: "Land Finder México",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
+    stars: 5,
+    account: "@luis",
+  },
+  {
+    id: 1,
+    name: "Luis",
+    position: "CEO",
+    company: "Land Finder México",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
+    stars: 5,
+    account: "@luis",
+  },
+  {
+    id: 2,
+    name: "Luis",
+    position: "CEO",
+    company: "Land Finder México",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
+    stars: 5,
+    account: "@luis",
+  },
+]
+
 export const projectTypesMockData = [
   {
     id: 1,
