@@ -64,7 +64,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Projects from "@/common/project_services.js";
+import Projects from "@/services/project_services.js";
 import BannerMarketComp from "@/components/projects_view/BannerMarketComp.vue";
 import SearchBarComp from "@/components/projects_view/SearchBarComp.vue";
 export default {

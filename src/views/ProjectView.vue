@@ -112,7 +112,7 @@ import MapaComp from "@/components/project_view/Mapa_Comp.vue";
 import SimilaresComp from "@/components/project_view/Similares_Comp.vue";
 import FormularioComp from "@/components/project_view/Formulario_Comp.vue";
 import RegisterBannerComp from "@/components/project_view/RegisterBannerComp.vue";
-import Project from "@/common/project_services.js";
+import Project from "@/services/project_services.js";
 import UserServices from "@/services/UserServices";
 import ToastMixin from "@/mixins/ToastMixin.vue";
 import store from "@/store";

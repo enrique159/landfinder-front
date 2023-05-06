@@ -45,7 +45,7 @@
 
 <script>
 import UserServices from '@/services/UserServices';
-import Projects from "@/common/project_services.js";
+import Projects from "@/services/project_services.js";
 import { setUser } from "@/auth";
 import store from "@/store";
 import ToastMixin from "@/mixins/ToastMixin";

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import Projects from "@/common/project_services.js";
+import Projects from "@/services/project_services.js";
 export default {
   name: "DestacadosComp",
   data() {
