@@ -10,7 +10,7 @@
           <div class="password-container">
             <i :class="showCurrentPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" @click="showCurrentPassword = !showCurrentPassword"></i>
             <input :type="showCurrentPassword ? 'text' : 'password'" class="form-input"
-              :class="{ 'is-invalid': $v.currentPassword.$error }" placeholder="Mi contraseña actual" id="passwordInput"
+              :class="{ 'is-invalid': $v.currentPassword.$error }" placeholder="Mi contraseña actual" id="currentPasswordInput"
               v-model="currentPassword" @keypress="validatePassword($event)" />
           </div>
           <small v-if="$v.currentPassword.$error && !$v.currentPassword.required" class="error-label ms-2">Este campo es
@@ -159,7 +159,12 @@ export default {
             this.setUserLogin(res.data);
             this.$router.push({ name: "profile" });
           } else {
-            this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            console.log(res);
+            if (res.data.error.message == "The provided current password is invalid") {
+              this.showToast('error', 'La contraseña actual es incorrecta.')
+            } else {
+              this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            }
           }
 
         })

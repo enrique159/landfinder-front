@@ -10,6 +10,7 @@ import SignUpView from '@/views/login/SignUpView.vue'
 import PageConfirmEmailView from '../views/login/PageConfirmEmailView.vue'
 import ForgotPasswordView from '../views/login/ForgotPasswordView.vue'
 import ResetPasswordView from '../views/login/ResetPasswordView.vue'
+import VerifyAccountView from '../views/VerifyAccountView.vue'
 import ContactView from '@/views/ContactView.vue'
 import CollaboratorsView from '@/views/CollaboratorsView.vue'
 import MyProfileView from '@/views/MyProfileView.vue'
@@ -89,6 +90,11 @@ const routes = [
     path: '/reset-password',
     name: 'reset-password',
     component: ResetPasswordView
+  },
+  {
+    path: '/verify-account',
+    name: 'verify-account',
+    component: VerifyAccountView
   },
   {
     path: '/profile',
