@@ -104,7 +104,7 @@
 import { placesMockData as places, testimonialsMockData as testimonials } from "@/common/mockData.js";
 import { projectTypesMockData as types } from "@/common/mockData.js";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
-import Variables from "@/common/variable_services.js";
+import Variables from "@/services/variable_services.js";
 import ICountUp from 'vue-countup-v2';
 import { Money } from "v-money";
 export default {

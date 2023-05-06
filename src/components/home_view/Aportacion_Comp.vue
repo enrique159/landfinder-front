@@ -29,7 +29,7 @@
 
 <script>
 import { metodologiasMockData as metodologias } from "@/common/mockData.js";
-import Variables from "@/common/variable_services.js";
+import Variables from "@/services/variable_services.js";
 export default {
   name: "AportacionComp",
   data() {
