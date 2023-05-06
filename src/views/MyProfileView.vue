@@ -1,8 +1,13 @@
 <template>
   <div class="my-profile-view">
-    <div class="container padding-container">
+    <div v-if="isLoading" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+      <div class="spinner-border" style="width: 3rem; height: 3rem; color: #0DBA6A;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="container padding-container">
       <div class="row">
-        <div class="col-12 col-md-7">
+        <div class="col-12 col-md-7 pe-md-5 mb-5 animate__animated animate__fadeInLeft">
           <div class="row">
             <div class="col-12 mb-4">
               <h1 class="ff-secondary">Mi perfil</h1>
@@ -84,30 +89,82 @@
             <!-- **************** DATOS DE CUENTA ***************** -->
             <div class="col-12">
               <div class="row">
-                <div class="col-6">
-                  <p class="ts-h3 tc-text-light">Datos de cuenta</p>
+                <div class="col-12">
+                  <p class="ts-h3 tc-text-light mb-0">Datos de cuenta</p>
+                  <p class="info-text ts-smaller">
+                    Para modificar tu correo o tipo de usuario escríbenos a
+                    <a href="mailto:hola@landfindermexico.com">hola@landfindermexico.com</a>
+                  </p>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-6">
                   <div class="form-group mb-3">
                     <label for="emailInput" class="ms-2">Email</label>
                     <input type="text" class="form-input disabled" :disabled="true" id="emailInput" v-model="email" />
-                    <p class="info-text ts-smaller mb-0">
-                      Para modificar tu correo escríbenos a
-                      <a href="mailto:hola@landfindermexico.com">hola@landfindermexico.com</a>
-                    </p>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group mb-3">
+                    <label for="usertypeInput" class="ms-2">Tipo de usuario</label>
+                    <div class="usertype-info">
+                      <img :src="require(`@/assets/lfm_type_${getTypeImage}.png`)" alt="Img" style="width: 24px">
+                      <span class="ts-b3 tw-bold ms-2">{{ getUserType.toString().toUpperCase() }}</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group mb-3">
-                    <label for="emailInput" class="ms-2">Contraseña</label>
+                    <!-- <label for="emailInput" class="ms-2">Contraseña</label> -->
                     <router-link to="/reset-password" class="btn button-base bc-text-dark">
                       Cambiar mi contraseña
                     </router-link>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-5 animate__animated animate__fadeInRight">
+          <div class="row">
+            <div class="col-12 mb-1">
+              <h1 class="ff-secondary">Verificación</h1>
+            </div>
+
+            <!-- **************** VERIFICACION ***************** -->
+            <div class="col-12">
+              <p class="ts-small tc-text-light">
+                La verificación es el proceso con el cuál validamos tu cuenta para que puedas
+                acceder a información técnica de las propiedades que tenemos para ti.
+              </p>
+            </div>
+
+            <div class="col-12">
+              <p>
+                Estado: 
+                <span 
+                  class="badge"
+                  :class="{
+                    'text-bg-secondary': user.verified === VerifiedType.NONE,
+                    'text-bg-primary': user.verified === VerifiedType.APPLIED,
+                    'text-bg-info': user.verified === VerifiedType.INPROGRESS,
+                    'text-bg-warning': user.verified === VerifiedType.ONHOLD,
+                    'text-bg-success': user.verified === VerifiedType.VERIFIED,
+                  }"
+                >
+                  {{ getStatus }}
+                </span>
+              </p>
+            </div>
+
+            <div class="col-12">
+              <div v-if="user.verified === VerifiedType.NONE">
+                <button class="button-gradiant" @click="()=>{}">
+                  <span>Iniciar proceso de verificación</span>
+                  <i class="bi bi-arrow-up-right-square ms-2"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -130,6 +187,9 @@ import { mapGetters } from "vuex";
 import ToastMixin from "@/mixins/ToastMixin.vue";
 import { setUser } from "@/auth";
 import store from "@/store";
+// TYPES
+import { UserType } from "@/types/UserType.type";
+import { VerifiedType } from "@/types/VerifiedType.type";
 
 export default {
   metaInfo: {
@@ -146,7 +206,9 @@ export default {
       // config
       editName: false,
       editable: false,
+      isLoading: false,
       loading: false,
+      VerifiedType: VerifiedType,
     };
   },
   validations: {
@@ -166,9 +228,30 @@ export default {
     ...mapGetters({
       user: "getUser",
     }),
+    getUserType() {
+      if (this.user.usertype === UserType.INVESTOR) return "Inversionista";
+      if (this.user.usertype === UserType.OWNER) return "Propietario";
+      if (this.user.usertype === UserType.BROKER) return "Broker Inmobiliario";
+      return "Sin tipo de usuario";
+    },
+    getStatus() {
+      if (this.user.verified === VerifiedType.NONE) return "No verificado";
+      if (this.user.verified === VerifiedType.APPLIED) return "Solicitud enviada";
+      if (this.user.verified === VerifiedType.INPROGRESS) return "En proceso";
+      if (this.user.verified === VerifiedType.ONHOLD) return "Detenido";
+      if (this.user.verified === VerifiedType.VERIFIED) return "Verificado";
+      return "Sin estado";
+    },
+    getTypeImage() {
+      return this.user.usertype == 'OWNER' ? 1 : this.user.usertype == 'INVESTOR' ? 2 : 3
+    }
   },
   created() {
+    this.getMe();
     this.setValues();
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   },
   methods: {
     setValues() {
@@ -194,14 +277,34 @@ export default {
       }
       this.updateUser();
     },
-    updateUser() {
+
+    async getMe() {
+      this.isLoading = true;
+      try {
+        const response = await UserServices.me();
+        if (response.status === 200) {
+          setUser(response.data);
+        } else {
+          console.log(response);
+          this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+          this.isLoading = false;
+        }
+      } catch (error) {
+        console.log(error);
+        this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+        this.isLoading = false; 
+      }
+      this.isLoading = false;
+    },
+
+    async updateUser() {
       this.loading = true;
       const data = {
-        name: this.name,
-        lastname: this.lastname,
-        phone: this.phone,
+        name: this.name.trim(),
+        lastname: this.lastname.trim(),
+        phone: this.phone.trim(),
       };
-      UserServices.updateUser(store.getters.getUser.id, data)
+      await UserServices.updateUser(store.getters.getUser.id, data)
         .then((res) => {
           if (res.status == 200) {
             setUser(res.data);
@@ -216,6 +319,7 @@ export default {
         })
         .finally(() => {
           this.loading = false;
+          this.editName = false;
         });
     },
   },
@@ -225,7 +329,7 @@ export default {
 <style lang="scss" scoped>
 .my-profile-view {
   height: fit-content;
-  min-height: 80vh;
+  min-height: 50vh;
 
   .form-group {
     display: flex;
@@ -260,6 +364,12 @@ export default {
       font-weight: var(--font-semi-bold);
       outline: none !important;
       margin-bottom: 3px;
+    }
+
+    .usertype-info {
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
     }
 
     .disabled {

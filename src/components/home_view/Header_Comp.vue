@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col col-12">
             <Splide :options="optionsSlider">
-              <SplideSlide v-for="item in testimonials" :key="item">
+              <SplideSlide v-for="item in testimonials" :key="item.id">
                 <div class="pt-3 pb-4 ps-1 header-text-container">
                   <p class="header-text">
                     "{{ item.description }}"
@@ -278,7 +278,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     animation-duration: 1.6s;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     .search-input {
       text-align: left;
       padding: 0 12px;
