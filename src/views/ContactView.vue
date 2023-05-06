@@ -213,6 +213,9 @@ export default {
       error: "",
     }
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   methods: {
     selectChip(id) {
       this.selectedChip = id;

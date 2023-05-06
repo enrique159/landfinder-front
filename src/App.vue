@@ -108,6 +108,7 @@ export default {
 <style lang="scss">
 @import "@/styles/fonts.css";
 @import "@/styles/general.scss";
+@import "@/styles/classes.scss";
 
 .navbar-container {
   width: 100%;
