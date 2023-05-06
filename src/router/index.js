@@ -94,7 +94,8 @@ const routes = [
   {
     path: '/verify-account',
     name: 'verify-account',
-    component: VerifyAccountView
+    component: VerifyAccountView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/profile',

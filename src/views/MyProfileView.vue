@@ -161,7 +161,7 @@
 
             <div class="col-12">
               <div v-if="user.verified === VerifiedType.NONE">
-                <button class="button-gradiant" @click="()=>{}">
+                <button class="button-gradiant" @click="goTo()">
                   <span>Iniciar proceso de verificación</span>
                   <i class="bi bi-arrow-up-right-square ms-2"></i>
                 </button>
@@ -276,6 +276,9 @@ export default {
         return;
       }
       this.updateUser();
+    },
+    goTo() {
+      this.$router.push({ name: "verify-account" });
     },
 
     async getMe() {
