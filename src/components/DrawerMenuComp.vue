@@ -248,6 +248,7 @@ export default {
         width: fit-content;
         position:relative;
         font-size: var(--normal-font-size);
+        cursor: pointer;
         &::before {
           content: '';
           display: block;

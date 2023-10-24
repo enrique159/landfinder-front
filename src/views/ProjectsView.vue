@@ -1,7 +1,7 @@
 <template>
   <div class="projects-view container">
     <div class="row mb-4 px-3 px-sm-0">
-      <BannerMarketComp class="animate__animated animate__backInDown" />
+      <BannerMarketComp v-if="!isLogged" class="animate__animated animate__backInDown" />
     </div>
     <div class="row">
       <div class="col col-12 col-md-4 col-lg-3 mb-4 px-5 px-sm-0">
@@ -65,6 +65,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Projects from "@/services/project_services.js";
+import { isLoggedIn } from '@/auth'
 import BannerMarketComp from "@/components/projects_view/BannerMarketComp.vue";
 import SearchBarComp from "@/components/projects_view/SearchBarComp.vue";
 export default {
@@ -93,6 +94,10 @@ export default {
     ...mapGetters({
       parameters: 'getParameters'
     }),
+
+    isLogged() {
+      return isLoggedIn();
+    },
     // filter by type, place and price
     filteredProjects() {
       return this.projects.filter(

@@ -20,7 +20,7 @@
             <button class="button-market" @click="goTo('/marketplace', true)">
               <span>marketplace</span>
             </button>
-            <i class="bi bi-person tc-text-light pe-2"></i>
+            <i @click="goTo('/profile', true)" class="bi bi-person tc-text-light pe-2 profile-btn"></i>
           </div>
           <i v-if="isLogged" class="bi bi-person tc-text-light icon-min"></i>
           <button class="button-nav" @click="toggleNav()">
@@ -50,7 +50,7 @@ export default {
   components: {
     FooterComp,
     DrawerMenuComp
-  },  
+  },
   data() {
     return {
       active: false,
@@ -88,7 +88,7 @@ export default {
       this.active = false;
       return router ? this.$router.push(path) : window.open(path, "_self");
     },
-    scrollFix: function(hashbang) {
+    scrollFix: function (hashbang) {
       if (this.active) this.active = false;
       location.href = hashbang;
     },
@@ -98,8 +98,8 @@ export default {
         x = event.clientX - rect.left,
         y = event.clientY - rect.top;
 
-      target.style.setProperty('--mouse-x', `${ x }px`);
-      target.style.setProperty('--mouse-y', `${ y }px`);
+      target.style.setProperty('--mouse-x', `${x}px`);
+      target.style.setProperty('--mouse-y', `${y}px`);
     }
   }
 };
@@ -115,8 +115,8 @@ export default {
   position: relative;
   z-index: 100;
   background: rgba($color: #101010, $alpha: 0.7);
-  backdrop-filter: blur( 24px );
-  -webkit-backdrop-filter: blur( 24px );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 #navbar {
@@ -133,9 +133,16 @@ export default {
     position: relative;
     cursor: pointer;
     z-index: 100;
+    &:hover{
+      opacity: 0.8;
+    }
   }
-  .logo:hover {
-    opacity: 0.8;
+
+  .profile-btn {
+    cursor: pointer !important;
+    &:hover{
+      opacity: .8;
+    }
   }
 
   .button-login {
@@ -153,11 +160,9 @@ export default {
     }
 
     &::before {
-      background: radial-gradient(
-        200px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255, 255, 255, 0.2),
-        transparent 40%
-      );
+      background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y),
+          rgba(255, 255, 255, 0.2),
+          transparent 40%);
       border-radius: inherit;
       position: absolute;
       width: 100%;
@@ -188,6 +193,7 @@ export default {
     font-size: var(--small-font-size);
     font-weight: var(--font-bold);
     position: relative;
+
     &::before {
       content: '';
       position: absolute;
@@ -200,15 +206,18 @@ export default {
       transition: var(--transition-normal);
       opacity: 0;
     }
+
     &:hover {
       &::before {
         opacity: 1;
       }
     }
+
     span {
       position: relative;
       z-index: 100;
     }
+
     i {
       display: none;
     }
@@ -218,11 +227,16 @@ export default {
     display: flex;
     align-items: center;
     column-gap: 1rem;
-    .icon-min { display: none; }
-    &__info { 
+
+    .icon-min {
+      display: none;
+    }
+
+    &__info {
       display: flex;
       align-items: center;
-      column-gap: 1rem; 
+      column-gap: 1rem;
+
       .button-market {
         height: 38px;
         border: 2px solid #969696;
@@ -239,6 +253,7 @@ export default {
     width: fit-content;
     font-size: 1.25rem;
     position: relative;
+
     &::before {
       content: '';
       display: block;
@@ -250,17 +265,24 @@ export default {
       background-color: var(--color-text);
       transition: width 0.3s;
     }
-    &:hover { color: var(--color-text); }
+
+    &:hover {
+      color: var(--color-text);
+    }
+
     &:hover::before {
       width: 100%;
     }
-  };
+  }
+
+  ;
 
   .nav-options {
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: var(--transition-fast);
+
     a {
       font-size: var(--normal-font-size);
       font-weight: var(--font-medium);
@@ -269,23 +291,29 @@ export default {
       transition: var(--transition-fast);
       padding: 0 2rem;
       cursor: pointer;
+
       &:hover {
         opacity: 0.8;
       }
     }
+
     a:nth-child(1) {
       border-right: 1px solid var(--color-white);
     }
+
     a:nth-child(2) {
       border-right: 1px solid var(--color-white);
     }
+
     a:nth-child(3) {
       border-right: 1px solid var(--color-white);
     }
+
     a:nth-child(4) {
       border-right: 1px solid var(--color-white);
     }
   }
+
   .nav-options-min {
     display: none;
     background: var(--color-background);
@@ -296,7 +324,8 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-     a {
+
+    a {
       font-size: var(--normal-font-size);
       font-weight: var(--font-medium);
       color: var(--color-primary);
@@ -304,26 +333,35 @@ export default {
       transition: var(--transition-fast);
       padding: 0 2rem;
       cursor: pointer;
+
       &:hover {
         opacity: 0.8;
       }
     }
-    a:nth-child(1), a:nth-child(2), a:nth-child(3) {
+
+    a:nth-child(1),
+    a:nth-child(2),
+    a:nth-child(3) {
       border: none;
     }
+
     a:nth-child(1) {
       border-bottom: 1px solid var(--color-white);
     }
+
     a:nth-child(2) {
       border-bottom: 1px solid var(--color-white);
     }
+
     a:nth-child(3) {
       border-bottom: 1px solid var(--color-white);
     }
+
     a:nth-child(4) {
       border-bottom: 1px solid var(--color-white);
     }
   }
+
   .button-nav {
     background: #141414;
     border: 1px solid #141414;
@@ -339,42 +377,73 @@ export default {
     border-radius: 2rem;
     padding: 6px 0;
     padding-left: 10px;
+
     div {
       height: 2px;
       background: var(--color-white);
       transition: var(--transition-fast);
     }
-    .line-1 { width: 18px; margin-bottom: 3px; }
-    .line-2 { width: 14px; }
+
+    .line-1 {
+      width: 18px;
+      margin-bottom: 3px;
+    }
+
+    .line-2 {
+      width: 14px;
+    }
+
     &:hover {
       border: 1px solid var(--color-black-2);
-      .line-1 { width: 12px; }
-      .line-2 { width: 8px; }
+
+      .line-1 {
+        width: 12px;
+      }
+
+      .line-2 {
+        width: 8px;
+      }
     }
   }
 
   @media screen and (max-width: 768px) {
     .portfolio-link {
-      span { display: none; }
+      span {
+        display: none;
+      }
     }
 
-    .button-login, .button-register {
+    .button-login,
+    .button-register {
       width: 38px;
       height: 38px;
       padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      span { display: none; }
-      i { position: relative; z-index: 100; display: block; line-height: 0; }
+
+      span {
+        display: none;
+      }
+
+      i {
+        position: relative;
+        z-index: 100;
+        display: block;
+        line-height: 0;
+      }
+
       font-size: 1.2rem;
     }
+
     .button-login i {
       padding-right: 2px;
     }
+
     .button-register {
       background: var(--color-complementary-1);
     }
+
     .button-register i {
       padding-left: 4px;
     }
@@ -382,6 +451,7 @@ export default {
     .nav-options {
       display: none;
     }
+
     .nav-options-min {
       display: flex;
       position: absolute;
@@ -390,6 +460,7 @@ export default {
       width: 100%;
       height: 0px;
     }
+
     .active {
       display: flex;
       position: absolute;
@@ -402,20 +473,27 @@ export default {
       z-index: 50;
       flex-direction: column;
       justify-content: center;
+
       a {
         padding: 2rem 0;
         width: 100px;
         text-align: center;
       }
-      a:nth-child(1), a:nth-child(2), a:nth-child(3) {
+
+      a:nth-child(1),
+      a:nth-child(2),
+      a:nth-child(3) {
         border: none;
       }
+
       a:nth-child(1) {
         border-bottom: 1px solid var(--color-white);
       }
+
       a:nth-child(2) {
         border-bottom: 1px solid var(--color-white);
       }
+
       a:nth-child(3) {
         border-bottom: 1px solid var(--color-white);
       }
@@ -426,9 +504,13 @@ export default {
 @media screen and (max-width: 576px) {
   #navbar {
     .menu-dashboard {
-      &__info { display: none; }
-      .icon-min { display: block; }
+      &__info {
+        display: none;
+      }
+
+      .icon-min {
+        display: block;
+      }
     }
   }
-}
-</style>
+}</style>

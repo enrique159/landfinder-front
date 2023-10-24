@@ -30,31 +30,22 @@ export const placesMockData = [
 export const testimonialsMockData = [
   {
     id: 0,
-    name: "Luis",
-    position: "CEO",
-    company: "Land Finder México",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
+    name: "Michel Pickett",
+    position: "DIRECTOR",
+    company: "Pickett CF",
+    description: "Una plataforma digital de excelencia, la mejor del país para desarrolladores, inversionistas, constructores y comercializadores… con una gran oportunidad para rentabilizar proyectos de inversión en Baja California Sur.",
     stars: 5,
-    account: "@luis",
+    account: "",
   },
   {
     id: 1,
-    name: "Luis",
-    position: "CEO",
-    company: "Land Finder México",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
+    name: "Jorge Encinas",
+    position: "DIRECTOR",
+    company: "HUB Inmobiliarios BCS",
+    description: "En Land Finder México democratizamos el desarrollo inmobiliario conectando a propietarios con fondos y desarrolladores logrando así acortar la brecha en la toma de decisiones.",
     stars: 5,
-    account: "@luis",
-  },
-  {
-    id: 2,
-    name: "Luis",
-    position: "CEO",
-    company: "Land Finder México",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl. Sed euismod, diam sit amet sodales aliquam, nunc nisl ultricies nunc, vitae aliquam nisl nunc eu nisl.",
-    stars: 5,
-    account: "@luis",
-  },
+    account: "",
+  }
 ]
 
 export const projectTypesMockData = [

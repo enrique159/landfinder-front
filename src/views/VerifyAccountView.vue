@@ -4,7 +4,7 @@
             <h1 class="text-center">Verifica tu cuenta</h1>
             <p class="text-center">Ingresa los datos necesarios para verificar tu cuenta y asi tengas acceso a más
                 información</p>
-            <form id="signInForm" class="mb-4" @submit.prevent="() => { }">
+            <form id="verifyForm" class="mb-4" @submit.prevent="sendEmail()">
 
                 <div class="form-group mb-3">
                     <label for="rfcInput" class="ms-2">RFC</label>
@@ -14,18 +14,19 @@
 
                 <div class="form-group mb-3">
                     <label for="companyTypeInput" class="ms-2">Tipo de compañia</label>
-                    <Select name="companyTypes" class="form-input" :class="{ 'is-invalid': $v.companyType.$error }"
-                        placeholder="Ej. ABC680524P76" id="companyTypeInput" v-model="companyType">
-                        <option value="INMOBILIARIA">INMOBILIARIA</option>
+                    <Select @change="changeCompanyType($event)" name="companyTypes" class="form-input" :class="{ 'is-invalid': $v.companyType.$error }"
+                        id="companyTypeInput" v-model="companyType">
+                        <option v-for="compT in companyTypes" :key="compT.id" :value="compT.value">{{compT.value}}</option>
+                        <!-- <option value="INMOBILIARIA" selected>INMOBILIARIA</option>
                         <option value="DESARROLLADOR">DESARROLLADOR</option>
-                        <option value="OTRA">OTRA</option>
+                        <option value="OTRA">OTRA</option> -->
                     </Select>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="bussinesNameInput" class="ms-2">Nombre de mi empresa</label>
                     <input type="text" class="form-input" :class="{ 'is-invalid': $v.companyName.$error }"
-                        placeholder="Ej. Mi empresa" id="bussinesInput" v-model="companyName" />
+                        placeholder="Ej. Mi empresa" id="bussinesNameInput" v-model="companyName" />
                 </div>
 
                 <div class="form-group mb-3">
@@ -79,8 +80,8 @@
 
                 <div class="form-group mb-3">
                     <label for="cityInput" class="ms-2">Ciudad</label>
-                    <input type="text" class="form-input" :class="{ 'is-invalid': $v.city.$error }"
-                        placeholder="Ej. La Paz" id="cityInput" v-model="city" />
+                    <input type="text" class="form-input" :class="{ 'is-invalid': $v.city.$error }" placeholder="Ej. La Paz"
+                        id="cityInput" v-model="city" />
                 </div>
 
                 <div class="form-group mb-3">
@@ -116,8 +117,8 @@
   
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import emailjs from "@emailjs/browser";
 import { setAuthToken, setUser, isLoggedIn } from "@/auth";
-import AuthServices from "@/services/AuthServices";
 export default {
     metaInfo: {
         title: "Land Finder México",
@@ -125,8 +126,13 @@ export default {
     },
     data: () => ({
 
+        companyTypes: [
+            {id: 1, value: "INMOBILIARIA"},
+            {id: 2, value: "DESARROLLADOR"},
+            {id: 3, value: "OTRO"}
+        ],
         rfc: "",
-        companyType: "",
+        companyType:  "INMOBILIAIRIA",
         companyName: "",
         description: "",
         phoneOffice: "",
@@ -181,7 +187,7 @@ export default {
         city: {
             required
         },
-        state:{
+        state: {
             required
         },
         country: {
@@ -189,6 +195,18 @@ export default {
         },
         zipCode: {
             required
+        }
+    },
+
+    computed: {
+        message() {
+            return `DATOS DE EMPRESA -- RFC: [ ${this.rfc} ] -- Tipo de compañia: [ ${this.companyType} ]
+            -- Nombre de mi empresa: [ ${this.companyName} ] -- Descripción de mi empresa: [ ${this.description} ]
+            -- Telefono de oficina: [ ${this.phoneOffice} ] -- Extension: [ ${this.phoneOfficeExt} ]
+            -- Numero de empleados: [ ${this.employeesNumber} ] -- Link de contacto: [ ${this.website} ]
+            -- Email institucional: [ ${this.emailCompany} ] -- Calle y numero: [ ${this.streetAndNum} ]
+            -- Colonia: [ ${this.hood} ] -- Ciudad: [ ${this.city} ] -- Estado: [ ${this.state} ] -- Pais: [ ${this.country} ]
+            -- Codigo postal: [ ${this.zipCode} ]`;
         }
     },
     methods: {
@@ -200,29 +218,45 @@ export default {
             return true;
         },
 
-        signIn() {
-            if (this.validForm()) {
-                this.loading = true;
-                AuthServices.login(this.email, this.password)
-                    .then((res) => {
-                        if (res.status == 200) {
-                            this.setUserLogin(res.data);
-                            this.$router.push({ name: "home" });
-                        } else {
-                            if (res.status == 400) {
-                                this.showToast('error', 'Usuario o contraseña incorrectos')
-                            } else {
-                                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-                            }
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                        this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-                    }).finally(() => {
-                        this.loading = false;
-                    });
-            }
+        changeCompanyType(e){
+            this.companyType = e.target.value
+        },
+
+        sendEmail(e) {
+            console.log(this.message)
+            // if (this.validForm()) {
+            //     this.loading = true;
+            //     emailjs
+            //         .send(
+            //             "service_dx3z2na",
+            //             "template_4sgd35g",
+            //             {
+            //                 type: this.chips[this.selectedChip - 1].name,
+            //                 name: this.name,
+            //                 business_name: this.nameCompany,
+            //                 email: this.email,
+            //                 message: this.message,
+            //             },
+            //             "-DIkcxuZ3ssPqzst2"
+            //         ).then(
+            //             (result) => {
+            //                 this.$router.push({ name: "profile" });
+            //                 console.log("SUCCESS!", result.status, result.text);
+            //             },
+            //             (error) => {
+            //                 this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            //                 console.log("FAILED...", error);
+            //             }
+            //         )
+            //         .catch((err) => {
+            //             console.log(err)
+            //             this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            //         }).finally(() => {
+            //             this.loading = false;
+            //         });
+            // } else {
+            //     this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            // }
         },
 
         // Método para setear los valores
@@ -264,7 +298,7 @@ export default {
         text-decoration: underline;
     }
 
-    #signInForm {
+    #verifyForm {
         width: 100%;
         max-width: 320px;
         margin: 0 auto;

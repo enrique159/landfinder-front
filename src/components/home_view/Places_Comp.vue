@@ -4,13 +4,10 @@
       <div class="col-12 col-lg-4 col-xl-5 py-4">
         <span class="tw-medium d-block mb-3">Ubicaciones LFM</span>
         <h2 class="ff-secondary ts-h1 mb-4">
-          Descubre lugares para desarrollar hoy
+          ¿Dónde será tu próximo proyecto? 
         </h2>
         <p class="tc-text-light mb-2">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Harum atque deserunt sed ex, inventore quos ipsum nulla
-          sapiente laboriosam similique error natus nobis minus
-          blanditiis, aliquam dolor neque autem excepturi.
+          Contamos con un gran inventario de tierra disponible para aportación en los 5 municipios, ciudades y comunidades muy representativas de Baja California Sur, la tierra que vio nacer a Land Finder México. 
         </p>
       </div>
       <div class="col-12 col-lg-8 col-xl-7">
@@ -18,7 +15,7 @@
           <splide :options="isMobile ? minOptions : options">
             <splide-slide class="splide-container" v-for="place in places" :key="places.name">
               <div class="carousel-card" :style="{ 'background-image': `url(${place.image})` }"
-                @click="goTo(`/places/${place.path}`)">
+                @click="goTo(`/marketplace`)">
                 <div class="info">
                   <span class="ts-smaller tw-medium">Baja California Sur</span>
                   <h4 class="ff-secondary">{{ place.name }}</h4>
@@ -57,6 +54,36 @@ export default {
           name: "Todos Santos",
           path: "todos-santos",
           image: require("@/assets/places/todos_santos.png"),
+        },
+        {
+          name: "El Pescadero",
+          path: "el-pescadero",
+          image: require("@/assets/places/el-pescadero.webp"),
+        },
+        {
+          name: "Cabo San Lucas",
+          path: "cabo-san-lucas",
+          image: require("@/assets/places/cabo-san-lucas.webp"),
+        },
+        {
+          name: "Cabo del Este",
+          path: "cabo-del-este",
+          image: require("@/assets/places/cabo-del-este.webp"),
+        },
+        {
+          name: "San José del Cabo",
+          path: "san-jose-del-cabo",
+          image: require("@/assets/places/san-jose-del-cabo.webp"),
+        },
+        {
+          name: "Loreto",
+          path: "loreto",
+          image: require("@/assets/places/loreto.webp"),
+        },
+        {
+          name: "Mulegé",
+          path: "mulege",
+          image: require("@/assets/places/mulege.webp"),
         },
       ],
       options: {
