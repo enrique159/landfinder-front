@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-5 padding-container">
+  <div class="container padding-container">
     <div class="row py-5">
       <div class="col col-12 col-md-9 col-sm-8">
         <h2 class="ts-biggest ff-secondary animate__animated">

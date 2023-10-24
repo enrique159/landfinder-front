@@ -11,7 +11,7 @@
     </div> -->
     <DeslizaAbajoComp/>
     <PlacesComp/>
-   
+    <AboutUs/>
     <DestacadosComp/>
     <MethodCompVue/>
     <!-- <FaqComp /> -->
@@ -26,6 +26,7 @@
 import { placesMockData as places} from '@/common/mockData.js'
 import HeaderComp from '@/components/home_view/Header_Comp.vue'
 import PlacesComp from '@/components/home_view/Places_Comp.vue'
+import AboutUs from '@/components/home_view/AboutUs_Comp.vue'
 import AportacionComp from '@/components/home_view/Aportacion_Comp.vue'
 import DestacadosComp from '@/components/home_view/Destacados_Comp.vue'
 import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
@@ -41,6 +42,7 @@ export default {
     HeaderComp,
     AportacionComp,
     PlacesComp,
+    AboutUs,
     DestacadosComp,
     ConoceComp,
     ContactoComp,

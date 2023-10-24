@@ -148,12 +148,12 @@ export const partners_up_part1 = [
     image: 'HUBi.png',
     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
   },
-  {
-    id: 1,
-    name: 'Welcome Home',
-    image: 'Welcomehome.png',
-    description: 'Comercializadora inmobiliaria especializada en proyectos.',
-  },
+  // {
+  //   id: 1,
+  //   name: 'Welcome Home',
+  //   image: 'Welcomehome.png',
+  //   description: 'Comercializadora inmobiliaria especializada en proyectos.',
+  // },
   {
     id: 2,
     name: 'Alkilable',

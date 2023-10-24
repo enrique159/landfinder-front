@@ -146,6 +146,7 @@ export default {
 <style lang="scss" scoped>
 .contacto-section {
   scroll-margin-top: 120px;
+  padding-top: 5rem !important;
 
   .contacto-form {
     background-color: var(--color-complementary-1);
