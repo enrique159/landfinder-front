@@ -85,6 +85,11 @@ export default {
           path: "mulege",
           image: require("@/assets/places/mulege.webp"),
         },
+        {
+          name: "La Bocana",
+          path: "la-bocana",
+          image: require("@/assets/places/la-bocana.webp"),
+        }
       ],
       options: {
         type: "loop",
