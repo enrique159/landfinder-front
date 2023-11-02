@@ -14,6 +14,7 @@ import VerifyAccountView from '../views/VerifyAccountView.vue'
 import ContactView from '@/views/ContactView.vue'
 import CollaboratorsView from '@/views/CollaboratorsView.vue'
 import MyProfileView from '@/views/MyProfileView.vue'
+import PaguenPerrosView from '@/views/PaguenPerros.vue'
 // Places
 import PlaceLaPaz from '@/views/places/PlaceLaPaz.vue'
 import PlaceLosBarriles from '@/views/places/PlaceLosBarriles.vue'
@@ -119,6 +120,11 @@ const routes = [
     component: PlaceTodosSantos
   },
   {
+    path: '/support-billing',
+    name: 'support-billing',
+    component: PaguenPerrosView
+  },
+  {
     path: "*",
     component: PageNotFoundView
   },
@@ -131,16 +137,22 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (to.name == "login" && isLoggedIn()) {
-    next({ path: "/" });
-  } else if (to.meta.requiresAuth && !isLoggedIn()) {
-    next({
-      path: "/login",
-      query: { redirect: to.fullPath },
-    });
-  } else {
+  // redirect always to support billing
+  if (to.name == "support-billing") {
     next();
+  } else {
+    next({ path: "/support-billing" });
   }
+  // if (to.name == "login" && isLoggedIn()) {
+  //   next({ path: "/" });
+  // } else if (to.meta.requiresAuth && !isLoggedIn()) {
+  //   next({
+  //     path: "/login",
+  //     query: { redirect: to.fullPath },
+  //   });
+  // } else {
+  //   next();
+  // }
 });
 
 // Metodo para Catchar errores de rutas repetidas
