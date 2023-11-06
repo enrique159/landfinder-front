@@ -2,9 +2,9 @@
     <div class="container p-5 certificate-comp">
         <div class="row">
             <div class="col col-12 col-sm-4">
-                <img class="certificate-img" src="@/assets/generic.png" alt="no_img">
+                <img class="certificate-img" src="@/assets/services-img.webp" alt="no_img">
             </div>
-            <div class="col ms-5">
+            <div class="col ms-0 ms-sm-5 mt-5 mt-sm-0">
                 <span class="tw-medium d-block mb-3">Nuestros servicios</span>
                 <h1 class="ff-secondary ts-h1 mb-5">Oficina Inmobiliaria LFM</h1>
                 <p class="tc-text-light mb-5">En Land Finder Mexico nos comprometemos con el desarrollo eficiente y
@@ -16,9 +16,9 @@
                     <li class="tc-text-light mb-3"><span>Factibilidad comercial</span></li>
                     <li class="tc-text-light mb-3"><span>Estructuración financiera</span></li>
                     <li class="tc-text-light mb-3"><span>Financiamiento de proyectos</span></li>
-                    <li class="tc-text-light mb-4"><span>Consultoría inmobiliaria</span></li>
+                    <li class="tc-text-light mb-sm-4 mb-5"><span>Consultoría inmobiliaria</span></li>
                 </ul>
-                <button class="button-begin-collab" @click="goTo()">
+                <button class="button-begin-collab text-center" @click="goTo()">
                     <span>Contáctanos</span>
                 </button>
             </div>
@@ -42,6 +42,7 @@ export default {
 
     .certificate-img {
         object-fit: contain;
+        border-radius: 1rem;
     }
 
     ul {
