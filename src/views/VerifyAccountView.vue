@@ -14,9 +14,9 @@
 
                 <div class="form-group mb-3">
                     <label for="companyTypeInput" class="ms-2">Tipo de compañia</label>
-                    <Select @change="changeCompanyType($event)" name="companyTypes" class="form-input" :class="{ 'is-invalid': $v.companyType.$error }"
-                        id="companyTypeInput" v-model="companyType">
-                        <option v-for="compT in companyTypes" :key="compT.id" :value="compT.value">{{compT.value}}</option>
+                    <Select @change="changeCompanyType($event)" name="companyTypes" class="form-input"
+                        :class="{ 'is-invalid': $v.companyType.$error }" id="companyTypeInput" v-model="companyType">
+                        <option v-for="compT in companyTypes" :key="compT.id" :value="compT.value">{{ compT.value }}</option>
                         <!-- <option value="INMOBILIARIA" selected>INMOBILIARIA</option>
                         <option value="DESARROLLADOR">DESARROLLADOR</option>
                         <option value="OTRA">OTRA</option> -->
@@ -118,6 +118,8 @@
 <script>
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import emailjs from "@emailjs/browser";
+import store from '@/store'
+import { mapGetters } from 'vuex'
 import { setAuthToken, setUser, isLoggedIn } from "@/auth";
 export default {
     metaInfo: {
@@ -127,12 +129,12 @@ export default {
     data: () => ({
 
         companyTypes: [
-            {id: 1, value: "INMOBILIARIA"},
-            {id: 2, value: "DESARROLLADOR"},
-            {id: 3, value: "OTRO"}
+            { id: 1, value: "INMOBILIARIA" },
+            { id: 2, value: "DESARROLLADOR" },
+            { id: 3, value: "OTRO" }
         ],
         rfc: "",
-        companyType:  "INMOBILIAIRIA",
+        companyType: "INMOBILIAIRIA",
         companyName: "",
         description: "",
         phoneOffice: "",
@@ -199,6 +201,7 @@ export default {
     },
 
     computed: {
+        ...mapGetters(['getUser']),
         message() {
             return `DATOS DE EMPRESA -- RFC: [ ${this.rfc} ] -- Tipo de compañia: [ ${this.companyType} ]
             -- Nombre de mi empresa: [ ${this.companyName} ] -- Descripción de mi empresa: [ ${this.description} ]
@@ -207,7 +210,10 @@ export default {
             -- Email institucional: [ ${this.emailCompany} ] -- Calle y numero: [ ${this.streetAndNum} ]
             -- Colonia: [ ${this.hood} ] -- Ciudad: [ ${this.city} ] -- Estado: [ ${this.state} ] -- Pais: [ ${this.country} ]
             -- Codigo postal: [ ${this.zipCode} ]`;
-        }
+        },
+        getUser() {
+            return store.getters['getUser']
+        },
     },
     methods: {
         validForm() {
@@ -218,45 +224,45 @@ export default {
             return true;
         },
 
-        changeCompanyType(e){
+        changeCompanyType(e) {
             this.companyType = e.target.value
         },
 
         sendEmail(e) {
             console.log(this.message)
-            // if (this.validForm()) {
-            //     this.loading = true;
-            //     emailjs
-            //         .send(
-            //             "service_dx3z2na",
-            //             "template_4sgd35g",
-            //             {
-            //                 type: this.chips[this.selectedChip - 1].name,
-            //                 name: this.name,
-            //                 business_name: this.nameCompany,
-            //                 email: this.email,
-            //                 message: this.message,
-            //             },
-            //             "-DIkcxuZ3ssPqzst2"
-            //         ).then(
-            //             (result) => {
-            //                 this.$router.push({ name: "profile" });
-            //                 console.log("SUCCESS!", result.status, result.text);
-            //             },
-            //             (error) => {
-            //                 this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-            //                 console.log("FAILED...", error);
-            //             }
-            //         )
-            //         .catch((err) => {
-            //             console.log(err)
-            //             this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-            //         }).finally(() => {
-            //             this.loading = false;
-            //         });
-            // } else {
-            //     this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
-            // }
+            if (this.validForm()) {
+                this.loading = true;
+                emailjs
+                    .send(
+                        "service_dx3z2na",
+                        "template_4sgd35g",
+                        {
+                            type: "SOLICITUD DE VERIFICACIÓN DE CUENTA",
+                            name: this.getUser.email,
+                            business_name: this.nameCompany,
+                            email: this.emailCompany,
+                            message: this.message,
+                        },
+                        "-DIkcxuZ3ssPqzst2"
+                    ).then(
+                        (result) => {
+                            this.$router.push({ name: "profile" });
+                            console.log("SUCCESS!", result.status, result.text);
+                        },
+                        (error) => {
+                            this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+                            console.log("FAILED...", error);
+                        }
+                    )
+                    .catch((err) => {
+                        console.log(err)
+                        this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+                    }).finally(() => {
+                        this.loading = false;
+                    });
+            } else {
+                this.showToast('error', 'Oh no! Algo salió mal, intenta de nuevo.')
+            }
         },
 
         // Método para setear los valores

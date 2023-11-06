@@ -31,8 +31,8 @@ export const testimonialsMockData = [
   {
     id: 0,
     name: "Michel Pickett",
-    position: "DIRECTOR",
-    company: "Pickett CF",
+    position: "",
+    company: "Espacio Inmobiliario, Cabo Mil 96.3 FM",
     description: "Una plataforma digital de excelencia, la mejor del país para desarrolladores, inversionistas, constructores y comercializadores… con una gran oportunidad para rentabilizar proyectos de inversión en Baja California Sur.",
     stars: 5,
     account: "",
