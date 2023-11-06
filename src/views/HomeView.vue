@@ -10,8 +10,10 @@
       </div>
     </div> -->
     <DeslizaAbajoComp/>
-    <PlacesComp/>
     <AboutUs/>
+    <ServicesComp/>
+    <ServiceBannerComp/>
+    <PlacesComp/>
     <DestacadosComp/>
     <MethodCompVue/>
     <!-- <FaqComp /> -->
@@ -25,8 +27,10 @@
 <script>
 import { placesMockData as places} from '@/common/mockData.js'
 import HeaderComp from '@/components/home_view/Header_Comp.vue'
-import PlacesComp from '@/components/home_view/Places_Comp.vue'
 import AboutUs from '@/components/home_view/AboutUs_Comp.vue'
+import ServicesComp from '@/components/home_view/Services_Comp.vue'
+import ServiceBannerComp from '@/components/home_view/ServiceBanner_Comp.vue'
+import PlacesComp from '@/components/home_view/Places_Comp.vue'
 import AportacionComp from '@/components/home_view/Aportacion_Comp.vue'
 import DestacadosComp from '@/components/home_view/Destacados_Comp.vue'
 import ConoceComp from '@/components/home_view/Conoce_Comp.vue'
@@ -40,9 +44,11 @@ export default {
   name: "HomeView",
   components: {
     HeaderComp,
+    AboutUs,
+    ServicesComp,
+    ServiceBannerComp,
     AportacionComp,
     PlacesComp,
-    AboutUs,
     DestacadosComp,
     ConoceComp,
     ContactoComp,

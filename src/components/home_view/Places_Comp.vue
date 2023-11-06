@@ -4,10 +4,11 @@
       <div class="col-12 col-lg-4 col-xl-5 py-4">
         <span class="tw-medium d-block mb-3">Ubicaciones LFM</span>
         <h2 class="ff-secondary ts-h1 mb-4">
-          ¿Dónde será tu próximo proyecto? 
+          ¿Dónde será tu próximo proyecto?
         </h2>
         <p class="tc-text-light mb-2">
-          Contamos con un gran inventario de tierra disponible para aportación en los 5 municipios, ciudades y comunidades muy representativas de Baja California Sur, la tierra que vio nacer a Land Finder México. 
+          Contamos con un gran inventario de tierra disponible para aportación en las ciudades y comunidades
+          más representativas de Baja California Sur, la tierra que vio nacer a Land Finder México.
         </p>
       </div>
       <div class="col-12 col-lg-8 col-xl-7">

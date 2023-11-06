@@ -2,6 +2,7 @@
   <div class="container about-us px-5 px-md-3">
     <div class="row">
       <div class="col-12 col-md-6 mb-5 px-0 px-md-5">
+        <span class="tw-medium d-block mb-3">Sobre nosotros</span>
         <h2 class="ff-secondary ts-h1 mb-5">Somos la oficina consultora inmobiliaria <span class="tc-complementary-1"> No. 1</span> de Baja California Sur
         </h2>
         <p class="tc-text-light">
@@ -14,19 +15,19 @@
         <div class="technicals-grid">
           <div class="card-detail px-4 d-flex justify-content-center flex-column">
             <p class="info-name mb-2">m² aportados</p>
-            <h2 class="ff-secondary ts-h2">+8k</h2>
+            <h2 class="ff-secondary ts-h2">+8,000</h2>
             <p class="info-text ts-smaller mb-0">Total de m² aportados por Land Finder México</p>
           </div>
 
           <div class="card-detail px-4 d-flex justify-content-center flex-column">
             <p class="info-name mb-2">m² ejidales</p>
-            <h2 class="ff-secondary ts-h2">+840M</h2>
+            <h2 class="ff-secondary ts-h2">+840,000,000</h2>
             <p class="info-text ts-smaller mb-0">Superficie de tierra ejidal aportada por Land Finder México</p>
           </div>
 
           <div class="card-detail px-4 d-flex justify-content-center flex-column">
             <p class="info-name mb-2">m² regularizados</p>
-            <h2 class="ff-secondary ts-h2">+31M</h2>
+            <h2 class="ff-secondary ts-h2">+31,000,000</h2>
             <p class="info-text ts-smaller mb-0">Total de m² regularizados a través de Land Finder México</p>
           </div>
         </div>

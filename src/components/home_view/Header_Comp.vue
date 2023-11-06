@@ -10,7 +10,7 @@
             :options="optionsCounter"
             @ready="onReady"
           />
-          <span>m²</span> en aportación para desarrollo!
+          <span>m²</span> de tierra en aportación para desarrollo!
         </h1>
         <div class="search-bar animate__animated animate__fadeInUp animate__delay" >
           <!-- DROPDOWN LOCATION -->
@@ -238,7 +238,7 @@ export default {
 
   h1 {
     font-family: var(--font-secondary);
-    font-size: 4rem;
+    font-size: 3.7rem;
     font-weight: var(--font-regular);
     color: var(--color-text);
     margin-bottom: 2rem;
