@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <div class="position-fixed w-100 navbar-container">
+    <div class="position-fixed w-100 navbar-container">
       <nav id="navbar" class="container">
         <router-link to="/">
           <img class="logo" src="@/assets/logo.svg" alt="">
@@ -30,14 +30,14 @@
         </div>
       </nav>
     </div>
-    <div class="spacer-120" id="header-search"></div> -->
+    <div class="spacer-120" id="header-search"></div>
     <!-- ROUTER VIEW -->
     <router-view />
 
     <!-- FOOTER -->
-    <!-- <FooterComp /> -->
+    <FooterComp />
 
-    <!-- <DrawerMenuComp :active="active" @updateActive="active = $event" /> -->
+    <DrawerMenuComp :active="active" @updateActive="active = $event" />
   </div>
 </template>
 

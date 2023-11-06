@@ -119,11 +119,11 @@ const routes = [
     name: 'places-todos-santos',
     component: PlaceTodosSantos
   },
-  {
-    path: '/support-billing',
-    name: 'support-billing',
-    component: PaguenPerrosView
-  },
+  // {
+  //   path: '/support-billing',
+  //   name: 'support-billing',
+  //   component: PaguenPerrosView
+  // },
   {
     path: "*",
     component: PageNotFoundView
@@ -137,22 +137,16 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  // redirect always to support billing
-  if (to.name == "support-billing") {
-    next();
+  if (to.name == "login" && isLoggedIn()) {
+    next({ path: "/" });
+  } else if (to.meta.requiresAuth && !isLoggedIn()) {
+    next({
+      path: "/login",
+      query: { redirect: to.fullPath },
+    });
   } else {
-    next({ path: "/support-billing" });
+    next();
   }
-  // if (to.name == "login" && isLoggedIn()) {
-  //   next({ path: "/" });
-  // } else if (to.meta.requiresAuth && !isLoggedIn()) {
-  //   next({
-  //     path: "/login",
-  //     query: { redirect: to.fullPath },
-  //   });
-  // } else {
-  //   next();
-  // }
 });
 
 // Metodo para Catchar errores de rutas repetidas
