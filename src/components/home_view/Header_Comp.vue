@@ -216,7 +216,7 @@ export default {
   position: relative;
   width: 100%;
   height: fit-content;
-  background-image: url("@/assets/header_background.webp");
+  background-image: url("@/assets/main-cover.webp");
   background-position: 0% 20%;
   background-size: cover;
   background-repeat: no-repeat;
