@@ -54,8 +54,8 @@
     </div>
     <div v-if="isLogged" class="col col-12 col-sm-4 col-md-3 col-lg-3">
       <div class="card-detail px-4 d-flex justify-content-center flex-column">
-        <p class="info-name mb-2">Densidad</p>
-        <h2 class="ff-secondary ts-h2">{{ 260 }} viv/ha</h2>
+        <p class="info-name mb-2">Altura permitida</p>
+        <h2 class="ff-secondary ts-h2">{{ 260 }} m²</h2>
         <p class="info-text ts-smaller mb-0">Número permitido según la normativa de viviendas por hectárea.</p>
       </div>
     </div>

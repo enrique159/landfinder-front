@@ -9,8 +9,8 @@ export default {
     locationProp: {
       type: Object,
       default: () => ({
-        lat: 24.142605,
-        lng: -110.312616,
+        lat: 24.1553252,
+        lng: -110.3023063,
       }),
     },
   },

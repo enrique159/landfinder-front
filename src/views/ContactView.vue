@@ -107,7 +107,7 @@
         <section class="section-container">
           <i class="ti ti-location"></i>
           <div class="divider"></div>
-          <p class="mb-0">Manuel Encinas #1714, Col. Los Olivos, CP 23040 <br> La Paz, Baja California Sur, México.</p>
+          <p class="mb-0">Isabel La Católica 1260, Guerrero, CP 23020 <br> La Paz, Baja California Sur, México.</p>
         </section>
 
         <div class="row">
@@ -116,7 +116,7 @@
               <i class="ti ti-phone"></i>
               <div class="divider"></div>
               <p class="mb-0">
-                <a href="tel:+526121251580">+52 612 125 1580</a>
+                <a href="tel:+526121251580">+52 612 120 2215</a>
               </p>
             </section>
           </div>
@@ -195,8 +195,8 @@ export default {
     return {
       faqList: faq,
       location: {
-        lat: 24.141245,
-        lng: -110.307533,
+        lat: 24.1553252,
+        lng:  -110.3023063,
       },
       chips: [
         { id: 1, name: "Desarrollador", },
