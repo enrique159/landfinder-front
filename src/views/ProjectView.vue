@@ -55,13 +55,12 @@
           <!-- DESCRIPTION -->
           <div class="d-flex justify-content-between align-items-end mb-4">
             <h3 class="ff-secondary">Detalles de la propiedad</h3>
-            <a class="view-more-link" :href="project.attributes.id_company.data.attributes.contact_link"
-              target="_blank">Ver más información</a>
+            <router-link v-if="!logged" class="view-more-link" to="/signup">Ver más información</router-link>
           </div>
           <p class="comments-project mb-5">
             {{ project.attributes.comments }}
           </p>
-          <DetailAcordionComp v-if="logged"/>
+          <DetailAcordionComp v-if="logged" />
           <div class="divider mb-5"></div>
           <!-- MAP LOCATION -->
           <div class="d-flex justify-content-between align-items-end mb-5">
@@ -70,21 +69,6 @@
           </div>
           <MapaComp :locationProp="projectLocation" />
           <div class="divider my-5"></div>
-          <!-- PROYECTOS SIMILARES -->
-          <!--  <div class="d-flex similar-projects">
-            <img :src="
-              this.project.attributes.id_company.data.attributes.logo_image
-            " alt="logo-company" class="company-logo me-3" />
-            <div>
-              <h3>
-                Otros projectos de
-                {{ this.project.attributes.id_company.data.attributes.name }}
-              </h3>
-              <p>
-                {{ this.project.attributes.id_company.data.attributes.description }}
-              </p>
-            </div>
-          </div> -->
           <h3 class="ff-secondary mb-5">Descubre otras propiedades que <br> te podrían interesar</h3>
           <SimilaresComp :similarProjects="similarProjects" />
           <div v-if="!logged" class="divider my-5"></div>

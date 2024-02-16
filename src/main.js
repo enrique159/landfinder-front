@@ -28,7 +28,7 @@ Vue.use(VueClipboard);
 Vue.config.productionTip = false
 
 // add process env variable to axios
-axios.defaults.baseURL = process.env.VUE_APP_BASE_URL || 'https://land-finder-back-tnd34.ondigitalocean.app/api';
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL || 'https://land-finder-api-9zjmz.ondigitalocean.app/api';
 
 new Vue({
   router,
