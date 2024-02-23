@@ -13,7 +13,7 @@
           loading="lazy"
         />
         <div class="bloc-shadow"></div>
-        <h4 class="position-relative">{{ project.attributes.mod }}</h4>
+        <h4 class="position-relative">{{ formatLandArea(project.attributes.land_area) }}m²</h4>
         <div>
           <h2 class="position-relative">{{ project.attributes.name }}</h2>
           <p class="position-relative">
@@ -43,6 +43,9 @@ export default {
       //     id: id,
       //   },
       // });
+    },
+    formatLandArea(area) {
+      return area.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };

@@ -212,6 +212,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .search-header {
   position: relative;
   width: 100%;

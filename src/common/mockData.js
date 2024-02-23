@@ -15,16 +15,46 @@ export const placesMockData = [
     name: "Cabo San Lucas, Baja California Sur",
     value: "Los Cabos"
   },
-  // {
-  //   id: 3,
-  //   name: "El Sargento, Baja California Sur",
-  //   value: "El Sargento"
-  // },
-  // {
-  //   id: 4,
-  //   name: "Pescadero, Baja California Sur",
-  //   value: "Pescadero"
-  // },
+  {
+    id: 3,
+    name: "San Jose, Baja California Sur",
+    value: "San Jose"
+  },
+  {
+    id: 4,
+    name: "Cabo del Este, Baja California Sur",
+    value: "Cabo del Este"
+  },
+  {
+    id: 5,
+    name: "Todos Santos, Baja California Sur",
+    value: "Todos Santos"
+  },
+  {
+    id: 6,
+    name: "El Pescadero, Baja California Sur",
+    value: "El Pescadero"
+  },
+  {
+    id: 7,
+    name: "Los Barriles, Baja California Sur",
+    value: "Los Barriles"
+  },
+  {
+    id: 8,
+    name: "Loreto, Baja California Sur",
+    value: "Loreto"
+  },
+  {
+    id: 9,
+    name: "Mulege, Baja California Sur",
+    value: "Mulege"
+  },
+  {
+    id: 10,
+    name: "La Bocana, Baja California Sur",
+    value: "La Bocana"
+  },
 ]
 
 export const testimonialsMockData = [
@@ -230,81 +260,3 @@ export const partners_up_part2 = [
     description: 'Firma legal especializada en temas inmobiliarios.',
   },
 ]
-
-// export const partners_down_part1 = [
-//   {
-//     id: 10,
-//     name: 'HUBi',
-//     image: 'HUBi.png',
-//     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
-//   },
-//   {
-//     id: 11,
-//     name: 'Welcome Home',
-//     image: 'Welcomehome.png',
-//     description: 'Comercializadora inmobiliaria especializada en proyectos.',
-//   },
-//   {
-//     id: 12,
-//     name: 'Bantra Tech',
-//     image: 'BantraTech.png',
-//     description: 'Especialistas en tecnología proptech.',
-//   },
-//   {
-//     id: 13,
-//     name: 'Alkilable',
-//     image: 'Alkilable.png',
-//     description: 'Administración de propiedades y proyectos habitacionales.',
-//   },
-//   {
-//     id: 14,
-//     name: 'UKI',
-//     image: 'UKI.png',
-//     description: 'Administradora hotelera de proyectos de nicho.',
-//   },
-//   {
-//     id: 15,
-//     name: 'Lobbi',
-//     image: 'Lobbi-IGE.png',
-//     description: 'Consultoría y gestión legal especializada en inmuebles.',
-//   },
-// ]
-
-// export const partners_down_part2 = [
-//   {
-//     id: 16,
-//     name: 'HUBi',
-//     image: 'HUBi.png',
-//     description: 'Grupo inmobiliario multidisciplinario en Baja California Sur.',
-//   },
-//   {
-//     id: 17,
-//     name: 'Welcome Home',
-//     image: 'Welcomehome.png',
-//     description: 'Comercializadora inmobiliaria especializada en proyectos.',
-//   },
-//   {
-//     id: 18,
-//     name: 'Bantra Tech',
-//     image: 'BantraTech.png',
-//     description: 'Especialistas en tecnología proptech.',
-//   },
-//   {
-//     id: 19,
-//     name: 'Alkilable',
-//     image: 'Alkilable.png',
-//     description: 'Administración de propiedades y proyectos habitacionales.',
-//   },
-//   {
-//     id: 20,
-//     name: 'UKI',
-//     image: 'UKI.png',
-//     description: 'Administradora hotelera de proyectos de nicho.',
-//   },
-//   {
-//     id: 21,
-//     name: 'Lobbi',
-//     image: 'Lobbi-IGE.png',
-//     description: 'Consultoría y gestión legal especializada en inmuebles.',
-//   },
-// ]

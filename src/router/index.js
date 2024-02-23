@@ -14,6 +14,7 @@ import VerifyAccountView from '../views/VerifyAccountView.vue'
 import ContactView from '@/views/ContactView.vue'
 import CollaboratorsView from '@/views/CollaboratorsView.vue'
 import MyProfileView from '@/views/MyProfileView.vue'
+import SupportView from '@/views/SupportView.vue'
 import PaguenPerrosView from '@/views/PaguenPerros.vue'
 // Places
 import PlaceLaPaz from '@/views/places/PlaceLaPaz.vue'
@@ -118,6 +119,11 @@ const routes = [
     path: '/places/todos-santos',
     name: 'places-todos-santos',
     component: PlaceTodosSantos
+  },
+  {
+    path: '/support',
+    name: 'support',
+    component: SupportView
   },
   // {
   //   path: '/support-billing',
